@@ -1,9 +1,5 @@
 package com.didispace;
 
-import com.didispace.domain.User;
-import com.didispace.entity.User2;
-import com.didispace.mapper.User2Mapper;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +10,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.didispace.entity.User;
+import com.didispace.mapper.UserMapper;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -22,19 +21,28 @@ import org.springframework.transaction.annotation.Transactional;
 public class ApplicationTests {
 
 	@Autowired
-	private User2Mapper userMapper;
+	private UserMapper userMapper;
 
 	@Test
 	@Rollback
 	public void findByName() throws Exception {
-		User2 user = new User2();
+		User user = new User();
 		user.setId(10);
 		user.setAge(10);
 		user.setName("robot");
 		userMapper.insert(user);
-		User2 u = userMapper.selectByPrimaryKey(10);
+		User u = userMapper.selectByPrimaryKey(10);
 		System.out.println(user.getName());
 		Assert.assertEquals(10, u.getAge().intValue());
+	}
+	
+	@Test
+	@Rollback
+	public void findById() throws Exception {
+
+		User u=userMapper.selectByPrimaryKey(1);
+		System.out.println(u.getName());
+		
 	}
 
 }

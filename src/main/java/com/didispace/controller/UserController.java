@@ -1,11 +1,12 @@
 package com.didispace.controller;
 
-import com.didispace.domain.User;
 
 import java.util.*;
 
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
+
+import com.didispace.entity.User;
 
 /**
  *
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value="/users")     // 通过这里配置使下面的映射都在/users下，可去除
 public class UserController {
 
-    static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
+    static Map<Integer, User> users = Collections.synchronizedMap(new HashMap<Integer, User>());
 
     @ApiOperation(value="获取用户列表", notes="")
     @RequestMapping(value={""}, method=RequestMethod.GET)
@@ -48,7 +49,7 @@ public class UserController {
             @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     })
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-    public String putUser(@PathVariable Long id, @RequestBody User user) {
+    public String putUser(@PathVariable Integer id, @RequestBody User user) {
         User u = users.get(id);
         u.setName(user.getName());
         u.setAge(user.getAge());

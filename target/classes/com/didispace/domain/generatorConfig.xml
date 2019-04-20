@@ -2,20 +2,20 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
   <context id="rocalldb">
-    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/rocalldb?" 
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/rocalldb?characterEncoding=utf8" 
     	driverClass="com.mysql.jdbc.Driver" 
     	password="123456" userId="rocalldb" />
     <javaModelGenerator 
     	targetPackage="com.didispace.entity" 
-    	targetProject="RollCallSys" />
+    	targetProject="ConferSys" />
     <sqlMapGenerator 
     	targetPackage="com.didispace.mapper" 
-    	targetProject="RollCallSys" />
+    	targetProject="ConferSys" />
     <javaClientGenerator 
 	    targetPackage="com.didispace.mapper" 
-	    targetProject="RollCallSys" 
+	    targetProject="ConferSys" 
 	    type="XMLMAPPER" />
-    <table schema="user2" tableName="user2"
+    <table schema="user" tableName="user"
     	enableCountByExample="false" 
     	enableUpdateByExample="false"
         enableDeleteByExample="false" 
