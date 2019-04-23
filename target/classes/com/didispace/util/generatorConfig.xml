@@ -2,20 +2,20 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
   <context id="rocalldb">
-    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/rocalldb?characterEncoding=utf8" 
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/dblab5?characterEncoding=utf8" 
     	driverClass="com.mysql.jdbc.Driver" 
-    	password="123456" userId="rocalldb" />
+    	password="123456" userId="root" />
     <javaModelGenerator 
     	targetPackage="com.didispace.entity" 
-    	targetProject="ConferSys" />
+    	targetProject="RoCallSys" />
     <sqlMapGenerator 
     	targetPackage="com.didispace.mapper" 
-    	targetProject="ConferSys" />
+    	targetProject="RoCallSys" />
     <javaClientGenerator 
 	    targetPackage="com.didispace.mapper" 
-	    targetProject="ConferSys" 
+	    targetProject="RoCallSys" 
 	    type="XMLMAPPER" />
-    <table schema="user" tableName="user"
+    <table schema="user" tableName="ask"
     	enableCountByExample="false" 
     	enableUpdateByExample="false"
         enableDeleteByExample="false" 
@@ -23,5 +23,62 @@
         selectByExampleQueryId="false"
      >
      </table> 
+        <table schema="course" tableName="course"
+    	enableCountByExample="false" 
+    	enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     >
+     </table> 
+        <table schema="record" tableName="record"
+    	enableCountByExample="false" 
+    	enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     >
+     </table> 
+        <table schema="student" tableName="student"
+    	enableCountByExample="false" 
+    	enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     >
+     </table> 
+        <table schema="takes" tableName="takes"
+    	enableCountByExample="false" 
+    	enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     >
+     </table> 
+        <table schema="user" tableName="teacher"
+    	enableCountByExample="false" 
+    	enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     >
+     </table> 
+        <table schema="teaches" tableName="teaches"
+    	enableCountByExample="false" 
+    	enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     >
+     </table> 
+        <table schema="time_slot" tableName="time_slot"
+    	enableCountByExample="false" 
+    	enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     >
+     </table> 
+     
   </context>
 </generatorConfiguration>
