@@ -15,7 +15,7 @@
 	    targetPackage="com.didispace.mapper" 
 	    targetProject="RoCallSys" 
 	    type="XMLMAPPER" />
-    <table schema="user" tableName="ask"
+    <table schema="ask" tableName="ask"
     	enableCountByExample="false" 
     	enableUpdateByExample="false"
         enableDeleteByExample="false" 
@@ -55,7 +55,7 @@
         selectByExampleQueryId="false"
      >
      </table> 
-        <table schema="user" tableName="teacher"
+        <table schema="teacher" tableName="teacher"
     	enableCountByExample="false" 
     	enableUpdateByExample="false"
         enableDeleteByExample="false" 
