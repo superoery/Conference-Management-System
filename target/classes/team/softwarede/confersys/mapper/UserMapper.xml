@@ -37,6 +37,12 @@
     from user
     where worker_id = #{workerId,jdbcType=VARCHAR}
   </select>
+  <select id="selectByIdByIdentityId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   <!-- 根据用户编号和权限编号查找用户 -->
+   select *
+    from user 
+    where worker_id=#{uId,jdbcType=INTEGER} and ide_id=#{identityId,jdbcType=INTEGER};
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--
       WARNING - @mbg.generated
