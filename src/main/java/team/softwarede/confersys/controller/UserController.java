@@ -31,8 +31,8 @@ public class UserController {
     UserBiz userBiz;
     
     @RequestMapping(value="/login",method = RequestMethod.POST)
-    public String dologin(@RequestParam("userId") Integer userId,
-                          @RequestParam("identityId") Integer identityId,
+    public String dologin(@RequestParam("userId") String userId,
+                          @RequestParam("identityId") String identityId,
                           @RequestParam("passwd") String passwd,
                           HttpServletRequest request) {
         

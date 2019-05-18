@@ -22,7 +22,7 @@ public interface UserMapper {
      * @param identityId 用户身份
      * @return 用户类
      */
-    User selectByIdByIdentityId(Integer uId,Integer identityId);
+    User selectByIdByIdentityId(String uId,String identityId);
 
 
     int updateByPrimaryKeySelective(User record);

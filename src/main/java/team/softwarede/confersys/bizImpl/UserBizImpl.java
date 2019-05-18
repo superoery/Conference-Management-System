@@ -24,7 +24,7 @@ public class UserBizImpl implements UserBiz {
      * 验证登录信息
      */
     @Override
-    public String login(Integer userId, Integer identityId, String passwd) {
+    public String login(String userId, String identityId, String passwd) {
         // TODO Auto-generated method stub
         String msg=null;//返回信息
         
