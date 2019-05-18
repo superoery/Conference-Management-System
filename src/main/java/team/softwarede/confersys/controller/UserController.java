@@ -1,12 +1,12 @@
-package com.didispace.controller;
+package team.softwarede.confersys.controller;
 
 
 import java.util.*;
 
 import io.swagger.annotations.*;
-import org.springframework.web.bind.annotation.*;
+import team.softwarede.confersys.entity.User;
 
-import com.didispace.entity.User;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.didispace.entity;
+package team.softwarede.confersys.entity;
 
 public class User {
     /**

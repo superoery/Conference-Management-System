@@ -10,8 +10,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.didispace.entity.User;
-import com.didispace.mapper.UserMapper;
+import team.softwarede.confersys.Application;
+import team.softwarede.confersys.entity.User;
+import team.softwarede.confersys.mapper.UserMapper;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

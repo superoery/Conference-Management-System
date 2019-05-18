@@ -1,6 +1,6 @@
-package com.didispace.mapper;
+package team.softwarede.confersys.mapper;
 
-import com.didispace.entity.User;
+import team.softwarede.confersys.entity.User;
 
 public interface UserMapper {
     /**

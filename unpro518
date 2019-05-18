@@ -1,0 +1,56 @@
+[33mcommit 5c737ac486b24532f3a08be6af365c74726d870f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 43ef0e8 acbd919
+Author: Mickey1299 <807798223@qq.com>
+Date:   Sat Apr 20 17:22:11 2019 +0800
+
+    漏提交了read.md
+
+[33mcommit 43ef0e8c0a46c8e31fda5a87c1613e4915674fbc[m[33m ([m[1;33mtag: v1.0[m[33m, [m[1;31mconfer/master[m[33m)[m
+Author: Mickey1299 <807798223@qq.com>
+Date:   Sat Apr 20 17:08:07 2019 +0800
+
+    Frame merge completed. Having been tested.
+
+[33mcommit acbd919c3dca0baaa1086897a49f62b6fdf8bd21[m[33m ([m[1;31mjavaweb/master[m[33m)[m
+Author: Mity1299 <807798223@qq.com>
+Date:   Sat Apr 20 15:17:17 2019 +0800
+
+    Initial commit
+
+[33mcommit 3d59818d6ab9728c09bc42e3ae5c9ee6df6b07ce[m
+Merge: f312ea1 789a637
+Author: Mickey1299 <807798223@qq.com>
+Date:   Sat Apr 20 12:43:04 2019 +0800
+
+    Merge branch 'master' of github.com:Mity1299/Conference-Management-System
+
+[33mcommit f312ea174da08c88040e6e846851d53277f4db45[m
+Author: Mickey1299 <807798223@qq.com>
+Date:   Sat Apr 20 12:40:21 2019 +0800
+
+    'all'
+
+[33mcommit 789a637daf5f3ed3465723c7bc3ec44f627e3c99[m
+Author: Mickey1299 <807798223@qq.com>
+Date:   Sat Apr 20 00:20:14 2019 +0800
+
+    '删除需求规格文件'
+
+[33mcommit b7e0fe7815d6821fdf9357a13d5a8797f41177b2[m
+Merge: 3fd7c41 e5864d5
+Author: Mickey1299 <807798223@qq.com>
+Date:   Sat Apr 20 00:15:16 2019 +0800
+
+    Merge branch 'master' of github.com:Mity1299/Conference-Management-System
+
+[33mcommit 3fd7c41c2709d9e6d332ce1656e81527c05f386c[m
+Author: Mickey1299 <807798223@qq.com>
+Date:   Sat Apr 20 00:09:57 2019 +0800
+
+    '上传需求规格说明'
+
+[33mcommit e5864d57a0ec9a1a122415c8d888048e7f38f468[m
+Author: Mity1299 <41116724+Mity1299@users.noreply.github.com>
+Date:   Sat Apr 20 00:02:04 2019 +0800
+
+    Initial commit

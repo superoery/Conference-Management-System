@@ -1,4 +1,4 @@
-package com.didispace.controller;
+package team.softwarede.confersys.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
