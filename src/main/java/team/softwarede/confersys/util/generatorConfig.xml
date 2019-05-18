@@ -2,26 +2,145 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
   <context id="rocalldb">
-    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/rocalldb?characterEncoding=utf8" 
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/softwaredb?characterEncoding=utf8" 
     	driverClass="com.mysql.jdbc.Driver" 
-    	password="123456" userId="rocalldb" />
+    	password="123" userId="softwaredb" />
     <javaModelGenerator 
-    	targetPackage="com.didispace.entity" 
+    	targetPackage="team.softwarede.confersys.entity" 
     	targetProject="ConferSys" />
     <sqlMapGenerator 
-    	targetPackage="com.didispace.mapper" 
+    	targetPackage="team.softwarede.confersys.mapper" 
     	targetProject="ConferSys" />
     <javaClientGenerator 
-	    targetPackage="com.didispace.mapper" 
+	    targetPackage="team.softwarede.confersys.mapper" 
 	    targetProject="ConferSys" 
 	    type="XMLMAPPER" />
-    <table schema="user" tableName="user"
+    <table schema="apply" tableName="apply"
     	enableCountByExample="false" 
     	enableUpdateByExample="false"
         enableDeleteByExample="false" 
         enableSelectByExample="false"
         selectByExampleQueryId="false"
-     >
-     </table> 
+     ></table> 
+     <table schema="equipment" tableName="equipment"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="equipment_type" tableName="equipmentType"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="identity" tableName="identity"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="leave_application" tableName="leaveApplication"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="login" tableName="login"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="meeting" tableName="meeting"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="meeting_room" tableName="meetingRoom"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="meeting_room_schedule" tableName="meetingRoomSchedule"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="notices" tableName="notices"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="notification" tableName="notification"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="participates" tableName="participates"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="participates_meeting" tableName="participatesMeeting"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="repair_equipment" tableName="repairEquipment"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="repairs" tableName="repairs"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="role" tableName="role"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="user" tableName="user"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+     <table schema="user_group" tableName="userGroup"
+        enableCountByExample="false" 
+        enableUpdateByExample="false"
+        enableDeleteByExample="false" 
+        enableSelectByExample="false"
+        selectByExampleQueryId="false"
+     ></table> 
+  
   </context>
 </generatorConfiguration>

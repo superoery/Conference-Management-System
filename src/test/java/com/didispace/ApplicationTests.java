@@ -27,22 +27,12 @@ public class ApplicationTests {
 	@Test
 	@Rollback
 	public void findByName() throws Exception {
-		User user = new User();
-		user.setId(10);
-		user.setAge(10);
-		user.setName("robot");
-		userMapper.insert(user);
-		User u = userMapper.selectByPrimaryKey(10);
-		System.out.println(user.getName());
-		Assert.assertEquals(10, u.getAge().intValue());
 	}
 	
 	@Test
 	@Rollback
 	public void findById() throws Exception {
 
-		User u=userMapper.selectByPrimaryKey(1);
-		System.out.println(u.getName());
 		
 	}
 
