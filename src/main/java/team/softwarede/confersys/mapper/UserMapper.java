@@ -1,39 +1,29 @@
 package team.softwarede.confersys.mapper;
 
 import team.softwarede.confersys.entity.User;
+import org.apache.ibatis.annotations.Mapper;
 
+
+@Mapper
 public interface UserMapper {
 
-
-    int deleteByPrimaryKey(String workerId);
-
+    int deleteByPrimaryKey(String userId);
 
     int insert(User record);
 
-
     int insertSelective(User record);
 
-
-    User selectByPrimaryKey(String workerId);
+    User selectByPrimaryKey(String userId);
     
     /**
-          * 根据用户身份和用户编号查找用户
-     * @param uId 用户编号
-     * @param identityId 用户身份
-     * @return 用户类
-     */
-    User selectByIdByIdentityId(String uId,String identityId);
-
-
-    int updateByPrimaryKeySelective(User record);
-
-    /**
-          *   根据用户编号修改密码
-     * @param uId 用户编号
-     * @param passwd 用户密码
+     * 根据用户身份和用户编号查找用户密码
+     * @param record
      * @return
      */
-    int updateByIdByPasswd(String uId,String passwd);
+    String selectPasswdByIdByIdentityId(String uid,Integer identityId);
     
+    int updateByPrimaryKeySelective(User record);
+
+ 
     int updateByPrimaryKey(User record);
 }

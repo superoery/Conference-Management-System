@@ -39,18 +39,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+		<!-- EhCache -->
+		<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		   <dependency>
+		    <groupId>org.mybatis.caches</groupId>
+		    <artifactId>mybatis-ehcache</artifactId>
+		    <version>1.1.0</version>
+		</dependency>
 
-		<!-- swagger2 接口文档API依赖 -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.2.2</version>
-		</dependency>
 		<!-- thymeleaf html模板依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
