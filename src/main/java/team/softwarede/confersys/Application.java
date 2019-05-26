@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -15,13 +16,13 @@ import org.springframework.web.servlet.DispatcherServlet;
  *
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.didispace.mapper")
+@EnableCaching
 public class Application {
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(Application.class, args);
-
+		
 	}
 	
 	/**
@@ -35,5 +36,7 @@ public class Application {
         return servletServletRegistrationBean;
 	   
 	}
+	
+	
 
 }
