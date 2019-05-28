@@ -10,4 +10,5 @@ package team.softwarede.confersys.biz;
  */
 public interface UserBiz {
 
+    String login(String userId,Integer identityId,String passwd);
 }
