@@ -77,7 +77,8 @@ public class UserControllerTest {
                     param("ideId", "1").
                     param("password", "1236")
                     ).
-                    andExpect(redirectedUrl("/user/login"));
+                    andDo(print());
+                    //andExpect(redirectedUrl("/user/login"));
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -97,8 +98,8 @@ public class UserControllerTest {
                     param("userId", "1").
                     param("ideId", "1")
                     ).
-                    //andExpect(redirectedUrl("main")).
-                    andDo(print());
+                    andExpect(redirectedUrl("main"));
+                    //andDo(print());
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
