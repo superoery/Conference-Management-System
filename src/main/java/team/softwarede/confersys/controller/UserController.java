@@ -40,24 +40,20 @@ public class UserController {
     
     @RequestMapping("/login.do")
     public String login(ModelMap map,
-                        @Valid @ModelAttribute("userlogin") UserLogin userlogin,
+                        @Valid @ModelAttribute("user") UserLogin userlogin,
                         BindingResult bindResult
                         ) {
         if(bindResult.hasErrors()) {
             return "login";//注意，这里写的是要返回的页面名，而不是路径名
         }
         String msg=null;
-        msg =userBiz.login(userlogin.getUserId(), 
-                           userlogin.getIdeId(), 
-                           userlogin.getPassword());
-        map.addAttribute("msg", msg);
+        msg = userBiz.login(userlogin.getUserId(), 
+                      userlogin.getIdeId(), 
+                      userlogin.getPassword());
         if(msg.equals("ok")) {
             return "redirect:/user/main";
-            
         }else {
             return "redirect:/user/login";
         }
-
     }
-    
 }
