@@ -26,16 +26,17 @@ import org.springframework.transaction.annotation.Transactional;
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
 import team.softwarede.confersys.dto.MeetingRoomBook;
+import team.softwarede.confersys.entity.Equipment;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.MeetingRoom;
-import team.softwarede.confersys.entity.MeetingRoomSchedule;
+import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumMeetingRoomStatusId;
 import team.softwarede.confersys.enums.EnumMeetingStatusId;
 import team.softwarede.confersys.mapper.EquipmentMapper;
 import team.softwarede.confersys.mapper.EquipmentTypeMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.MeetingRoomMapper;
-import team.softwarede.confersys.mapper.MeetingRoomScheduleMapper;
+import team.softwarede.confersys.mapper.ScheduleMapper;
 
 /**
  * @author Mity1299
@@ -52,7 +53,7 @@ public class MeetingRoomBookMapperTest {
     @Autowired
     MeetingRoomMapper meetingRoomMapper;
     @Autowired
-    MeetingRoomScheduleMapper meetingRoomScheduleMapper;
+    ScheduleMapper scheduleMapper;
     @Autowired
     MeetingMapper meetingMapper; 
     @Autowired
@@ -90,6 +91,13 @@ public class MeetingRoomBookMapperTest {
         
         meetingRoomMapper.insertSelective(meetingRoom);
         
+        //插入设备类型
+        Equipment equipment = new Equipment();
+        
+        
+        
+        //插入设备
+        
       //插入会议
         meeting = new Meeting();
         meeting.setId(2);//由于现在不是自动增长，因此需要我手动添加一个id
@@ -103,7 +111,7 @@ public class MeetingRoomBookMapperTest {
         
         //插入日程
         
-        MeetingRoomSchedule schedule = new MeetingRoomSchedule();
+        Schedule schedule = new Schedule();
         schedule.setMeetingId(meeting.getId());//插入会议的自增长id
         schedule.setMeetingRoomId(meetingRoom.getId());//插入会议室的自增长id
         
@@ -115,12 +123,7 @@ public class MeetingRoomBookMapperTest {
             e.printStackTrace();
             logger.error("创建日期错误");
         }
-        
-        //补充meeting里的schedue的外键
-        Meeting meetingTemp = new Meeting();
-        meetingTemp.setId(meeting.getId());
-        meetingTemp.setMeetingId(schedule.getMeetingId());
-        meetingMapper.updateByPrimaryKeySelective(meetingTemp);
+
         
         
         //插入第二个会议
@@ -134,7 +137,7 @@ public class MeetingRoomBookMapperTest {
         
         meetingMapper.insertSelective(meeting2);
                 
-        MeetingRoomSchedule schedule2 = new MeetingRoomSchedule();
+        Schedule schedule2 = new Schedule();
         schedule2.setMeetingId(meeting2.getId());//插入会议的自增长id
         schedule2.setMeetingRoomId(meetingRoom.getId());//插入会议室的自增长id
         
@@ -146,13 +149,6 @@ public class MeetingRoomBookMapperTest {
             e.printStackTrace();
             logger.error("创建日期错误");
         }
-        
-        //补充meeting里的schedue的外键
-        Meeting meetingTemp2 = new Meeting();
-        meetingTemp2.setId(meeting.getId());
-        meetingTemp2.setMeetingId(schedule2.getMeetingId());
-        meetingMapper.updateByPrimaryKeySelective(meetingTemp2);
-        
         
         //插入设备和设备类型
         

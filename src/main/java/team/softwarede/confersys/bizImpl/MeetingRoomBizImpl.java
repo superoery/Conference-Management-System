@@ -20,6 +20,7 @@ import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.mapper.ApplyMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
+import team.softwarede.confersys.mapper.ScheduleMapper;
 
 /**
  * @author Mity1299
@@ -35,9 +36,9 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     @Autowired
     ApplyMapper applyMapper;
     @Autowired
-    Schedule scheduleMapper; 
+    MeetingMapper meetingMapper;
     @Autowired
-    MeetingMapper meetingMapper; 
+    ScheduleMapper scheduleMapper;
     
     
     /**

@@ -9,5 +9,6 @@ package team.softwarede.confersys.enums;
  *
  */
 public enum EnumMeetingStatusId {
-    EXAMING,SUCCEED
+    EXAMING,//审核中
+    SUCCEED//通过审核
 }

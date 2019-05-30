@@ -8,19 +8,19 @@ package team.softwarede.confersys.enums;
  * @author Mity1299
  *
  */
-public enum EnumMeetingRoomStatusId {
-
-    FREE("空闲"),//空闲
-    USING("使用中"),//使用中
-    REPARING("维修中");//维修中
+public enum EnumSex {
     
+    MALE("男"),
+    FEMALE("女");
+
     private final String description;
 
-    EnumMeetingRoomStatusId(String description) {
+    EnumSex(String description) {
         this.description = description;
         
     }
 
+  
     public String getDescription() {
         return description;
     }

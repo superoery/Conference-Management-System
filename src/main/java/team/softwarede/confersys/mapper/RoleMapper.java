@@ -14,6 +14,9 @@ public interface RoleMapper {
     int insertSelective(Role record);
 
     Role selectByPrimaryKey(Integer id);
+    
+    //根据权限名称查找权限
+    Role selectByName(String name);
 
     int updateByPrimaryKeySelective(Role record);
 
