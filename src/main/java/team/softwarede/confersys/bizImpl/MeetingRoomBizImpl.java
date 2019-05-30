@@ -41,7 +41,9 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     
     
     
-    
+    /**
+     * 显示可选会议室列表
+     */
     @Override
     public List<MeetingRoomAvail> showAvailMtRoom(Date beginTime, 
                                                  Date endTime, 
