@@ -78,7 +78,7 @@
         enableSelectByExample="false"
         selectByExampleQueryId="false"
      ></table> 
-     <table schema="meetingRoomSchedule" tableName="meeting_room_schedule"
+     <table schema="Schedule" tableName="schedule"
         enableCountByExample="false" 
         enableUpdateByExample="false"
         enableDeleteByExample="false" 

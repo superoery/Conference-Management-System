@@ -1,8 +1,14 @@
 package team.softwarede.confersys.dto;
 
+/**
+ * 
+ * @author wyfca
+ * 作用：会议室预约系统-读取会议室申请结果-返回一般通知详情
+ * 
+ */
 public class NotificationDetail {
 	
-	private String noteId;
+	private Integer noteId;
 
 	private String noteType;
 	
@@ -10,7 +16,7 @@ public class NotificationDetail {
 	
 	private String noteStatus;
 	
-	private String noteSenderId;
+	private Integer noteSenderId;
 	
 	private String noteSenderName;
 	
@@ -18,11 +24,11 @@ public class NotificationDetail {
 	
 	private Integer noteReferMtId;
 
-	public String getNoteId() {
+	public Integer getNoteId() {
 		return noteId;
 	}
 
-	public void setNoteId(String noteId) {
+	public void setNoteId(Integer noteId) {
 		this.noteId = noteId;
 	}
 
@@ -50,11 +56,11 @@ public class NotificationDetail {
 		this.noteStatus = noteStatus;
 	}
 
-	public String getNoteSenderId() {
+	public Integer getNoteSenderId() {
 		return noteSenderId;
 	}
 
-	public void setNoteSenderId(String noteSenderId) {
+	public void setNoteSenderId(Integer noteSenderId) {
 		this.noteSenderId = noteSenderId;
 	}
 
@@ -81,5 +87,4 @@ public class NotificationDetail {
 	public void setNoteReferMtId(Integer noteReferMtId) {
 		this.noteReferMtId = noteReferMtId;
 	}
-
 }
