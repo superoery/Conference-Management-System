@@ -16,9 +16,9 @@ import team.softwarede.confersys.dto.MeetingRoomAvail;
 import team.softwarede.confersys.dto.MeetingRoomBook;
 import team.softwarede.confersys.dtomapper.MeetingRoomAvailMapper;
 import team.softwarede.confersys.entity.Meeting;
+import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.mapper.ApplyMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
-import team.softwarede.confersys.mapper.MeetingRoomScheduleMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
 
 /**
@@ -31,14 +31,13 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     @Autowired
     MeetingRoomAvailMapper meetingRoomBookMapper;
     @Autowired
-    MeetingMapper meetingMapper;
-    @Autowired
     ParticipatesMapper participatesMapper;
     @Autowired
     ApplyMapper applyMapper;
     @Autowired
-    MeetingRoomScheduleMapper meetingRoomScheduleMapper; 
-    
+    Schedule scheduleMapper; 
+    @Autowired
+    MeetingMapper meetingMapper; 
     
     
     /**
