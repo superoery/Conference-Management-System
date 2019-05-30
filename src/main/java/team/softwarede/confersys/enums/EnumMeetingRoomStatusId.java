@@ -6,7 +6,7 @@ package team.softwarede.confersys.enums;
 
 /**
  * @author Mity1299
- *
+ *用于会议室表
  */
 public enum EnumMeetingRoomStatusId {
 

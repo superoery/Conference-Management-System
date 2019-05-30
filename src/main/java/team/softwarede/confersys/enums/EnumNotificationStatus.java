@@ -6,16 +6,17 @@ package team.softwarede.confersys.enums;
 
 /**
  * @author Mity1299
- * 性别
+ * 用于通知表、与会人员关系表
  */
-public enum EnumSex {
+public enum EnumNotificationStatus {
     
-    MALE("男"),
-    FEMALE("女");
+    UNREAD("未读"),//审核中
+    READ("已读");//通过审核
+    
 
     private final String description;
 
-    EnumSex(String description) {
+    EnumNotificationStatus(String description) {
         this.description = description;
         
     }
@@ -24,4 +25,5 @@ public enum EnumSex {
     public String getDescription() {
         return description;
     }
+
 }

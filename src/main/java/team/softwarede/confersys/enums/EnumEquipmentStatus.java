@@ -6,21 +6,21 @@ package team.softwarede.confersys.enums;
 
 /**
  * @author Mity1299
- * 性别
+ * 用于设备表
  */
-public enum EnumSex {
-    
-    MALE("男"),
-    FEMALE("女");
+public enum EnumEquipmentStatus {
+
+    AVAILABLE("可用"),
+    REPAIRING("维护中"),
+    LACK("缺乏");
 
     private final String description;
 
-    EnumSex(String description) {
+    EnumEquipmentStatus(String description) {
         this.description = description;
         
     }
 
-  
     public String getDescription() {
         return description;
     }

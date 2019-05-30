@@ -6,16 +6,16 @@ package team.softwarede.confersys.enums;
 
 /**
  * @author Mity1299
- * 性别
+ *  用于会议表和会议申请表
  */
-public enum EnumSex {
+public enum EnumApplyStatusId {
+    EXAMING("审核中"),//审核中
+    SUCCEED("通过审核");//通过审核
     
-    MALE("男"),
-    FEMALE("女");
 
     private final String description;
 
-    EnumSex(String description) {
+    EnumApplyStatusId(String description) {
         this.description = description;
         
     }
