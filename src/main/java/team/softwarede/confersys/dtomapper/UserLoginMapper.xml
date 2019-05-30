@@ -9,16 +9,16 @@
   <sql id="Base_Column_List">
     user_id, ide_id, password
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+<!--   <select id="selectByPrimaryKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
     where user_id = #{userId}
           and
-          ide_id =#{ideId}
-  </select>
+          ide_id= =#{ideId}
+  </select> -->
 
-<!--       <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+      <select id="selectByPrimaryKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
@@ -26,6 +26,6 @@
           and
           ide_id = #{1}
   </select>
-     -->
+    
 
 </mapper>
