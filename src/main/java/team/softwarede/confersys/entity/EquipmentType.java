@@ -2,6 +2,7 @@ package team.softwarede.confersys.entity;
 
 public class EquipmentType {
 
+
     private Integer id;
 
     private String typeName;
@@ -16,7 +17,7 @@ public class EquipmentType {
      *
      * @param id the value for equipment_type.id
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setId(Integer id) {
         this.id = id;
@@ -28,7 +29,7 @@ public class EquipmentType {
      *
      * @return the value of equipment_type.type_name
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public String getTypeName() {
         return typeName;
@@ -40,7 +41,7 @@ public class EquipmentType {
      *
      * @param typeName the value for equipment_type.type_name
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setTypeName(String typeName) {
         this.typeName = typeName;

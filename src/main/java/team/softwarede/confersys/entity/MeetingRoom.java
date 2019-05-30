@@ -1,6 +1,7 @@
 package team.softwarede.confersys.entity;
 
 public class MeetingRoom {
+
  
     private Integer id;
 
@@ -26,7 +27,7 @@ public class MeetingRoom {
      *
      * @param id the value for meeting_room.id
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setId(Integer id) {
         this.id = id;
@@ -38,7 +39,7 @@ public class MeetingRoom {
      *
      * @return the value of meeting_room.capacity
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public Integer getCapacity() {
         return capacity;
@@ -50,7 +51,7 @@ public class MeetingRoom {
      *
      * @param capacity the value for meeting_room.capacity
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
@@ -62,7 +63,7 @@ public class MeetingRoom {
      *
      * @return the value of meeting_room.room_introduce
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public String getRoomIntroduce() {
         return roomIntroduce;
@@ -74,7 +75,7 @@ public class MeetingRoom {
      *
      * @param roomIntroduce the value for meeting_room.room_introduce
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setRoomIntroduce(String roomIntroduce) {
         this.roomIntroduce = roomIntroduce;
@@ -86,7 +87,7 @@ public class MeetingRoom {
      *
      * @return the value of meeting_room.room_number
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public String getRoomNumber() {
         return roomNumber;
@@ -98,7 +99,7 @@ public class MeetingRoom {
      *
      * @param roomNumber the value for meeting_room.room_number
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
@@ -110,7 +111,7 @@ public class MeetingRoom {
      *
      * @return the value of meeting_room.building
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public String getBuilding() {
         return building;
@@ -122,7 +123,7 @@ public class MeetingRoom {
      *
      * @param building the value for meeting_room.building
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setBuilding(String building) {
         this.building = building;
@@ -134,7 +135,7 @@ public class MeetingRoom {
      *
      * @return the value of meeting_room.floor
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public Integer getFloor() {
         return floor;
@@ -146,7 +147,7 @@ public class MeetingRoom {
      *
      * @param floor the value for meeting_room.floor
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setFloor(Integer floor) {
         this.floor = floor;
@@ -158,7 +159,7 @@ public class MeetingRoom {
      *
      * @return the value of meeting_room.status_id
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public String getStatusId() {
         return statusId;
@@ -170,7 +171,7 @@ public class MeetingRoom {
      *
      * @param statusId the value for meeting_room.status_id
      *
-     * @mbg.generated Wed May 29 09:02:50 CST 2019
+     * @mbg.generated Thu May 30 09:12:43 CST 2019
      */
     public void setStatusId(String statusId) {
         this.statusId = statusId;
