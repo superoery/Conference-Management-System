@@ -1,5 +1,11 @@
 package team.softwarede.confersys.dto;
 
+/**
+ * 
+ * @author wyfca
+ * 作用：登录系统-显示主界面-返回一般通知列表
+ *
+ */
 public class NotificationMainPage {
 
 	private Integer notificationId;

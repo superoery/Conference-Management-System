@@ -1,28 +1,35 @@
 package team.softwarede.confersys.dto;
 
+import java.util.Date;
+
+/**
+ * 
+ * @author wyfca
+ * 作用：会议室预约系统-审核会议室申请-返回会议室申请列表
+ */
 public class ApplyShowAdmin {
 
 	private Integer applyId;
 	
-	private Integer applyTime;
+	private Date applyTime;
 
 	private Integer mtRoomId;
 	
-	private Integer mtRoomNum;
+	private String mtRoomNum;
 	
 	private Integer mtRoomFloor;
 	
-	private Integer mtRoomBuilding;
+	private String mtRoomBuilding;
 	
 	private Integer mtId;
 	
-	private Integer mtTopic;
+	private String mtTopic;
 	
 	private Integer mtOrganizerId;
 	
-	private Integer mtOrganizerName;
+	private String mtOrganizerName;
 	
-	private Integer applyStatusId;
+	private String applyStatus;
 
 	public Integer getApplyId() {
 		return applyId;
@@ -31,12 +38,12 @@ public class ApplyShowAdmin {
 	public void setApplyId(Integer applyId) {
 		this.applyId = applyId;
 	}
-	
-	public Integer getApplyTime() {
+
+	public Date getApplyTime() {
 		return applyTime;
 	}
 
-	public void setApplyTime(Integer applyTime) {
+	public void setApplyTime(Date applyTime) {
 		this.applyTime = applyTime;
 	}
 
@@ -48,11 +55,11 @@ public class ApplyShowAdmin {
 		this.mtRoomId = mtRoomId;
 	}
 
-	public Integer getMtRoomNum() {
+	public String getMtRoomNum() {
 		return mtRoomNum;
 	}
 
-	public void setMtRoomNum(Integer mtRoomNum) {
+	public void setMtRoomNum(String mtRoomNum) {
 		this.mtRoomNum = mtRoomNum;
 	}
 
@@ -64,11 +71,11 @@ public class ApplyShowAdmin {
 		this.mtRoomFloor = mtRoomFloor;
 	}
 
-	public Integer getMtRoomBuilding() {
+	public String getMtRoomBuilding() {
 		return mtRoomBuilding;
 	}
 
-	public void setMtRoomBuilding(Integer mtRoomBuilding) {
+	public void setMtRoomBuilding(String mtRoomBuilding) {
 		this.mtRoomBuilding = mtRoomBuilding;
 	}
 
@@ -80,11 +87,11 @@ public class ApplyShowAdmin {
 		this.mtId = mtId;
 	}
 
-	public Integer getMtTopic() {
+	public String getMtTopic() {
 		return mtTopic;
 	}
 
-	public void setMtTopic(Integer mtTopic) {
+	public void setMtTopic(String mtTopic) {
 		this.mtTopic = mtTopic;
 	}
 
@@ -96,19 +103,19 @@ public class ApplyShowAdmin {
 		this.mtOrganizerId = mtOrganizerId;
 	}
 
-	public Integer getMtOrganizerName() {
+	public String getMtOrganizerName() {
 		return mtOrganizerName;
 	}
 
-	public void setMtOrganizerName(Integer mtOrganizerName) {
+	public void setMtOrganizerName(String mtOrganizerName) {
 		this.mtOrganizerName = mtOrganizerName;
 	}
 
-	public Integer getApplyStatusId() {
-		return applyStatusId;
+	public String getApplyStatus() {
+		return applyStatus;
 	}
 
-	public void setApplyStatusId(Integer applyStatusId) {
-		this.applyStatusId = applyStatusId;
+	public void setApplyStatus(String applyStatus) {
+		this.applyStatus = applyStatus;
 	}
 }

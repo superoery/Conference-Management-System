@@ -3,6 +3,11 @@ package team.softwarede.confersys.dto;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 
+ * @author wyfca
+ * 作用：会议室预约系统-预约会议室-请求提交会议室预约
+ */
 public class MeetingRoomBook {
 	
 	private String mtTopic;
