@@ -2,7 +2,7 @@
 * 
 * @author Mity1299
 */
-package team.softwarede.confersys.dtomapper;
+package team.softwarede.confersys.bizImpl;
 
 import static org.junit.Assert.*;
 
@@ -12,33 +12,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.type.EnumTypeHandler;
 import org.apache.log4j.Logger;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.Application;
+import team.softwarede.confersys.biz.MeetingRoomBiz;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
 import team.softwarede.confersys.dto.MeetingRoomBook;
-import team.softwarede.confersys.entity.Equipment;
-import team.softwarede.confersys.entity.Meeting;
-import team.softwarede.confersys.entity.MeetingRoom;
-import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
-import team.softwarede.confersys.enums.EnumMeetingRoomStatusId;
-import team.softwarede.confersys.enums.EnumMeetingStatusId;
-import team.softwarede.confersys.mapper.EquipmentMapper;
-import team.softwarede.confersys.mapper.EquipmentTypeMapper;
-import team.softwarede.confersys.mapper.MeetingMapper;
-import team.softwarede.confersys.mapper.MeetingRoomMapper;
-import team.softwarede.confersys.mapper.ScheduleMapper;
 import team.softwarede.confersys.util.IsListEqual;
 
 /**
@@ -48,42 +35,26 @@ import team.softwarede.confersys.util.IsListEqual;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class MeetingRoomBookMapperTest {
-    
+public class MeetingRoomBizImplTest {
+
     @Autowired
-    MeetingRoomAvailMapper meetingRoomBookMapper; 
-    @Autowired
-    MeetingRoomMapper meetingRoomMapper;
-    @Autowired
-    ScheduleMapper scheduleMapper;
-    @Autowired
-    MeetingMapper meetingMapper; 
-    @Autowired
-    EquipmentMapper equipmentMapper;
-    @Autowired
-    EquipmentTypeMapper equipmentTypeMapper;
-    
+    MeetingRoomBiz meetingRoomBiz; 
     
     private SimpleDateFormat sdf;
     private Logger logger;
-    private String applyStatusId; 
     
     @Before
     public void setUp() {
         logger = Logger.getLogger(getClass());
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        applyStatusId = EnumApplyStatusId.SUCCEED.getDescription();
     }
     
-
-    
-    
     /**
-          * 有可预约的会议室
-     * 
-     */
+         * 有可预约的会议室
+    * 
+    */
     @Test
-    public void testAvailListSuccess() {
+    public void test() {
         Date beginTime = null;
         Date endTime = null;
         try {
@@ -98,9 +69,8 @@ public class MeetingRoomBookMapperTest {
         equipmentTypeIdList.add(3);
         Integer capacity = 30;
    
-          List<MeetingRoomAvail> availList
-          =meetingRoomBookMapper.selectBookAvailList(beginTime, endTime,
-          equipmentTypeIdList, capacity,applyStatusId);
+        List<MeetingRoomAvail> availList = meetingRoomBiz.showAvailMtRoom(beginTime, endTime, equipmentTypeIdList, capacity);
+
           
           List<Integer> mtRoomIdListTest = new ArrayList<Integer>();
           for(MeetingRoomAvail mtavail : availList) {
@@ -119,7 +89,6 @@ public class MeetingRoomBookMapperTest {
           
           assertEquals(true, result);
          
-
     }
     
     /**
@@ -141,9 +110,8 @@ public class MeetingRoomBookMapperTest {
         equipmentTypeIdList.add(1);
         Integer capacity = 30;
    
-          List<MeetingRoomAvail> availList
-          =meetingRoomBookMapper.selectBookAvailList(beginTime, endTime,
-          equipmentTypeIdList, capacity,applyStatusId);
+        List<MeetingRoomAvail> availList = meetingRoomBiz.showAvailMtRoom(beginTime, endTime, equipmentTypeIdList, capacity);
+
           
           List<Integer> mtRoomIdListTest = new ArrayList<Integer>();
           for(MeetingRoomAvail mtavail : availList) {
@@ -189,9 +157,7 @@ public class MeetingRoomBookMapperTest {
         equipmentTypeIdList.add(3);
         equipmentTypeIdList.add(2);
         Integer capacity = 30;
-        List<MeetingRoomAvail> availList 
-                =meetingRoomBookMapper.selectBookAvailList(beginTime, endTime,
-                        equipmentTypeIdList, capacity,applyStatusId);        
+        List<MeetingRoomAvail> availList = meetingRoomBiz.showAvailMtRoom(beginTime, endTime, equipmentTypeIdList, capacity);
         for(MeetingRoomAvail m : availList) {
             if(m!=null) {
                 logger.debug("BeginTime"+m.getId().toString());
@@ -220,9 +186,7 @@ public class MeetingRoomBookMapperTest {
         equipmentTypeIdList.add(3);
         equipmentTypeIdList.add(2);
         Integer capacity = 30;
-        List<MeetingRoomAvail> availList 
-                =meetingRoomBookMapper.selectBookAvailList(beginTime, endTime,
-                        equipmentTypeIdList, capacity,applyStatusId);        
+        List<MeetingRoomAvail> availList = meetingRoomBiz.showAvailMtRoom(beginTime, endTime, equipmentTypeIdList, capacity);
         for(MeetingRoomAvail m : availList) {
             if(m!=null) {
                 logger.debug("BeginTime"+m.getId().toString());
@@ -253,9 +217,8 @@ public class MeetingRoomBookMapperTest {
         equipmentTypeIdList.add(3);
         equipmentTypeIdList.add(2);
         Integer capacity = 100;
-        List<MeetingRoomAvail> availList 
-        =meetingRoomBookMapper.selectBookAvailList(beginTime, endTime,
-                equipmentTypeIdList, capacity,applyStatusId);        
+        List<MeetingRoomAvail> availList = meetingRoomBiz.showAvailMtRoom(beginTime, endTime, equipmentTypeIdList, capacity);
+     
         
         assertEquals(true, availList.isEmpty());  
     }
@@ -279,9 +242,7 @@ public class MeetingRoomBookMapperTest {
         equipmentTypeIdList.add(3);
         Integer capacity = 30;
 
-      List<MeetingRoomAvail> availList
-      =meetingRoomBookMapper.selectBookAvailList(beginTime, endTime,
-      equipmentTypeIdList, capacity,applyStatusId);
+        List<MeetingRoomAvail> availList = meetingRoomBiz.showAvailMtRoom(beginTime, endTime, equipmentTypeIdList, capacity);
       
       List<Integer> mtRoomIdListTest = new ArrayList<Integer>();
       for(MeetingRoomAvail mtavail : availList) {
@@ -295,10 +256,7 @@ public class MeetingRoomBookMapperTest {
       assertEquals(true, availList.isEmpty());  
 
     }
+      
     
-    
-
-
-
     
 }

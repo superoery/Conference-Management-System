@@ -17,6 +17,7 @@ import team.softwarede.confersys.dto.MeetingRoomBook;
 import team.softwarede.confersys.dtomapper.MeetingRoomAvailMapper;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.Schedule;
+import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.mapper.ApplyMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
@@ -50,8 +51,10 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
                                                  List<Integer> equipmentTypeIdList,
                                                  Integer capacity) {
         // TODO Auto-generated method stub
+        String applyStatusId = EnumApplyStatusId.SUCCEED.getDescription();
+
         List<MeetingRoomAvail> meetingRoomBookList =
-                meetingRoomBookMapper.selectBookAvailList(beginTime, endTime, equipmentTypeIdList, capacity);
+                meetingRoomBookMapper.selectBookAvailList(beginTime, endTime, equipmentTypeIdList, capacity,applyStatusId);
         
         return meetingRoomBookList;
     }

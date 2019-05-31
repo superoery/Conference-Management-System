@@ -27,17 +27,6 @@ public class Application {
 		
 	}
 	
-	/**
-	 * 设置匹配*.do后缀请求
-	 * 不知道能不能不拦截.jsp请求
-	 */
-	@Bean
-	public ServletRegistrationBean servletRegistrationBean(DispatcherServlet dispatcherServlet) {
-        ServletRegistrationBean servletServletRegistrationBean = new ServletRegistrationBean(dispatcherServlet);
-        servletServletRegistrationBean.addUrlMappings("*.do");
-        return servletServletRegistrationBean;
-	   
-	}
 	
 	
 
