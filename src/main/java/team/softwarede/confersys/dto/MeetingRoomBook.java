@@ -18,11 +18,13 @@ public class MeetingRoomBook {
 	
 	private String mtContent;
 	
-	private List<Integer> mtParticipantsIdList;
+	private List<String> mtParticipantsIdList;
 	
 	private Integer mtRoomId;
 	
-	private Integer mtOrganizerId;
+	private String mtOrganizerId;
+	
+	private List<Integer> uGroupIdList;
 
 	public String getMtTopic() {
 		return mtTopic;
@@ -56,11 +58,11 @@ public class MeetingRoomBook {
 		this.mtContent = mtContent;
 	}
 
-	public List<Integer> getMtParticipantsIdList() {
+	public List<String> getMtParticipantsIdList() {
 		return mtParticipantsIdList;
 	}
 
-	public void setMtParticipantsIdList(List<Integer> mtParticipantsIdList) {
+	public void setMtParticipantsIdList(List<String> mtParticipantsIdList) {
 		this.mtParticipantsIdList = mtParticipantsIdList;
 	}
 
@@ -72,11 +74,19 @@ public class MeetingRoomBook {
 		this.mtRoomId = mtRoomId;
 	}
 
-	public Integer getMtOrganizerId() {
+	public String getMtOrganizerId() {
 		return mtOrganizerId;
 	}
 
-	public void setMtOrganizerId(Integer mtOrganizerId) {
+	public void setMtOrganizerId(String mtOrganizerId) {
 		this.mtOrganizerId = mtOrganizerId;
 	}
+
+    public List<Integer> getuGroupIdList() {
+        return uGroupIdList;
+    }
+
+    public void setuGroupIdList(List<Integer> uGroupIdList) {
+        this.uGroupIdList = uGroupIdList;
+    }
 }
