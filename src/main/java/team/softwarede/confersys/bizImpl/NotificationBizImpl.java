@@ -9,7 +9,7 @@ import team.softwarede.confersys.biz.NotificationBiz;
 import team.softwarede.confersys.dto.NotificationMainPage;
 import team.softwarede.confersys.dtomapper.NotificationMainPageMapper;
 
-@Service("NotificationBiz")
+@Service("notificationBiz")
 public class NotificationBizImpl implements NotificationBiz {
 	
 	@Autowired
@@ -17,14 +17,13 @@ public class NotificationBizImpl implements NotificationBiz {
 	
 
 	@Override
-	public List<NotificationMainPage> notificationNewMeeting(int notificationId){
+	public List<NotificationMainPage> notificationNewMeeting(String userId){
 		String msg = null;
-		
-		NotificationMainPage notificationmainpage = notificationMapper.selectByNotificationId(notificationId);
-		if(List<NotificationMainPage> == null) {
+		List<NotificationMainPage> NotificationMainPage = notificationMapper.selectByUserId(userId);;
+		if(NotificationMainPage == null) {
 			return null;
 		}else {
-			return List<NotificationMainPage>;
+			return NotificationMainPage;
 		}
 		
 		

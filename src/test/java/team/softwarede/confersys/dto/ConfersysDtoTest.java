@@ -8,9 +8,9 @@ public class ConfersysDtoTest {
 
 	@Test
 	public void test() throws IOException {
-		String applicantName;
-		applicantName = System.in.read();
-		setAppName(applicantName);
+//		String applicantName;
+//		applicantName = System.in.read();
+//		setAppName(applicantName);
 		
 	}
 

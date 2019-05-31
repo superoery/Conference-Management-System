@@ -8,7 +8,7 @@ package team.softwarede.confersys.dto;
  */
 public class NotificationMainPage {
 
-	private Integer notificationId;
+	public Integer notificationId;
 	
 	private String notificationType;
 	
