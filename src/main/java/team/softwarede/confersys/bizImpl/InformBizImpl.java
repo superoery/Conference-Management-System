@@ -53,9 +53,9 @@ public class InformBizImpl implements InformBiz {
                 name =null;
         }break;
         case LEAVE:{
-            
-            //等数据库解决了在做
-            
+            //如果是请假通知，则找到请假对应的会议
+            meeting = meetingMapper.selectByPrimaryKey(referId);
+            name = meeting.getTopic();                
         }break;
         case AUIDIT:{
             meeting = meetingMapper.selectByPrimaryKey(referId);

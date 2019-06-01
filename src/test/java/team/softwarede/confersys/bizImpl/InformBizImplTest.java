@@ -68,6 +68,15 @@ public class InformBizImplTest {
         assertEquals(null, detail.getNoteReferMtName());
         
     }
+    
+    /**
+     * 测试“请假”类型
+     */
+    @Test 
+    public void testLeave() {
+        NotificationDetail detail = informBiz.showNormalInformDetail(5);
+        assertEquals("srtp开会", detail.getNoteReferMtName());
+    }
 
     
     
@@ -82,4 +91,6 @@ public class InformBizImplTest {
         assertEquals(EnumNotificationStatus.READ.getDescription(), notification.getNotificationnStatus());
        
     }
+    
+    
 }
