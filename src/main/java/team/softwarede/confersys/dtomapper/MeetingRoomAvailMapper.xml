@@ -44,5 +44,6 @@
         where capacity &lt; ${capacity}
     )
 )
+</select>
 
 </mapper>
