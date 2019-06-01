@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -32,6 +33,7 @@ public class InformBizImplAuditTest {
     /**
      * 拒绝了会议预约,测试通过
      */
+    @Rollback
     @Test
     public void testSuccess() {
         Integer mtRoomApplyId =2;
@@ -44,6 +46,7 @@ public class InformBizImplAuditTest {
     /**
      * 通过了会议预约，测试通过
      */
+    @Rollback
     @Test
     public void testFail() {
         Integer mtRoomApplyId =2;
