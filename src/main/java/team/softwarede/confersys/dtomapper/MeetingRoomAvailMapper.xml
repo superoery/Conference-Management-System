@@ -21,28 +21,28 @@
     id, room_number, building, floor
   </sql>
   <select id="selectBookAvailList" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from meeting_room
-    where id in (
-    (
-	    select mtroom_id 
-	    from meeting_room_schedule
-	    where (UNIX_TIMESTAMP(end_time) &gt; ${beginTime} or
-	           UNIX_TIMESTAMP(begin_time) &lt; ${endTime})
-    )INNER JOIN(
-        select mtroom_id
-        from equipment 
-        where equipment_type_id in 
-        <foreach collection="list" index="index" item="item" open="("
-        separator="," close=")">
-        #{item}
-    </foreach>
-    )INNER JOIN(
-        select mtroom_id
-        from meeting_room
-        where capacity &lt; ${capacity}
-    )
-)
-
+	    select 
+	    <include refid="Base_Column_List" />
+	    from meeting_room
+	    where id in (
+	    (
+		    select mtroom_id 
+		    from meeting_room_schedule
+		    where (UNIX_TIMESTAMP(end_time) &gt; ${beginTime} or
+		           UNIX_TIMESTAMP(begin_time) &lt; ${endTime})
+	    )INNER JOIN(
+	        select mtroom_id
+	        from equipment 
+	        where equipment_type_id in 
+	        <foreach collection="list" index="index" item="item" open="("
+	        separator="," close=")">
+	        #{item}
+	    </foreach>
+	    )INNER JOIN(
+	        select mtroom_id
+	        from meeting_room
+	        where capacity &lt; ${capacity}
+	    )
+	)
+</select>
 </mapper>
