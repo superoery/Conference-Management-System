@@ -1,7 +1,5 @@
 package team.softwarede.confersys.bizImpl;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +14,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.biz.NotificationBiz;
 import team.softwarede.confersys.dto.NotificationMainPage;
-
+/**
+ * 
+ * @author SunRonglin
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
@@ -28,17 +30,26 @@ public class NotificationBizImplTest {
 	@Test
 	public void testNotificationMainPage() {
 		String userId = "41624544";
+		int roleId = 3;
 		Logger logger = Logger.getLogger(getClass());
 		List<NotificationMainPage> testList = new ArrayList<NotificationMainPage>();
 		
-		  testList = notificationBiz.notificationNewMeeting(userId);
+		  testList = notificationBiz.notificationNewMeeting(userId,roleId);
 		  
-		  if(testList == null) { logger.info("无最新会议通知");
-		  
-		  }else {
-		  
-		  for(NotificationMainPage n:testList) { logger.info(n.getNotificationId());
-		  logger.info(n.getNotificationType()); logger.info(n.getReferMsg()); } }
+		  if(roleId == 3){
+			  if(testList == null) { logger.info("无最新会议通知");
+			  
+			  }else {
+			  
+			  for(NotificationMainPage n:testList) { 
+				  logger.info(n.getNotificationId());
+				  logger.info(n.getNotificationType()); 
+				  logger.info(n.getReferMsg()); } 
+			  }
+		  } else {
+			  logger.info(null);
+		  }
+
 		 
 	}
 

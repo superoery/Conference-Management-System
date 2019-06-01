@@ -6,7 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import team.softwarede.confersys.dto.NotificationMainPage;
-
+/**
+ * 
+ * @author SunRonglin
+ *
+ */
 @Mapper
 public interface NotificationMainPageMapper {
 	

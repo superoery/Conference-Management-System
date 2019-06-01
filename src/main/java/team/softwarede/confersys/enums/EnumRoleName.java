@@ -6,7 +6,7 @@ package team.softwarede.confersys.enums;
 
 /**
  * @author Mity1299
- *
+ * 用于权限表
  */
 public enum EnumRoleName {
     //会议组织者

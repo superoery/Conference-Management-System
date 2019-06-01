@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.softwarede.confersys.dtomapper.ShowMeetingMainPageMapper">
+  <resultMap id="BaseResultMap" type="team.softwarede.confersys.dto.MeetingMainPage">
+    <id column="id" jdbcType="INTEGER" property="mtId" />
+    <result column="topic" jdbcType="VARCHAR" property="mtTopic" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="room_number" jdbcType="VARCHAR" property="mtRoomNum" />
+    <result column="floor" jdbcType="INTEGER" property="mtRoomFloor" />
+    <result column="building" jdbcType="VARCHAR" property="mtRoomBuilding" />
+    <result column="status_id" jdbcType="VARCHAR" property="mtStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, topic, begin_time, end_time, room_number, floor, building, status_id
+  </sql>
+ <select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+ 	select 
+ 	m.id, topic, begin_time, end_time, room_number, floor, building, meeting_status_id
+ 	from participates p, meeting m, schedule s, meeting_room mr
+ 	where 
+	 	user_id = #{userId} and p.meeting_id = m.id and m.id = s.meeting_id and s.meeting_room_id = mr.id
+ </select>
+  <select id="selectByAdmId" parameterType="java.lang.String" resultMap="BaseResultMap">
+ 	select 
+ 	m.id, topic, begin_time, end_time, room_number, floor, building, meeting_status_id
+ 	from meeting m, schedule s, meeting_room mr
+ 	where 
+	 	m.id = s.meeting_id and s.meeting_room_id = mr.id
+ </select>
+</mapper>

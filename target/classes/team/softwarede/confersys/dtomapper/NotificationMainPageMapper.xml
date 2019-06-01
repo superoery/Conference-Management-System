@@ -9,7 +9,7 @@
   <sql id="Base_Column_List">
     id, notification_type, topic
   </sql>
- 
+
  <select id="selectByUserId" resultMap="BaseResultMap">
  	select 
  	n.id, notification_type, topic

@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import team.softwarede.confersys.biz.NotificationBiz;
 import team.softwarede.confersys.dto.NotificationMainPage;
 import team.softwarede.confersys.dtomapper.NotificationMainPageMapper;
-
+/**
+ * 
+ * @author SunRonglin
+ *
+ */
 @Service("notificationBiz")
 public class NotificationBizImpl implements NotificationBiz {
 	
@@ -17,9 +21,9 @@ public class NotificationBizImpl implements NotificationBiz {
 	
 
 	@Override
-	public List<NotificationMainPage> notificationNewMeeting(String userId){
+	public List<NotificationMainPage> notificationNewMeeting(String userId, int roleId){
 		String msg = null;
-		List<NotificationMainPage> NotificationMainPage = notificationMapper.selectByUserId(userId);;
+		List<NotificationMainPage> NotificationMainPage = notificationMapper.selectByUserId(userId);
 		if(NotificationMainPage == null) {
 			return null;
 		}else {
