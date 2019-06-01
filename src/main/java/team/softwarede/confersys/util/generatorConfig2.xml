@@ -16,7 +16,7 @@
 	    targetProject="ConferSys" 
 	    type="XMLMAPPER" />
 
-<!--      <table schema="user" tableName="user"
+     <!-- <table schema="user" tableName="user"
         enableCountByExample="false" 
         enableUpdateByExample="false"
         enableDeleteByExample="false" 
@@ -30,9 +30,9 @@
         enableDeleteByExample="false" 
         enableSelectByExample="false"
         selectByExampleQueryId="false"
-     ></table>  -->
-
-     <table schema="leaveApplication" tableName="leave_application"
+     ></table> 
+ -->
+    <table schema="leave_Application" tableName="leave_application"
         enableCountByExample="false" 
         enableUpdateByExample="false"
         enableDeleteByExample="false" 

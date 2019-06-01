@@ -12,5 +12,9 @@ import team.softwarede.confersys.dto.MeetingRoomBook;
  */
 public interface MeetingBiz {
 
+
     boolean bookMtRoomAgain(String organizerId,Integer meetingId,MeetingRoomBook mtRoomBook);
+
+    boolean createMt(MeetingRoomBook mtRoomBook );
+
 }
