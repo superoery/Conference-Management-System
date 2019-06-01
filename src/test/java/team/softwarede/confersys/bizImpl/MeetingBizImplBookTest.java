@@ -33,7 +33,7 @@ import team.softwarede.confersys.entity.MeetingRoom;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class MeetingBizImplTest {
+public class MeetingBizImplBookTest {
 
     @Autowired
     MeetingBiz meetingBiz;
