@@ -15,7 +15,6 @@ import team.softwarede.confersys.entity.ScheduleKey;
 @Mapper
 public interface ScheduleMapper {
 
-    
     int deleteByPrimaryKey(ScheduleKey key);
 
     int insert(Schedule record);
@@ -29,4 +28,6 @@ public interface ScheduleMapper {
     int updateByPrimaryKeySelective(Schedule record);
 
     int updateByPrimaryKey(Schedule record);
+    
+    int updateByMtIdSelective(Schedule record);
 }

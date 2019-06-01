@@ -11,6 +11,10 @@
     <id column="meeting_id" jdbcType="INTEGER" property="meetingId" />
     <result column="participants_status" jdbcType="CHAR" property="participantsStatus" />
   </resultMap>
+  
+  <resultMap id="UserIdMap" type="java.lang.String">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -30,6 +34,13 @@
     from participates
     where user_id = #{userId,jdbcType=VARCHAR}
       and meeting_id = #{meetingId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByMtId" parameterType="java.lang.Integer" resultMap="UserIdMap" >
+    select 
+    user_id
+    from participates
+    where meeting_id = #{meetingId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="team.softwarede.confersys.entity.ParticipatesKey">
     <!--

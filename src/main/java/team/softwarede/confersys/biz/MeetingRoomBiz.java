@@ -17,13 +17,12 @@ import team.softwarede.confersys.dto.MeetingRoomBook;
  *
  */
 public interface MeetingRoomBiz {
-    
+
     List<MeetingRoomAvail> showAvailMtRoom(Date beginTime,
                                           Date endTime,
                                           List<Integer> equipmentTypeIdList,
                                           Integer capacity);
-    
-    
+
     Boolean bookMtRoom(MeetingRoomBook meetingRoomBook);
-    
+
 }

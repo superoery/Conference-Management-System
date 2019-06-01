@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.transaction.annotation.Transactional;
 import team.softwarede.confersys.biz.MeetingRoomBiz;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
 import team.softwarede.confersys.dto.MeetingRoomBook;
@@ -22,6 +22,10 @@ import team.softwarede.confersys.mapper.ApplyMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
 import team.softwarede.confersys.mapper.ScheduleMapper;
+import team.softwarede.confersys.biz.MeetingRoomBiz;
+import team.softwarede.confersys.dto.MeetingRoomAvail;
+import team.softwarede.confersys.dtomapper.MeetingRoomAvailMapper;
+
 
 /**
  * @author Mity1299
@@ -45,16 +49,19 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     /**
      * 显示可选会议室列表
      */
+
     @Override
     public List<MeetingRoomAvail> showAvailMtRoom(Date beginTime, 
                                                  Date endTime, 
                                                  List<Integer> equipmentTypeIdList,
                                                  Integer capacity) {
         // TODO Auto-generated method stub
+
         String applyStatusId = EnumApplyStatusId.SUCCEED.getDescription();
 
         List<MeetingRoomAvail> meetingRoomBookList =
                 meetingRoomBookMapper.selectBookAvailList(beginTime, endTime, equipmentTypeIdList, capacity,applyStatusId);
+
         
         return meetingRoomBookList;
     }
