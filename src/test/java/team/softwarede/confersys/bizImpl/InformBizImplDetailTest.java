@@ -80,17 +80,7 @@ public class InformBizImplDetailTest {
 
     
     
-    /**
-     * 测试修改通知为已读
-     */
-    @Test 
-    public void testReadInfo() {
-        informBiz.alterInformHaveRead(5);
-        Notification notification = notificationMapper.selectByPrimaryKey(5);
-       
-        assertEquals(EnumNotificationStatus.READ.getDescription(), notification.getNotificationnStatus());
-       
-    }
+
     
     
 }
