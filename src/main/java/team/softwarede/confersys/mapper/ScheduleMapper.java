@@ -24,10 +24,13 @@ public interface ScheduleMapper {
     Schedule selectByPrimaryKey(ScheduleKey key);
 
     List<Schedule> selectByDate(Date beginTime);
+    
+    Schedule selectByMtId(Integer meetingId);
 
     int updateByPrimaryKeySelective(Schedule record);
 
     int updateByPrimaryKey(Schedule record);
     
     int updateByMtIdSelective(Schedule record);
+    
 }

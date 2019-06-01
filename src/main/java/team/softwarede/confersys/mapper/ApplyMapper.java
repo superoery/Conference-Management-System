@@ -1,6 +1,7 @@
 package team.softwarede.confersys.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import team.softwarede.confersys.entity.Apply;
 
@@ -20,4 +21,6 @@ public interface ApplyMapper {
     int updateByPrimaryKey(Apply record);
     
     int updateByMtIdSelective(Apply record);
+    
+    int updateStatusById(@Param("id")Integer id,@Param("applyStatusId")String status);
 }

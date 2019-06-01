@@ -152,4 +152,12 @@
       apply_status_id = #{applyStatusId,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+    <update id="updateStatusById">
+    
+    update meeting
+    set meeting_status_id = #{meetingStatusId,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
 </mapper>

@@ -44,7 +44,14 @@
     <include refid="Base_Column_List" />
     from schedule
     where UNIX_TIMESTAMP(begin_time) &lt; UNIX_TIMESTAMP(#{beginTime,jdbcType=TIMESTAMP})  
-    </select>
+  </select>
+    
+  <select id="selectByMtId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from schedule
+    where meeting_id = #{meetingId,jdbcType=INTEGER}
+  </select>
     
     
   <delete id="deleteByPrimaryKey" parameterType="team.softwarede.confersys.entity.ScheduleKey">
