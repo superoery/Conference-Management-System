@@ -6,7 +6,7 @@ import team.softwarede.confersys.entity.User;
 
 @Mapper
 public interface UserMapper {
- 
+
     int deleteByPrimaryKey(String userId);
 
     int insert(User record);
