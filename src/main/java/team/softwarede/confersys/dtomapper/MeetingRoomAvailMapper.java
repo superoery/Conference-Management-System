@@ -21,29 +21,12 @@ import team.softwarede.confersys.dto.MeetingRoomAvail;
 @Mapper
 public interface MeetingRoomAvailMapper {
 
-    
-    /*
-     * List<MeetingRoomAvail> selectBookAvailList(@Param("beginTime") String
-     * beginTime,
-     * 
-     * @Param("endTime") String endTime,
-     * 
-     * @Param("typeIdlist") List<Integer> equipmentTypeIdList,
-     * 
-     * @Param("capacity") Integer capacity,
-     * 
-     * @Param("applyStatusId") String applyStatusId);
-     */
-      List<MeetingRoomAvail> selectBookAvailList(@Param("beginTime") Date
-      beginTime,
-      
-      @Param("endTime") Date endTime,
-      
-      @Param("typeIdlist") List<Integer> equipmentTypeIdList,
-      
-      @Param("capacity") Integer capacity,
-      
-      @Param("applyStatusId") String applyStatusId);
+
+      List<MeetingRoomAvail> selectBookAvailList(@Param("beginTime") Date beginTime,
+                                                 @Param("endTime") Date endTime,
+                                                 @Param("typeIdlist") List<Integer> equipmentTypeIdList,
+                                                 @Param("capacity") Integer capacity,
+                                                 @Param("applyStatusId") String applyStatusId);
       
      
     

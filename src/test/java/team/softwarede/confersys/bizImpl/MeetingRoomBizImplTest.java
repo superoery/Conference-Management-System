@@ -91,52 +91,7 @@ public class MeetingRoomBizImplTest {
          
     }
     
-    /**
-     * 由于设备类型的原因，只有一个会议室
-     */
-    @Test
-    public void testAvailList1Success() {
-        Date beginTime = null;
-        Date endTime = null;
-        try {
-            beginTime = sdf.parse("2019-05-30 08:45");
-            endTime = sdf.parse("2019-05-30 09:30");
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        List<Integer> equipmentTypeIdList = new ArrayList<Integer>();
-        equipmentTypeIdList.add(1);
-        Integer capacity = 30;
-   
-        List<MeetingRoomAvail> availList = meetingRoomBiz.showAvailMtRoom(beginTime, endTime, equipmentTypeIdList, capacity);
 
-          
-          List<Integer> mtRoomIdListTest = new ArrayList<Integer>();
-          for(MeetingRoomAvail mtavail : availList) {
-              if(mtavail!=null) {
-                  logger.debug("LIST1 "+mtavail.getId().toString());
-                  mtRoomIdListTest.add(mtavail.getId());
-              }
-               
-          }
-          
-          if(mtRoomIdListTest.isEmpty()) {
-              System.out.println("列表为空");
-          }else {
-              System.out.println("列表不为空");
-          }
-          
-          List<Integer> mtRoomIdListValid = new ArrayList<Integer>();
-          mtRoomIdListValid.add(8);
-          
-          boolean result = IsListEqual.isListEqual(mtRoomIdListValid,
-          mtRoomIdListTest);
-          
-          assertEquals(true, result);
-
-    }
     
     /**
      * 没有可预约的会议室
@@ -257,6 +212,53 @@ public class MeetingRoomBizImplTest {
 
     }
       
+    
+    /**
+     * 由于设备类型的原因，只有一个会议室
+     */
+    @Test
+    public void testAvailList1Success() {
+        Date beginTime = null;
+        Date endTime = null;
+        try {
+            beginTime = sdf.parse("2019-05-30 08:45");
+            endTime = sdf.parse("2019-05-30 09:30");
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        List<Integer> equipmentTypeIdList = new ArrayList<Integer>();
+        equipmentTypeIdList.add(1);
+        Integer capacity = 30;
+   
+        List<MeetingRoomAvail> availList = meetingRoomBiz.showAvailMtRoom(beginTime, endTime, equipmentTypeIdList, capacity);
+
+          
+          List<Integer> mtRoomIdListTest = new ArrayList<Integer>();
+          for(MeetingRoomAvail mtavail : availList) {
+              if(mtavail!=null) {
+                  logger.debug("LIST1 "+mtavail.getId().toString());
+                  mtRoomIdListTest.add(mtavail.getId());
+              }
+               
+          }
+          
+          if(mtRoomIdListTest.isEmpty()) {
+              System.out.println("列表为空");
+          }else {
+              System.out.println("列表不为空");
+          }
+          
+          List<Integer> mtRoomIdListValid = new ArrayList<Integer>();
+          mtRoomIdListValid.add(8);
+          
+          boolean result = IsListEqual.isListEqual(mtRoomIdListValid,
+          mtRoomIdListTest);
+          
+          assertEquals(true, result);
+
+    }
     
     
 }
