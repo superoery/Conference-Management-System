@@ -13,6 +13,11 @@ import java.util.List;
  * */
 public class UtilConfer {
     
+    /**
+     * list去重
+     * @param <T>
+     * @param list
+     */
     public static<T> void removeDuplicate(List<T> list) {
         LinkedHashSet<T> set = new LinkedHashSet<T>(list.size());
         set.addAll(list);

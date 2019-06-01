@@ -1,12 +1,9 @@
-/**
-* 
-* @author Mity1299
-*/
 package team.softwarede.confersys.bizImpl;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,16 +14,16 @@ import team.softwarede.confersys.dto.MeetingRoomBook;
 import team.softwarede.confersys.entity.Apply;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.Participates;
-import team.softwarede.confersys.entity.ParticipatesMeetingKey;
 import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.enums.EnumMeetingStatusId;
 import team.softwarede.confersys.enums.EnumParticipatesStatus;
 import team.softwarede.confersys.mapper.ApplyMapper;
+import team.softwarede.confersys.mapper.BelongsToMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
-import team.softwarede.confersys.mapper.ParticipatesMeetingMapper;
 import team.softwarede.confersys.mapper.ScheduleMapper;
+import team.softwarede.confersys.util.UtilConfer;
 
 /**
  * @author Mity1299
@@ -34,7 +31,6 @@ import team.softwarede.confersys.mapper.ScheduleMapper;
  */
 @Service("meetingBiz")
 public class MeetingBizImpl implements MeetingBiz {
-
     @Autowired
     MeetingMapper meetingMapper;
     @Autowired
@@ -44,7 +40,8 @@ public class MeetingBizImpl implements MeetingBiz {
     @Autowired
     ScheduleMapper scheduleMapper; 
     @Autowired
-    ParticipatesMeetingMapper participatesMeetingMapper;
+    BelongsToMapper belongsToMapper; 
+    
     
     
     @Transactional
@@ -55,7 +52,7 @@ public class MeetingBizImpl implements MeetingBiz {
         
         //计算与会人数
         List<String> mtParticipatesIdList = mtRoomBook.getMtParticipantsIdList();
-        Integer capacity = mtParticipatesIdList.size();
+        Integer capacity =0;
         List<Integer> uGroupPartIdList = mtRoomBook.getuGroupIdList();
         
         //插入会议
@@ -79,21 +76,28 @@ public class MeetingBizImpl implements MeetingBiz {
         
         scheduleMapper.insert(schedule);
         
-        /*
-         * //插入用户组的与会联系//不用用户组的与会联系了 没啥用
-         * 
-         * //将用户组的用户编号加入用户列表 //用户列表去重 for(Integer uGroupId : uGroupPartIdList) {
-         * ParticipatesMeetingKey partMtKey = new ParticipatesMeetingKey();
-         * partMtKey.setMeetingId(meetingId); partMtKey.setUserGroupId(uGroupId);
-         * participatesMeetingMapper.insertSelective(partMtKey); }
-         */
+
+        //将用户组的用户编号加入用户列表 
+        //用户列表去重 
+        List<String> uIdListInGroupList = new ArrayList<String>();
+        for(Integer uGroupId : uGroupPartIdList) {
+            List<String> uIdListTmp = belongsToMapper.selectByUGroupId(uGroupId);
+            uIdListInGroupList.addAll(uIdListTmp);
+        }
         
-        
+        List<String> totalUIdList = new ArrayList<String>();
+        totalUIdList.addAll(uIdListInGroupList);
+        totalUIdList.addAll(mtParticipatesIdList);
         //将会议组织者加入与会列表
-        mtParticipatesIdList.add(mtRoomBook.getMtOrganizerId());
+        totalUIdList.add(mtRoomBook.getMtOrganizerId());
+        UtilConfer.removeDuplicate(totalUIdList);
+        
+        
+        
+        capacity = totalUIdList.size();
         
         //添加用户和会议的关联
-        for(String userId : mtParticipatesIdList) {
+        for(String userId : totalUIdList) {
             
             Participates participates = new Participates();
             participates.setUserId(userId);
@@ -112,6 +116,7 @@ public class MeetingBizImpl implements MeetingBiz {
         apply.setApplyTime(new Date());
         
         applyMapper.insertSelective(apply);
+        
         
         return true;
     }
