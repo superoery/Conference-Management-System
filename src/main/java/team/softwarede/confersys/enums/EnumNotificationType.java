@@ -10,9 +10,10 @@ package team.softwarede.confersys.enums;
  */
 public enum EnumNotificationType {
 
-    MEETING("新会议信息"),
+    MEETING("新会议"),
     LEAVE("请假结果"),
-    REPAIR("报修");
+    REPAIR("报修"),
+    AUIDIT("审核结果");
 
     private final String description;
 
@@ -23,6 +24,30 @@ public enum EnumNotificationType {
 
     public String getDescription() {
         return description;
+    }
+    
+    public static EnumNotificationType valueOfDescription(String description) {
+        EnumNotificationType enumNoteType = null;
+        
+        switch(description) {
+            case "新会议":{
+                enumNoteType = MEETING;
+            }break;
+            case "请假结果":{
+                enumNoteType = LEAVE;
+            }break;
+            case "报修":{
+                enumNoteType = REPAIR;
+            }break;
+            case "审核结果":{
+                enumNoteType = AUIDIT;
+            }break;
+            default :{
+                
+            }break;
+            
+        }
+        return enumNoteType;
     }
     
     

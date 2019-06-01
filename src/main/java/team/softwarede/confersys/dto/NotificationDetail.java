@@ -16,10 +16,6 @@ public class NotificationDetail {
 	
 	private String noteStatus;
 	
-	private Integer noteSenderId;
-	
-	private String noteSenderName;
-	
 	private String noteReferMtName;
 	
 	private Integer noteReferMtId;
@@ -54,22 +50,6 @@ public class NotificationDetail {
 
 	public void setNoteStatus(String noteStatus) {
 		this.noteStatus = noteStatus;
-	}
-
-	public Integer getNoteSenderId() {
-		return noteSenderId;
-	}
-
-	public void setNoteSenderId(Integer noteSenderId) {
-		this.noteSenderId = noteSenderId;
-	}
-
-	public String getNoteSenderName() {
-		return noteSenderName;
-	}
-
-	public void setNoteSenderName(String noteSenderName) {
-		this.noteSenderName = noteSenderName;
 	}
 
 	public String getNoteReferMtName() {
