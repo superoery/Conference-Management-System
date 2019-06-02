@@ -30,8 +30,6 @@ public class MeetingDetail {
 	
 	private String mtStatus;
 	
-	private List<ParticipantBasicInfo> participantsList;
-	
 	private Integer mtNum;
 	
 	private String myParticipantStatus;
@@ -114,14 +112,6 @@ public class MeetingDetail {
 
 	public void setMtStatus(String mtStatus) {
 		this.mtStatus = mtStatus;
-	}
-
-	public List<ParticipantBasicInfo> getParticipantsList() {
-		return participantsList;
-	}
-
-	public void setParticipantsList(List<ParticipantBasicInfo> participantsList) {
-		this.participantsList = participantsList;
 	}
 
 	public Integer getMtNum() {
