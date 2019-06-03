@@ -4,9 +4,12 @@
 */
 package team.softwarede.confersys.dto;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author Mity1299
- * 作用：会议室预约系统-浏览会议室列表-返回可用会议室列表
+ *
  */
 public class MeetingRoomAvail {
 

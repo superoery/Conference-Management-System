@@ -29,7 +29,7 @@ public class LeaveExaminationBizImpl implements LeaveExaminationBiz{
 		String msg;
 		Notification notification = new Notification();
 		notification.setNotificationType(EnumNotificationType.LEAVE.getDescription());
-		notification.setReferId(record.getMeetingId());
+		notification.setReferId(record.getMeetingId().toString());
 		notification.setNotificationnStatus(EnumNotificationStatus.UNREAD.getDescription());
 		notification.setId(null);
 		//result=0申请不通过，result=1申请通过

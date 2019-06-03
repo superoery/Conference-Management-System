@@ -2,9 +2,11 @@
 * 
 * @author Mity1299
 */
-package team.softwarede.confersys.dto.mapper;
+package team.softwarede.confersys.mapper;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,10 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import team.softwarede.confersys.Application;
-import team.softwarede.confersys.dto.UserLogin;
-import team.softwarede.confersys.dtomapper.UserLoginMapper;
 
+import team.softwarede.confersys.Application;
+import team.softwarede.confersys.entity.Participates;
 
 /**
  * @author Mity1299
@@ -24,15 +25,19 @@ import team.softwarede.confersys.dtomapper.UserLoginMapper;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class UserLoginMapperTest {
+public class ParticipatesMapperTest {
 
     @Autowired
-    UserLoginMapper userLoginMapper;
+    ParticipatesMapper participatesMapper;
     
+    /**
+     * 测试根据会议编号查找participates列表
+     */
     @Test
     public void test() {
-        UserLogin userLogin = userLoginMapper.selectByPrimaryKey("1", 1);
-        assertEquals("123456", userLogin.getPassword());
+        Integer meetingId = 14;
+        List<String> partList = participatesMapper.selectByMtId(meetingId);
+        assertEquals(4, partList.size());
         
     }
 
