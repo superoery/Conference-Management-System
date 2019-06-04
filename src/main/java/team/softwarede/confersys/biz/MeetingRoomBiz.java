@@ -23,6 +23,4 @@ public interface MeetingRoomBiz {
                                           List<Integer> equipmentTypeIdList,
                                           Integer capacity);
 
-    Boolean bookMtRoom(MeetingRoomBook meetingRoomBook);
-
 }

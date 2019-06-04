@@ -66,31 +66,4 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
         return meetingRoomBookList;
     }
 
-    @Transactional
-    @Override
-    public Boolean bookMtRoom(MeetingRoomBook meetingRoomBook) {
-        // TODO Auto-generated method stub
-        
-        //根据会议名称、会议状态、会议内容、会议申请状态插入会议
-        Meeting meeting = new Meeting();
-        String mtTopic = meetingRoomBook.getMtTopic();
-        String mtContent = meetingRoomBook.getMtContent();
-        
-        meeting.setTopic(mtTopic);
-        meeting.setMeetingStatusId("in audit");//正在审核   
-        meeting.setMeetingContent(mtContent);
-        meeting.setApplyStatusId("examing");//审核中
-        
-        meetingMapper.insertSelective(meeting);
-        
-        //根据与会者列表和会议编号插入与会关系
-        meetingRoomBook.getMtParticipantsIdList();
-        
-        
-        //根据会议组织者编号、会议编号、会议室申请状态、当前时间插入会议申请
-        //根据会议编号、会议室编号、开始时间和结束时间插入会议室时间安排中
-        
-        return null;
-    }
-
 }
