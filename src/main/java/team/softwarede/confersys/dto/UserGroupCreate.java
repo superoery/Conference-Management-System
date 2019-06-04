@@ -11,9 +11,9 @@ public class UserGroupCreate {
 
 	private String userGroupName;
 	
-	private List<Integer> userIdList;
+	private List<String> userIdList;
 	
-	private Integer creatorId;
+	private String creatorId;
 
 	public String getUserGroupName() {
 		return userGroupName;
@@ -23,19 +23,19 @@ public class UserGroupCreate {
 		this.userGroupName = userGroupName;
 	}
 
-	public List<Integer> getUserIdList() {
+	public List<String> getUserIdList() {
 		return userIdList;
 	}
 
-	public void setUserIdList(List<Integer> userIdList) {
+	public void setUserIdList(List<String> userIdList) {
 		this.userIdList = userIdList;
 	}
 
-	public Integer getCreatorId() {
+	public String getCreatorId() {
 		return creatorId;
 	}
 
-	public void setCreatorId(Integer creatorId) {
+	public void setCreatorId(String creatorId) {
 		this.creatorId = creatorId;
 	}
 
