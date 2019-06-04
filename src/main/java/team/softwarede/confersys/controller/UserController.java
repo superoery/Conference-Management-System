@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import team.softwarede.confersys.biz.UserBiz;
 import team.softwarede.confersys.dto.UserLogin;
@@ -63,7 +64,8 @@ public class UserController {
 //    }
     
 	@RequestMapping("/login")
-	public String index(ModelMap map, @ModelAttribute("loginForm") UserLogin userlogin) {
+	public String index(ModelMap map, @ModelAttribute("loginForm") UserLogin userlogin, 
+			@ModelAttribute("msg") String msg) {
 		List<EnumIdentity> identities = new ArrayList<EnumIdentity>();
 		identities.add(EnumIdentity.STUDENT);
 		identities.add(EnumIdentity.COMMITTEE);
@@ -71,28 +73,30 @@ public class UserController {
 		identities.add(EnumIdentity.ASSISTANT);
 		identities.add(EnumIdentity.ADMIN);
 		map.addAttribute("identities",identities);
+		map.addAttribute("msg",msg);
         return "login";
     }
     
 	@RequestMapping("/tologin.do")
 	public String tologin2(ModelMap map,
 			@Valid @ModelAttribute("loginForm") UserLogin userlogin,
-			BindingResult bindResult) {
+			BindingResult bindResult,
+			RedirectAttributes attributes) {
 		if(bindResult.hasErrors()) {
 			return "redirect:/user/login";//注意，这里写的是要返回的页面名，而不是路径名
 		}
 		String msg=null;
 		msg = userBiz.login(userlogin.getUserId(), 
-		              userlogin.getIdeId(), 
+		              userlogin.getIdentityId(), 
 		              userlogin.getPassword());
 		if(msg.equals("ok")) {
-			map.addAttribute("host","hello! "+userlogin.getUserId()+", identityId="+String.valueOf(userlogin.getIdeId()));
+			map.addAttribute("host","hello! "+userlogin.getUserId()+", identityId="+String.valueOf(userlogin.getIdentityId()));
 			return "index";
 //			return "login_main";
 		}else {
+			attributes.addFlashAttribute("msg",msg);
 		    return "redirect:/user/login";
 		}
-//		return "login_main";
     }
     
 }

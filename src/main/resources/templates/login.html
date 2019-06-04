@@ -35,24 +35,29 @@
               <form action="/user/tologin.do" method="post" th:object="${loginForm}">
                 <div class="form-group">
                   <label>UserId *</label>
-                  <input type="text" class="form-control p_input" name="userId" th:field="*{userId}" ></input>
+                  <input type="text" class="form-control p_input" name="userId" th:field="*{userId}"
+                  			data-rule="用户编号：required"
+                  			data-rule-number="[/^\d{8}$/, '用户编号必须由8位数字组成'] " ></input>
                 </div>
                 <div class="form-group">
                   <label>Password *</label>
-                  <input type="password" class="form-control p_input" name="password" th:field="*{password}"></input>
+                  <input type="password" class="form-control p_input" name="password" th:field="*{password}"
+                  			data-rule="密码：required" ></input>
                 </div>
 				<div class="form-group">
                   <label>Role * &nbsp;</label>
-                  <select th:field="*{ideId}" style="font-size: 14px;">
+                  <select th:field="*{identityId}" style="font-size: 14px;">
 	            	<option th:each="identity : ${identities}"
 	            		th:text="${identity.getDescription()}"
-	            		th:value="${identity.getValue()}" >
+	            		th:value="${identity.getValue()}"
+	            		data-rule="身份：checked">
 	            	</option>
 				  </select>
 				  <a href="#" class="forgot-pass" style="float: right;">Forgot password</a>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                  <if condition="${msg}!=null"><p class="msg" th:text="${msg}" style="color:#FF0000">提示信息</p></if>
                 </div>
                 <div class="d-flex">
                   <a href="#" class="btn btn-facebook mr-2 col" style="color:#FFFFFF">
