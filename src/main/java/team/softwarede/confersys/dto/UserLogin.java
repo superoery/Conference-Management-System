@@ -21,19 +21,12 @@ public class UserLogin {
 
     @NotNull
     @Min(value = 0,message = "用户身份错误")
-    private Integer ideId;
+    private Integer identityId;
+
 
     @NotNull(message = "密码为空")
     private String password;
 
-
-    public Integer getIdeId() {
-        return ideId;
-    }
-
-    public void setIdeId(Integer ideId) {
-        this.ideId = ideId;
-    }
 
     public String getPassword() {
         return password;
@@ -51,7 +44,14 @@ public class UserLogin {
         this.userId = userId;
     }
     
-    
+
+    public Integer getIdentityId() {
+        return identityId;
+    }
+
+    public void setIdentityId(Integer identityId) {
+        this.identityId = identityId;
+    }
     
 
 }

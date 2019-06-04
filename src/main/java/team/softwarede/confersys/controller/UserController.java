@@ -48,7 +48,7 @@ public class UserController {
         }
         String msg=null;
         msg = userBiz.login(userlogin.getUserId(), 
-                      userlogin.getIdeId(), 
+                      userlogin.getIdentityId(), 
                       userlogin.getPassword());
         if(msg.equals("ok")) {
             return "redirect:/user/main";
