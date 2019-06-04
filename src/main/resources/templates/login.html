@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+  <title>Purple Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../static/example/node_modules/mdi/css/materialdesignicons.min.css"
+  		th:href="@{/example/node_modules/mdi/css/materialdesignicons.min.css}"></link>
+  <link rel="stylesheet" href="../static/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"
+  		th:href="@{/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css}"></link>
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="../static/example/node_modules/font-awesome/css/font-awesome.min.css" 
+  		th:href="@{example/node_modules/font-awesome/css/font-awesome.min.css}" />
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../static/example/css/style.css"
+  		th:href="@{/example/css/style.css}" ></link>
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../static/example/images/favicon.png"
+  		 th:href="@{example/images/favicon.png}" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper">
+      <div class="row">
+        <div class="content-wrapper full-page-wrapper d-flex align-items-center auth-pages">
+          <div class="card col-lg-4 mx-auto">
+            <div class="card-body px-5 py-5">
+              <h3 class="card-title text-left mb-3">Login</h3>
+              <form action="/user/tologin.do" method="post" th:object="${loginForm}">
+                <div class="form-group">
+                  <label>UserId *</label>
+                  <input type="text" class="form-control p_input" name="userId" th:field="*{userId}" ></input>
+                </div>
+                <div class="form-group">
+                  <label>Password *</label>
+                  <input type="password" class="form-control p_input" name="password" th:field="*{password}"></input>
+                </div>
+				<div class="form-group">
+                  <label>Role * &nbsp;</label>
+                  <select th:field="*{ideId}" style="font-size: 14px;">
+	            	<option th:each="identity : ${identities}"
+	            		th:text="${identity.getDescription()}"
+	            		th:value="${identity.getValue()}" >
+	            	</option>
+				  </select>
+				  <a href="#" class="forgot-pass" style="float: right;">Forgot password</a>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                </div>
+                <div class="d-flex">
+                  <a href="#" class="btn btn-facebook mr-2 col" style="color:#FFFFFF">
+                      <i class="mdi mdi-facebook"></i> Facebook
+                  </a>
+                  <a href="#" class="btn btn-google col" style="color:#FFFFFF">
+                      <i class="mdi mdi-google-plus"></i> Google plus
+                  </a>
+                </div>
+                <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+      </div>
+      <!-- row ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+<!-- plugins:js -->
+<script src="../static/example/node_modules/jquery/dist/jquery.min.js"
+	th:src="@{/example/node_modules/jquery/dist/jquery.min.js}" ></script>
+<script src="../static/example/node_modules/popper.js/dist/umd/popper.min.js"
+	th:src="@{/example/node_modules/popper.js/dist/umd/popper.min.js}"></script>
+<script src="../static/example/node_modules/bootstrap/dist/js/bootstrap.min.js"
+	th:src="@{/example/node_modules/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script src="../static/example/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"
+	th:src="@{/example/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="../static/example/js/off-canvas.js"
+	th:src="@{/example/js/off-canvas.js}"></script>
+<script src="../static/example/js/misc.js"
+	th:src="@{/example/js/misc.js}"></script>
+<!-- endinject -->
+</body>
+
+</html>

@@ -19,11 +19,13 @@ public class UserLogin {
     @Min(value = 0,message = "用户编号错误")
     private String userId;
 
+//    @NotBlank // 对于Integer，NotBlank无效，NotNull有效
     @NotNull
     @Min(value = 0,message = "用户身份错误")
     private Integer ideId;
 
-    @NotNull(message = "密码为空")
+//    @NotNull(message = "密码为空") // 对于String，NotNull无效，NotBlank有效
+    @NotBlank(message = "密码为空")
     private String password;
 
 
