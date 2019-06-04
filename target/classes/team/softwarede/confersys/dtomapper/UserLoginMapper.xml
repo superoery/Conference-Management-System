@@ -3,20 +3,13 @@
 <mapper namespace="team.softwarede.confersys.dtomapper.UserLoginMapper">
   <resultMap id="BaseResultMap" type="team.softwarede.confersys.dto.UserLogin">
     <id column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="ide_id" jdbcType="INTEGER" property="ideId" />
+    <result column="identity_id" jdbcType="INTEGER" property="identityId" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
   <sql id="Base_Column_List">
-    user_id, ide_id, password
+    user_id, identity_id, password
   </sql>
-<!--   <select id="selectByPrimaryKey" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where user_id = #{userId}
-          and
-          ide_id= =#{ideId}
-  </select> -->
+
 
       <select id="selectByPrimaryKey" resultMap="BaseResultMap">
     select 
@@ -24,7 +17,7 @@
     from user
     where user_id = #{0}
           and
-          ide_id = #{1}
+          identity_id = #{1}
   </select>
     
 

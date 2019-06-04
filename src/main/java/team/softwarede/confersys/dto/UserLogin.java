@@ -22,20 +22,13 @@ public class UserLogin {
 //    @NotBlank // 对于Integer，NotBlank无效，NotNull有效
     @NotNull
     @Min(value = 0,message = "用户身份错误")
-    private Integer ideId;
+    private Integer identityId;
+
 
 //    @NotNull(message = "密码为空") // 对于String，NotNull无效，NotBlank有效
     @NotBlank(message = "密码为空")
     private String password;
 
-
-    public Integer getIdeId() {
-        return ideId;
-    }
-
-    public void setIdeId(Integer ideId) {
-        this.ideId = ideId;
-    }
 
     public String getPassword() {
         return password;
@@ -53,7 +46,14 @@ public class UserLogin {
         this.userId = userId;
     }
     
-    
+
+    public Integer getIdentityId() {
+        return identityId;
+    }
+
+    public void setIdentityId(Integer identityId) {
+        this.identityId = identityId;
+    }
     
 
 }
