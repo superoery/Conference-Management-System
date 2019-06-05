@@ -116,5 +116,16 @@ public class UserGroupBizImpl implements UserGroupBiz {
         
         return uGroupList;
     }
+    
+    
+    @Override
+    public boolean deleteUGroup(Integer uGroupId) {
+        // TODO Auto-generated method stub
+        
+        belongsToMapper.deleteByUGroupId(uGroupId);
+        userGroupMapper.deleteByPrimaryKey(uGroupId);
+        
+        return true;
+    }
 
 }

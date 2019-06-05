@@ -26,4 +26,6 @@ public interface UserGroupBiz {
     
     List<UserGroup> showSySUgroup();
 
+    boolean deleteUGroup(Integer uGroupId);
+    
 }
