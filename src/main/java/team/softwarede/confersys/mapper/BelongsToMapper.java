@@ -16,4 +16,5 @@ public interface BelongsToMapper {
     int insert(BelongsToKey record);
 
     int insertSelective(BelongsToKey record);
+    
 }
