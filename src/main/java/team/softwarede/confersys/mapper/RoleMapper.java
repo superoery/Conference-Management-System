@@ -17,6 +17,8 @@ public interface RoleMapper {
     
     //根据权限名称查找权限
     Role selectByName(String name);
+    
+    Role selectByUId(String userId);
 
     int updateByPrimaryKeySelective(Role record);
 

@@ -29,7 +29,7 @@
     from role
     where id = #{id,jdbcType=INTEGER}
   </select>
-    <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--
         根据权限名称查找权限
     -->
@@ -37,6 +37,19 @@
     <include refid="Base_Column_List" />
     from role
     where role = #{name,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByUId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+        根据权限名称查找权限
+    -->
+    select 
+    role.id ,role.role
+	from 
+	    (role INNER JOIN identity ON role.id = identity.role_id) 
+	    INNER JOIN 
+	    `user` u on u.identity_id = identity.id
+	where user_id = #{userId,jdbcType=VARCHAR}
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

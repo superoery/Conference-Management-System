@@ -1,10 +1,13 @@
 package team.softwarede.confersys.bizImpl;
 
+import static org.junit.Assert.assertEquals;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.MeetingMainPage;
+import team.softwarede.confersys.entity.Role;
 /**
  * 
  * @author SunRonglin
@@ -28,7 +32,7 @@ public class ShowMeetingMainPageBizImplTest {
 	@Autowired
 	ShowMeetingMainPageBiz showMeetingMainPageBiz;
 	
-	@Test
+	@Ignore
 	public void testShowMeetingMainPage() {
 		String userId = "41624544";
 		Logger logger = Logger.getLogger(getClass());
@@ -44,6 +48,16 @@ public class ShowMeetingMainPageBizImplTest {
 			logger.info(String.valueOf(string.getMtRoomFloor()));
 			logger.info(string.getMtRoomNum());
 		}
+	}
+	
+	@Test
+	public void testGetRole() {
+	    
+	    Role role = showMeetingMainPageBiz.getRole("10000010");
+	    
+	    assertEquals("会议组织者", role.getRole());
+	    
+	    
 	}
 
 }
