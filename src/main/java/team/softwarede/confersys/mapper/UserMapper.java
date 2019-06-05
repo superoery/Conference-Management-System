@@ -1,5 +1,7 @@
 package team.softwarede.confersys.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import team.softwarede.confersys.entity.User;
@@ -14,6 +16,8 @@ public interface UserMapper {
     int insertSelective(User record);
 
     User selectByPrimaryKey(String userId);
+    
+    List<User> selectByIdentityId(Integer identityId);
 
     int updateByPrimaryKeySelective(User record);
 

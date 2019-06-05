@@ -10,6 +10,7 @@ import team.softwarede.confersys.dto.UserAndGroup;
 import team.softwarede.confersys.dto.UserBasicInfo;
 import team.softwarede.confersys.dto.UserGroupCreate;
 import team.softwarede.confersys.dto.UserGroupShow;
+import team.softwarede.confersys.entity.UserGroup;
 
 /**
  * @author Mity1299
@@ -21,6 +22,10 @@ public interface UserGroupBiz {
     
     boolean createUGroup(UserGroupCreate uGroupCreate);
     
-    //boolean deleteByPrimaryKey(Integer uGroupId);
+    List<UserGroup> showDiyUGroup(String organizerId);
+    
+    List<UserGroup> showSySUgroup();
 
+    boolean deleteUGroup(Integer uGroupId);
+    
 }

@@ -19,10 +19,13 @@ import team.softwarede.confersys.dto.UserGroupShow;
 import team.softwarede.confersys.dto.UserSearch;
 import team.softwarede.confersys.dtomapper.UserAndGroupMapper;
 import team.softwarede.confersys.entity.BelongsToKey;
+import team.softwarede.confersys.entity.User;
 import team.softwarede.confersys.entity.UserGroup;
+import team.softwarede.confersys.enums.EnumIdentity;
 import team.softwarede.confersys.enums.EnumUserAndGroup;
 import team.softwarede.confersys.mapper.BelongsToMapper;
 import team.softwarede.confersys.mapper.UserGroupMapper;
+import team.softwarede.confersys.mapper.UserMapper;
 
 /**
  * @author Mity1299
@@ -37,6 +40,9 @@ public class UserGroupBizImpl implements UserGroupBiz {
     UserGroupMapper userGroupMapper;
     @Autowired
     BelongsToMapper belongsToMapper;
+    @Autowired
+    UserMapper userMapper;
+    
     
     @Override
     public List<UserAndGroup> searchUAndUGByKeyword(String keyword,String organizerId) {
@@ -86,6 +92,39 @@ public class UserGroupBizImpl implements UserGroupBiz {
             belongsToMapper.insertSelective(belongKey);
         }
 
+        return true;
+    }
+
+    @Override
+    public List<UserGroup> showDiyUGroup(String organizerId) {
+        // TODO Auto-generated method stub
+        
+        
+        return userGroupMapper.selectByCreaterId(organizerId);
+    }
+
+    @Override
+    public List<UserGroup> showSySUgroup() {
+        // TODO Auto-generated method stub
+        List<UserGroup> uGroupList = new ArrayList<UserGroup>();
+        
+        List<User> adminList = userMapper.selectByIdentityId(EnumIdentity.ADMIN.getValue());
+        
+        for(User admin : adminList) {
+            uGroupList.addAll(userGroupMapper.selectByCreaterId(admin.getUserId())); 
+        }
+        
+        return uGroupList;
+    }
+    
+    
+    @Override
+    public boolean deleteUGroup(Integer uGroupId) {
+        // TODO Auto-generated method stub
+        
+        belongsToMapper.deleteByUGroupId(uGroupId);
+        userGroupMapper.deleteByPrimaryKey(uGroupId);
+        
         return true;
     }
 
