@@ -42,17 +42,17 @@ public class UserGroupBizImplSearchTest {
     
     @Test
     public void test() {
-        String keyword = "老师";
-        String organizerId = "10000003";
+        String keyword = "组";
+        String organizerId = "10000007";
         List<UserAndGroup> totalList =
                 userGroupBiz.searchUAndUGByKeyword(keyword, organizerId);
         
         
-        for (UserAndGroup ug : totalList) {
-            logger.info(ug.getName());
-        }
+        /*
+         * for (UserAndGroup ug : totalList) { logger.info(ug.getName()); }
+         */
         
-        assertEquals(4, totalList.size());
+        assertEquals(5, totalList.size());
         
     }
 

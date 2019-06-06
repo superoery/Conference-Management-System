@@ -6,7 +6,9 @@ package team.softwarede.confersys.bizImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.ibatis.jdbc.SelectBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,17 +45,27 @@ public class UserGroupBizImpl implements UserGroupBiz {
     @Autowired
     UserMapper userMapper;
     
-    
     @Transactional
     @Override
     public List<UserAndGroup> searchUAndUGByKeyword(String keyword,String organizerId) {
         // TODO Auto-generated method stub
         
         List<UserAndGroup> totalList = new ArrayList<UserAndGroup>();
+    
+        List<User> adminList = new ArrayList<User>();
+        adminList = userMapper.selectByIdentityId(EnumIdentity.ADMIN.getValue());
+       
+        List<String> adminIdList=adminList.stream().map(User::getUserId).collect(Collectors.toList());
+        
+        
+        List<String> createrList = new ArrayList<String>();
+        createrList.addAll(adminIdList);
+        createrList.add(organizerId);
         
         List<UserSearch> userList = userAndGroupMapper.selectUserFuzzyBykeyword(keyword);
         List<UGroupSearch> uGroupList = 
-                userAndGroupMapper.selectGroupFuzzyBykeyword(organizerId, keyword);
+                userAndGroupMapper.selectGroupFuzzyBykeyword(createrList, keyword);
+                
         
         for(UserSearch us : userList) {
             UserAndGroup ug = new UserAndGroup();
