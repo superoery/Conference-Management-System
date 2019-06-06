@@ -98,7 +98,7 @@ public class UserController {
 		if(msg.equals("ok")) {
 //			map.addAttribute("host","hello! "+userlogin.getUserId()+", identityId="+String.valueOf(userlogin.getIdentityId()));
 //			return "index";
-			Role role = showMeetingMainPageBiz.getRole(userlogin.getUserId());
+			//Role role = showMeetingMainPageBiz.getRole(userlogin.getUserId());
 			List<MeetingMainPage> pmtList = showMeetingMainPageBiz.showMeetingMainPage(userlogin.getUserId(), role.getId());
 			map.addAttribute("pmtList",pmtList);
 			return "login_main";
