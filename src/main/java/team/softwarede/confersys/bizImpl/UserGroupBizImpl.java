@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 import org.apache.ibatis.jdbc.SelectBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -86,6 +88,7 @@ public class UserGroupBizImpl implements UserGroupBiz {
         return totalList;
     }
 
+    @CacheEvict(value = "uGroupCache",key = "targetClass"+"showSySUgroup",allEntries = true)
     @Transactional
     @Override
     public boolean createUGroup(UserGroupCreate uGroupCreate) {
@@ -98,12 +101,15 @@ public class UserGroupBizImpl implements UserGroupBiz {
         
         Integer uGroupId = uGroup.getId();
         
-        for(String userId : uGroupCreate.getUserIdList()) {
-            BelongsToKey belongKey = new BelongsToKey();
-            belongKey.setId(uGroupId);
-            belongKey.setUserId(userId);
-            belongsToMapper.insertSelective(belongKey);
+        if(uGroupCreate.getUserIdList()!=null) {
+            for(String userId : uGroupCreate.getUserIdList()) {
+                BelongsToKey belongKey = new BelongsToKey();
+                belongKey.setId(uGroupId);
+                belongKey.setUserId(userId);
+                belongsToMapper.insertSelective(belongKey);
+            }
         }
+
 
         return true;
     }
@@ -116,6 +122,10 @@ public class UserGroupBizImpl implements UserGroupBiz {
         return userGroupMapper.selectByCreaterId(organizerId);
     }
 
+    
+    
+    @Cacheable(value = "uGroupCache",
+               key = "targetClass + methodName" )
     @Transactional
     @Override
     public List<UserGroup> showSySUgroup() {

@@ -10,7 +10,11 @@
         timeToIdleSeconds="0" 
         timeToLiveSeconds="3600" 
         memoryStoreEvictionPolicy="LRU" />
-    <cache name="content"
+    <cache name="uGroupCache"
+           maxEntriesLocalHeap="200"
+           timeToLiveSeconds="3600">
+    </cache>
+    <cache name="EquipmentTypeCache"
            maxEntriesLocalHeap="200"
            timeToLiveSeconds="3600">
     </cache>

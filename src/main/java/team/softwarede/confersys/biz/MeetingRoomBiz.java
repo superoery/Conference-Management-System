@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Param;
 
 import team.softwarede.confersys.dto.MeetingRoomAvail;
 import team.softwarede.confersys.dto.MeetingRoomBook;
+import team.softwarede.confersys.entity.Equipment;
+import team.softwarede.confersys.entity.EquipmentType;
 
 /**
  * @author Mity1299
@@ -23,4 +25,5 @@ public interface MeetingRoomBiz {
                                           List<Integer> equipmentTypeIdList,
                                           Integer capacity);
 
+    List<EquipmentType> showMtRoomBookPage();
 }

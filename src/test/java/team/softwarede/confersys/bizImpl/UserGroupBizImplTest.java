@@ -17,6 +17,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.biz.UserGroupBiz;
@@ -64,8 +65,47 @@ public class UserGroupBizImplTest {
     public void testAdminUGroup() {
         List<UserGroup> sysUGroupList = userGroupBiz.showSySUgroup();
         
-        assertEquals(7, sysUGroupList.size());
+        assertEquals(6, sysUGroupList.size());
+        
+       
     }
+    
+    /**
+     * 测试管理员创建的用户组列表，测试缓存
+     * 如果createUGroup方法的清除缓存删掉的话，这里的测试就无法通过
+     * 
+     */
+    @Transactional
+    @Rollback
+    @Test
+    public void testAdminUGroupCache() {
+        int listSize = 6;
+        
+        UserGroupCreate uGroupCreate = new UserGroupCreate();
+        uGroupCreate.setCreatorId("10000012");
+        uGroupCreate.setUserIdList(null);
+        uGroupCreate.setUserGroupName("新的用户组");
+        
+        
+        List<UserGroup> sysUGroupList = userGroupBiz.showSySUgroup();
+        
+        assertEquals(listSize, sysUGroupList.size());
+        
+
+        List<UserGroup> sysUGroupList2 = userGroupBiz.showSySUgroup();
+
+        assertEquals(listSize, sysUGroupList2.size());
+        
+        userGroupBiz.createUGroup(uGroupCreate);
+
+                
+        List<UserGroup> sysUGroupList3 = userGroupBiz.showSySUgroup();
+
+        assertEquals(listSize+1, sysUGroupList3.size());
+
+
+    }
+    
     
     /**
      * 测试会议组织者创建的用户组列表
@@ -80,7 +120,7 @@ public class UserGroupBizImplTest {
     /**
      * 测试删除用户组
      */
-    @Test
+    @Ignore
     public void testDeleteUGroup() {
         userGroupBiz.deleteUGroup(14);
         
