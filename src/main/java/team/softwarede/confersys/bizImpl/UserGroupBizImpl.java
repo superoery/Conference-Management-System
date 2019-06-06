@@ -116,6 +116,7 @@ public class UserGroupBizImpl implements UserGroupBiz {
         return userGroupMapper.selectByCreaterId(organizerId);
     }
 
+    @Transactional
     @Override
     public List<UserGroup> showSySUgroup() {
         // TODO Auto-generated method stub

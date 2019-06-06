@@ -137,7 +137,7 @@ public class InformBizImpl implements InformBiz {
         return true;
     }
     
-    
+    @Transactional
     @Override
     public NotificationDetail showNormalInformDetail(Integer informId) {
         // TODO Auto-generated method stub
