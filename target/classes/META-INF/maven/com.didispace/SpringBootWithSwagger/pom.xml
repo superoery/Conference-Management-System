@@ -63,6 +63,12 @@
 			<artifactId>nekohtml</artifactId> 
 			<version>1.9.22</version> 
 		</dependency> 
+	
+		<!-- 安全 -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 		
 		<!-- MyBatis 数据库持久依赖 -->
 		<dependency>

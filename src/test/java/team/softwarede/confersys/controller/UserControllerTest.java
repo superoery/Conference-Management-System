@@ -4,11 +4,9 @@
 */
 package team.softwarede.confersys.controller;
 
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -19,6 +17,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -53,12 +52,13 @@ public class UserControllerTest {
     @Test
     public void testLoginSuccess() {
         try {
-            mvc.perform(post("/user/login.do").
-                    param("userId", "10000006").
-                    param("identityId", "1").
+            mvc.perform(post("/user/tologin.do").
+                    param("userId", "00000009").
+                    param("identityId", "4").
                     param("password", "123")
                     ).
-                    andExpect(redirectedUrl("/user/main"));
+                    andExpect(MockMvcResultMatchers.view().name("login_main"));
+
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
