@@ -4,7 +4,9 @@
 */
 package team.softwarede.confersys.bizImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -14,6 +16,7 @@ import team.softwarede.confersys.biz.UserBiz;
 import team.softwarede.confersys.dto.UserLogin;
 import team.softwarede.confersys.dtomapper.UserLoginMapper;
 import team.softwarede.confersys.entity.Login;
+import team.softwarede.confersys.enums.EnumIdentity;
 
 /**
  * @author Mity1299
@@ -49,6 +52,19 @@ public class UserBizImpl implements UserBiz {
             }
         }
         return msg;
+    }
+
+
+    @Override
+    public List<EnumIdentity> showLoginPage() {
+        // TODO Auto-generated method stub
+        
+        List<EnumIdentity> identities = new ArrayList<EnumIdentity>();
+        for (EnumIdentity eidentity : EnumIdentity.values()) {
+            identities.add(eidentity);
+        }
+        
+        return identities;
     }
 
 }
