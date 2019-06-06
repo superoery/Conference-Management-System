@@ -20,7 +20,7 @@ public interface UserAndGroupMapper {
     
     List<UserSearch> selectUserFuzzyBykeyword(String keyword);
 
-    List<UGroupSearch> selectGroupFuzzyBykeyword(@Param("organizerId")String organizerId,
+    List<UGroupSearch> selectGroupFuzzyBykeyword(@Param("createrIdList")List<String> createrIdList,
                                                  @Param("keyword")String keyword);
     
 }

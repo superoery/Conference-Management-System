@@ -52,6 +52,7 @@
     where user_id = #{userId,jdbcType=VARCHAR}
       and meeting_id = #{meetingId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="team.softwarede.confersys.entity.Participates">
     <!--
       WARNING - @mbg.generated

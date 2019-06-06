@@ -12,8 +12,11 @@ public interface BelongsToMapper {
     List<String> selectByUGroupId(Integer uGroupId);
     
     int deleteByPrimaryKey(BelongsToKey key);
+    
+    int deleteByUGroupId(Integer uGroupId);
 
     int insert(BelongsToKey record);
 
     int insertSelective(BelongsToKey record);
+    
 }

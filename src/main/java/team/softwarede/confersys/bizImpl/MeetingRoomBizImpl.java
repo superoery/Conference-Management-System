@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +16,12 @@ import team.softwarede.confersys.biz.MeetingRoomBiz;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
 import team.softwarede.confersys.dto.MeetingRoomBook;
 import team.softwarede.confersys.dtomapper.MeetingRoomAvailMapper;
+import team.softwarede.confersys.entity.EquipmentType;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.mapper.ApplyMapper;
+import team.softwarede.confersys.mapper.EquipmentTypeMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
 import team.softwarede.confersys.mapper.ScheduleMapper;
@@ -44,7 +47,8 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     MeetingMapper meetingMapper;
     @Autowired
     ScheduleMapper scheduleMapper;
-    
+    @Autowired
+    EquipmentTypeMapper equipmentTypeMapper;    
     
     /**
      * 显示可选会议室列表
@@ -64,6 +68,15 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
 
         
         return meetingRoomBookList;
+    }
+
+
+    @Cacheable(value = "EquipmentTypeCache" , key = "targetClass + methodName")
+    @Override
+    public List<EquipmentType> showMtRoomBookPage() {
+        // TODO Auto-generated method stub
+        
+        return equipmentTypeMapper.selectAll();
     }
 
 }

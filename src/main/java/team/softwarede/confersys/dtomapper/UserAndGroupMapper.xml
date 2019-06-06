@@ -31,7 +31,12 @@
     <include refid="UGroup_Column_List" />
     from user_group
     where 
-            user_id=#{organizerId,jdbcType=VARCHAR} and
+            user_id in 
+            <foreach collection="createrIdList" index="index" item="item" open="("
+                     separator="," close=")">
+                #{item}
+            </foreach>
+        and
         (
              `name` like CONCAT('%',#{keyword},'%') or 
             CAST(id AS CHAR) like CONCAT('%',#{keyword},'%')            

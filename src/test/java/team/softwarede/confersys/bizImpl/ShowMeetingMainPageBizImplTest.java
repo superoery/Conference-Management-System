@@ -17,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
+import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingMainPage;
 import team.softwarede.confersys.entity.Role;
 /**
@@ -51,11 +52,11 @@ public class ShowMeetingMainPageBizImplTest {
 	}
 	
 	@Test
-	public void testGetRole() {
+	public void testGetSession() {
 	    
-	    Role role = showMeetingMainPageBiz.getRole("10000010");
+	    BasicSession session = showMeetingMainPageBiz.getBasicSession("10000010");
 	    
-	    assertEquals("会议组织者", role.getRole());
+	    assertEquals("会议组织者", session.getRole().getRole());
 	    
 	    
 	}

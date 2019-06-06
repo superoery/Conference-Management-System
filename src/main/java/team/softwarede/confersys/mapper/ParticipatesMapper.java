@@ -11,7 +11,7 @@ import team.softwarede.confersys.entity.ParticipatesKey;
 public interface ParticipatesMapper {
 
     int deleteByPrimaryKey(ParticipatesKey key);
-
+    
     int insert(Participates record);
 
     int insertSelective(Participates record);

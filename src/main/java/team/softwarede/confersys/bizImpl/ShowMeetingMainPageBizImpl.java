@@ -1,3 +1,4 @@
+
 package team.softwarede.confersys.bizImpl;
 
 import java.util.ArrayList;
@@ -5,13 +6,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
+import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingMainPage;
 import team.softwarede.confersys.dtomapper.ShowMeetingMainPageMapper;
 import team.softwarede.confersys.entity.Role;
-import team.softwarede.confersys.enums.EnumIdentity;
+import team.softwarede.confersys.entity.User;
 import team.softwarede.confersys.mapper.RoleMapper;
+import team.softwarede.confersys.mapper.UserMapper;
 
 /**
  * 
@@ -25,6 +29,9 @@ public class ShowMeetingMainPageBizImpl implements ShowMeetingMainPageBiz {
 	ShowMeetingMainPageMapper showMeetingMainPageMapper;
 	@Autowired
 	RoleMapper roleMapper;
+	@Autowired
+	UserMapper userMapper; 
+	
 	
 	@Override
 	public List<MeetingMainPage> showParticipatedMeeting(String userId, int roleId){
@@ -37,25 +44,20 @@ public class ShowMeetingMainPageBizImpl implements ShowMeetingMainPageBiz {
 		}
 	}
 
+	@Transactional
     @Override
-    public Role getRole(String userId) {
+    public BasicSession getBasicSession(String userId) {
         // TODO Auto-generated method stub
+        BasicSession basicSession = new BasicSession();
         
+        User user = userMapper.selectByPrimaryKey(userId);
+        Role role = roleMapper.selectByUId(userId);
         
+        basicSession.setUserId(userId);
+        basicSession.setUserName(user.getName());
+        basicSession.setRole(role);
         
-        return roleMapper.selectByUId(userId);
+        return basicSession;
     }
 
-    // add by wyf 20190605
-	@Override
-	public List<EnumIdentity> showAllIdentities() {
-		// TODO Auto-generated method stub
-		List<EnumIdentity> identities = new ArrayList<EnumIdentity>();
-		identities.add(EnumIdentity.STUDENT);
-		identities.add(EnumIdentity.COMMITTEE);
-		identities.add(EnumIdentity.TEACHER);
-		identities.add(EnumIdentity.ASSISTANT);
-		identities.add(EnumIdentity.ADMIN);
-		return identities;
-	}
 }
