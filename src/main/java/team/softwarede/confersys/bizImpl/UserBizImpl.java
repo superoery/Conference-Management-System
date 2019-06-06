@@ -17,6 +17,7 @@ import team.softwarede.confersys.dto.UserLogin;
 import team.softwarede.confersys.dtomapper.UserLoginMapper;
 import team.softwarede.confersys.entity.Login;
 import team.softwarede.confersys.enums.EnumIdentity;
+import team.softwarede.confersys.mapper.LoginMapper;
 
 /**
  * @author Mity1299
@@ -26,7 +27,9 @@ import team.softwarede.confersys.enums.EnumIdentity;
 public class UserBizImpl implements UserBiz {
 
     @Autowired
-    UserLoginMapper userloginMapper;
+    UserLoginMapper userLoginMapper;
+    @Autowired
+    LoginMapper loginMapper;
     
     
     @Override
@@ -35,7 +38,7 @@ public class UserBizImpl implements UserBiz {
         String msg = null;
         
         //查找是否有该用户
-        UserLogin userLogin = userloginMapper.selectByPrimaryKey(userId, identityId);
+        UserLogin userLogin = userLoginMapper.selectByPrimaryKey(userId, identityId);
         if(userLogin==null) {
             msg="输入用户编号不存在";
         }else {
@@ -44,7 +47,7 @@ public class UserBizImpl implements UserBiz {
                 Login login = new Login();
                 login.setLoginTime(new Date());
                 login.setUserId(userId);
-                
+                loginMapper.insertSelective(login);
                 msg="ok";
                 
             }else {
