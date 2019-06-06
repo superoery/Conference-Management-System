@@ -4,6 +4,8 @@
 */
 package team.softwarede.confersys.bizImpl;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import team.softwarede.confersys.biz.UserBiz;
 import team.softwarede.confersys.dto.UserLogin;
 import team.softwarede.confersys.dtomapper.UserLoginMapper;
+import team.softwarede.confersys.entity.Login;
 
 /**
  * @author Mity1299
@@ -35,7 +38,12 @@ public class UserBizImpl implements UserBiz {
         }else {
             //对比密码是否正确
             if(passwd.equals(userLogin.getPassword())) {
+                Login login = new Login();
+                login.setLoginTime(new Date());
+                login.setUserId(userId);
+                
                 msg="ok";
+                
             }else {
                 msg="密码错误";
             }
