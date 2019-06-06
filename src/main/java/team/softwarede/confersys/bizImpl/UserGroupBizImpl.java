@@ -44,6 +44,7 @@ public class UserGroupBizImpl implements UserGroupBiz {
     UserMapper userMapper;
     
     
+    @Transactional
     @Override
     public List<UserAndGroup> searchUAndUGByKeyword(String keyword,String organizerId) {
         // TODO Auto-generated method stub
@@ -118,6 +119,7 @@ public class UserGroupBizImpl implements UserGroupBiz {
     }
     
     
+    @Transactional
     @Override
     public boolean deleteUGroup(Integer uGroupId) {
         // TODO Auto-generated method stub

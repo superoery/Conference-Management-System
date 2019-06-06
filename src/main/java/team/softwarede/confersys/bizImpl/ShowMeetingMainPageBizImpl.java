@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.MeetingMainPage;
 import team.softwarede.confersys.dtomapper.ShowMeetingMainPageMapper;
+import team.softwarede.confersys.entity.Role;
+import team.softwarede.confersys.mapper.RoleMapper;
 
 /**
  * 
@@ -19,6 +21,8 @@ import team.softwarede.confersys.dtomapper.ShowMeetingMainPageMapper;
 public class ShowMeetingMainPageBizImpl implements ShowMeetingMainPageBiz {
 	@Autowired
 	ShowMeetingMainPageMapper showMeetingMainPageMapper;
+	@Autowired
+	RoleMapper roleMapper;
 	
 	@Override
 	public List<MeetingMainPage> showMeetingMainPage(String userId, int roleId){
@@ -30,4 +34,13 @@ public class ShowMeetingMainPageBizImpl implements ShowMeetingMainPageBiz {
 			return meetingMainPage;	
 		}
 	}
+
+    @Override
+    public Role getRole(String userId) {
+        // TODO Auto-generated method stub
+        
+        
+        
+        return roleMapper.selectByUId(userId);
+    }
 }
