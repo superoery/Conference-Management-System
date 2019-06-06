@@ -4,6 +4,7 @@ import java.util.List;
 
 import team.softwarede.confersys.dto.MeetingMainPage;
 import team.softwarede.confersys.entity.Role;
+import team.softwarede.confersys.enums.EnumIdentity;
 
 /**
  * 
@@ -11,8 +12,11 @@ import team.softwarede.confersys.entity.Role;
  *
  */
 public interface ShowMeetingMainPageBiz {
-	List<MeetingMainPage> showMeetingMainPage(String userId, int roleId);
+	List<MeetingMainPage> showParticipatedMeeting(String userId, int roleId);
 	
     Role getRole(String userId);
+    
+    // add by wyf 20190605
+    List<EnumIdentity> showAllIdentities();
 
 }

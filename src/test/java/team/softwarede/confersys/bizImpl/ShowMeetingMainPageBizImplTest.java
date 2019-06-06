@@ -37,7 +37,7 @@ public class ShowMeetingMainPageBizImplTest {
 		String userId = "41624544";
 		Logger logger = Logger.getLogger(getClass());
 		List<MeetingMainPage> testList = new ArrayList<MeetingMainPage>();
-		testList = showMeetingMainPageBiz.showMeetingMainPage(userId, 2);
+		testList = showMeetingMainPageBiz.showParticipatedMeeting(userId, 2);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 		for(MeetingMainPage string : testList) {
 			logger.info(String.valueOf(string.getMtId()));
