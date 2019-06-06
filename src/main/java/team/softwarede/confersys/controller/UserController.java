@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.biz.UserBiz;
+import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingMainPage;
 import team.softwarede.confersys.dto.UserLogin;
 import team.softwarede.confersys.entity.Role;
@@ -38,13 +39,12 @@ public class UserController {
     
     @Autowired
     ShowMeetingMainPageBiz showMeetingMainPageBiz;
-
     
 	@RequestMapping("/login")
 	public String index(ModelMap map, @ModelAttribute("loginForm") UserLogin userlogin,
 			BindingResult bindResult,
 			@ModelAttribute("msg") String msg) {
-		List<EnumIdentity> identities = showMeetingMainPageBiz.showAllIdentities();
+		List<EnumIdentity> identities = userBiz.showLoginPage();
 		map.addAttribute("identities",identities);
 		map.addAttribute("msg",msg);
         return "login";
@@ -57,7 +57,7 @@ public class UserController {
 			RedirectAttributes attributes, 
 			HttpSession session) {
 		if(bindResult.hasErrors()) {
-			List<EnumIdentity> identities = showMeetingMainPageBiz.showAllIdentities();
+			List<EnumIdentity> identities = userBiz.showLoginPage();
 			map.addAttribute("identities",identities);
 			return "login";
 		}
@@ -67,16 +67,20 @@ public class UserController {
 		              userlogin.getPassword());
 		if(msg.equals("ok")) {
 			// show Main Page
-//			BasicSession userSession = showMeetingMainPageBiz.getBasicSession(userlogin.getUserId());
+			BasicSession userSession = showMeetingMainPageBiz.getBasicSession(userlogin.getUserId());
 //			session.setAttribute("userSession", userSession);
-//			
-//			List<MeetingMainPage> pmtList = showMeetingMainPageBiz.showParticipatedMeeting(userSession.getUserId(), userSession.role.getId());
-//			map.addAttribute("pmtList",pmtList);
-//			
-//			List<MeetingMainPage> omtList = showMeetingMainPageBiz.showOranizedMeeting(userSession.getUserId(), userSession.role.getId());
+			map.addAttribute("userSession",userSession);
+			
+			List<MeetingMainPage> pmtList = showMeetingMainPageBiz.showParticipatedMeeting(userSession.getUserId(), userSession.getRole().getId());
+			map.addAttribute("pmtList",pmtList);
+			
+//			List<MeetingMainPage> omtList = showMeetingMainPageBiz.showOranizedMeeting(userSession.getUserId(), userSession.getRole().getId());
 //			map.addAttribute("omtList",omtList);
 //			
-//			// List<NotificationMainPage> normalNotice = showMeetingMainPageBiz.showNormalNotification(userSession.getUserId());
+//			List<MeetingMainPage> amtList = showMeetingMainPageBiz.showAllMeeting(userSession.getUserId(), userSession.getRole().getId());
+//			map.addAttribute("amtList",amtList);
+			
+			// List<NotificationMainPage> normalNotice = showMeetingMainPageBiz.showNormalNotification(userSession.getUserId());
 			return "login_main";
 		}else {
 			attributes.addFlashAttribute("msg",msg);
