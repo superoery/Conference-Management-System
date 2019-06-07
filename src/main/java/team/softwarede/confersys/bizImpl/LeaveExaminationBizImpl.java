@@ -2,6 +2,7 @@ package team.softwarede.confersys.bizImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.LeaveExaminationBiz;
 import team.softwarede.confersys.entity.LeaveApplication;
@@ -29,6 +30,7 @@ public class LeaveExaminationBizImpl implements LeaveExaminationBiz{
 	@Autowired
 	NoticesMapper noticesMapper;
 	
+	@Transactional
 	@Override
 	public String leaveExamination(LeaveApplication record, Integer result) {
 		String msg;

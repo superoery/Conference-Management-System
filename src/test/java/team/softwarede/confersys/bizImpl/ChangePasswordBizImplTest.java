@@ -1,12 +1,12 @@
 package team.softwarede.confersys.bizImpl;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.biz.ChangePasswordBiz;
@@ -26,6 +26,8 @@ public class ChangePasswordBizImplTest {
 	
 	@Autowired
 	UserMapper userMapper;
+	
+	@Transactional
 	@Test
 	public void test() {
 		User user = new User();

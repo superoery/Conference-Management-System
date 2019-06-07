@@ -31,7 +31,7 @@ public class ShowMeetingMainPageBizImpl implements ShowMeetingMainPageBiz {
 	@Autowired
 	UserMapper userMapper; 
 	
-	
+	@Transactional
 	@Override
 	public List<MeetingMainPage> showMeetingMainPage(String userId, int roleId){
 		if(roleId == 1) {

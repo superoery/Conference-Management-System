@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.UserBiz;
 import team.softwarede.confersys.dto.UserLogin;
@@ -31,7 +31,7 @@ public class UserBizImpl implements UserBiz {
     @Autowired
     LoginMapper loginMapper;
     
-    
+    @Transactional
     @Override
     public String login(String userId, Integer identityId, String passwd) {
         // TODO Auto-generated method stub

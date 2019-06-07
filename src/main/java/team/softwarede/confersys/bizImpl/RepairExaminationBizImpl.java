@@ -2,6 +2,7 @@ package team.softwarede.confersys.bizImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.RepairExaminationBiz;
 import team.softwarede.confersys.dto.RepairApply;
@@ -32,6 +33,7 @@ public class RepairExaminationBizImpl implements RepairExaminationBiz{
 	@Autowired
 	EquipmentMapper equipmentMapper;
 	
+	@Transactional
 	@Override
 	public String repairExamination(int repairEquipmentId, RepairApply repairApply) {
 		String msg;

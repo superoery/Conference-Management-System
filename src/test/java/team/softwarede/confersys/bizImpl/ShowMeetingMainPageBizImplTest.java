@@ -7,20 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.biz.ShowMainPageOrgBiz;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingMainPage;
-import team.softwarede.confersys.entity.Role;
 /**
  * 
  * @author SunRonglin
@@ -37,6 +36,7 @@ public class ShowMeetingMainPageBizImplTest {
 	@Autowired
 	ShowMainPageOrgBiz showMainPageOrgBiz;
 	
+	@Transactional
 	@Test
 	public void testShowMeetingMainPage() {
 		String userId = "41624544";
