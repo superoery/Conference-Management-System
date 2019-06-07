@@ -147,7 +147,7 @@
 		  </a>
 		  <div class="collapse" id="meeting">
 			<ul class="nav flex-column sub-menu">
-			  <li class="nav-item"> <a class="nav-link" href="#participatedMeeting" th:if="${userSession.getRole().getRole()} != '管理员' "> 参与的会议 </a></li>
+			  <li class="nav-item"> <a class="nav-link" href="#participatedMeeting"  th:if="${userSession.getRole().getRole()} != '管理员' "> 参与的会议 </a></li>
 			  <li class="nav-item"> <a class="nav-link" href="#organizedMeeting"  th:if="${userSession.getRole().getRole()} == '会议组织者' "> 组织的会议 </a></li>
 			  <li class="nav-item"> <a class="nav-link" href="#allMeeting"  th:if="${userSession.getRole().getRole()} == '管理员' "> 全部会议 </a></li>
 			</ul>
@@ -164,7 +164,7 @@
 		
 		
 		<li class="nav-item" th:if="${userSession.getRole().getRole()} == '会议组织者' ">
-		  <a class="nav-link" href="ugroup_mtroom_book.html" th:href="@{/meetingRoom/book.do}">
+		  <a class="nav-link" href="ugroup_mtroom_book.html">
 			<span class="menu-title">会议室预约</span>
 			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
 		  </a>
@@ -197,186 +197,91 @@
 	<div class="content-wrapper">
 	
 	  
-	  <div class="row" id="participatedMeeting"  th:if="${userSession.getRole().getRole()} != '管理员' ">
-		<div class="col-12 grid-margin">
-		  <div class="card">
-			<div class="card-body">
-			  <h4 class="card-title">参与的会议</h4>
-			  <div class="table-responsive">
-			  	<p th:if="${pmtList}==null" th:text=${'没有需要参加的会议！'}></p>
-				<table class="table" th:if="${pmtList}!=null">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						主题
-					  </th>
-					  <th>
-						开始时间
-					  </th>
-					  <th>
-						结束时间
-					  </th>
-					  <th>
-						所在建筑
-					  </th>
-					  <th>
-						所在楼层
-					  </th>
-					  <th>
-						所在房间号
-					  </th>
-					  <th>
-						状态
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="pmt : ${pmtList}">
-					  <td th:text="${pmt.getMtId()}"></td>
-					  <td th:text="${pmt.getMtTopic()}"></td>
-					  <td th:text="${#dates.format(pmt.getBeginTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${#dates.format(pmt.getEndTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${pmt.getMtRoomBuilding()}"></td>
-					  <td th:text="${pmt.getMtRoomFloor()}"></td>
-					  <td th:text="${pmt.getMtRoomNum()}"></td>
-					  <td th:text="${pmt.getMtStatus()}"></td>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
-		  </div>
+	  <div class="col-12 grid-margin">
+		<div class="card">
+		<div class="card-body">
+		  <h4 class="card-title">会议创建和会议室预约申请</h4>
+				
+				<div class="form-group">
+				  <label>添加与会的用户或用户组</label>
+			  	  <form class="d-flex align-items-stretch h-100" action="/meetingRoom/searchUAndUG.do">
+					<div class="input-group">
+					  <input type="text" class="form-control" placeholder="用户名或用户组名" name="mtRoomSearch" th:value="*{mtRoomSearch}"></input>
+					  
+					  <div class="input-group-addon bg-transparent border-0 search-button">
+						<button type="submit" class="btn btn-sm bg-transparent px-0">
+						  <i class="mdi mdi-magnify"></i>
+						</button>
+					  </div>
+					</div>
+				  </form>
+					  
+						 <table class="table" th:if="${uAndGList.getuAndGList()}!=null"  style="text-align:center;">
+						  <thead>
+							<tr>
+							  <th>
+								类型
+							  </th>
+							  <th>
+								名称
+							  </th>
+							  <th>
+							  	加入与会名单列表
+							  </th>
+							</tr>
+						  </thead>
+						  <tbody>
+							<tr th:each="uAndG : ${uAndGList.getuAndGList()}">
+							  <td th:text="${uAndG.getType()}==0? '用户':'用户组'"></td>
+							  <td th:text="${uAndG.getName()}"></td>
+							  <td><button type="button" class="btn-btn-secondary">+</button></td>
+						  </tbody>
+						</table>
+				</div>
+			
+			<br/><br/>
+		  	<p class="card-description">会议室预约</p>
+		  	<form class="form-sample" action="/user/searchAvail.do" method="post" th:object="${mtRoomAvail}">
+				<div class="form-group">
+				 	<label>开始时间</label>
+				 	<input type="text" class="form-control" name="beginTime" th:field="*{beginTime}"/>
+				 	<p th:if="${#fields.hasErrors('beginTime')}" th:errors="*{beginTime}" style="color:#FF0000">errors beginTime</p>
+				</div>
+				
+				<div class="form-group">
+				  	<label>结束时间</label>
+					<input type="text" class="form-control" name="endTime" th:field="*{endTime}"/>
+				 	<p th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" style="color:#FF0000">errors endTime</p>
+				</div>
+
+				<div class="form-group">
+				  <label>所需会议室设备列表</label>
+                   <div class="form-group">
+                     <div class="form-check"  th:field="*{equipmentTypeIdList}"
+							   th:each ="equipmentType:${equipmentTypeList}">
+                       <label class="form-check-label">
+                         <input type="checkbox" class="form-check-input"
+							   th:value="${equipmentType.getId()}"
+							   th:text ="${equipmentType.getTypeName()}"/>
+                       </label>
+                     </div>
+                   </div>
+                   <br/>
+                   <p th:if="${#fields.hasErrors('equipmentTypeIdList')}" th:errors="*{equipmentTypeIdList}" style="color:#FF0000">errors equipmentTypeIdList</p>
+				</div>
+
+				
+				<button type="submit" class="btn btn-success mr-2">查找可用会议室</button>
+		  	</form>
+		  	
+		</div>
 		</div>
 	  </div>
+		
 	  
-	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} != '管理员' ">
+	  <div style="float: right;">
 		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
 	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
-	  
-	  
-	  <div class="row" id="organizedMeeting" th:if="${userSession.getRole().getRole()} == '会议组织者'">
-		<div class="col-12 grid-margin">
-		  <div class="card">
-			<div class="card-body">
-			  <h4 class="card-title">组织的会议</h4>
-			  <div class="table-responsive">
-			  	<p th:if="${omtList}==null" th:text=${'没有您组织的会议！'}></p>
-				<table class="table"  th:if="${omtList}!=null">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						主题
-					  </th>
-					  <th>
-						开始时间
-					  </th>
-					  <th>
-						结束时间
-					  </th>
-					  <th>
-						所在建筑
-					  </th>
-					  <th>
-						所在楼层
-					  </th>
-					  <th>
-						所在房间号
-					  </th>
-					  <th>
-						状态
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="omt : ${omtList}">
-					  <td th:text="${omt.getMtId()}"></td>
-					  <td th:text="${omt.getMtTopic()}"></td>
-					  <td th:text="${#dates.format(omt.getBeginTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${#dates.format(omt.getEndTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${omt.getMtRoomBuilding()}"></td>
-					  <td th:text="${omt.getMtRoomFloor()}"></td>
-					  <td th:text="${omt.getMtRoomNum()}"></td>
-					  <td th:text="${omt.getMtStatus()}"></td>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  
-	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} == '会议组织者'">
-		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
-	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} == '会议组织者'"><br/><br/><br/><br/></div>
-	  
-	  <div class="row" id="allMeeting"   th:if="${userSession.getRole().getRole()} == '管理员' ">
-		<div class="col-12 grid-margin">
-		  <div class="card">
-			<div class="card-body">
-			  <h4 class="card-title">全部会议</h4>
-			  <div class="table-responsive">
-			  	<p th:if="${amtList}==null" th:text=${'没有会议！'}></p>
-				<table class="table" th:if="${amtList}!=null">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						主题
-					  </th>
-					  <th>
-						开始时间
-					  </th>
-					  <th>
-						结束时间
-					  </th>
-					  <th>
-						所在建筑
-					  </th>
-					  <th>
-						所在楼层
-					  </th>
-					  <th>
-						所在房间号
-					  </th>
-					  <th>
-						状态
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="amt : ${amtList}">
-					  <td th:text="${amt.getMtId()}"></td>
-					  <td th:text="${amt.getMtTopic()}"></td>
-					  <td th:text="${#dates.format(amt.getBeginTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${#dates.format(amt.getEndTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${amt.getMtRoomBuilding()}"></td>
-					  <td th:text="${amt.getMtRoomFloor()}"></td>
-					  <td th:text="${amt.getMtRoomNum()}"></td>
-					  <td th:text="${amt.getMtStatus()}"></td>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} == '管理员' ">
-		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
-	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} == '管理员' "><br/><br/><br/><br/></div>
-	  
 	  
 	</div>
 	<!-- content-wrapper ends -->

@@ -42,7 +42,6 @@ public class UserController {
     
 	@RequestMapping("/login")
 	public String index(ModelMap map, @ModelAttribute("loginForm") UserLogin userlogin,
-			BindingResult bindResult,
 			@ModelAttribute("msg") String msg) {
 		List<EnumIdentity> identities = userBiz.showLoginPage();
 		map.addAttribute("identities",identities);
@@ -68,7 +67,7 @@ public class UserController {
 		if(msg.equals("ok")) {
 			// show Main Page
 			BasicSession userSession = showMeetingMainPageBiz.getBasicSession(userlogin.getUserId());
-//			session.setAttribute("userSession", userSession);
+			session.setAttribute("userSession", userSession);
 			map.addAttribute("userSession",userSession);
 			
 			List<MeetingMainPage> pmtList = showMeetingMainPageBiz.showParticipatedMeeting(userSession.getUserId(), userSession.getRole().getId());
