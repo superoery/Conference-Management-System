@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.biz.ShowMeetingDetail2Biz;
 import team.softwarede.confersys.biz.ShowMeetingDetail3Biz;
-import team.softwarede.confersys.biz.ShowMeetingDetailBiz;
 import team.softwarede.confersys.dto.MeetingDetail;
 import team.softwarede.confersys.dto.MeetingDetailWithoutParticipantsList;
 import team.softwarede.confersys.dto.ParticipantBasicInfo;
@@ -31,9 +31,6 @@ public class ShowMeetingDetailBizImplTest {
 
 	@Autowired
 	ShowMeetingDetail3Biz showMeetingDetail3Biz;
-	
-	@Autowired
-	ShowMeetingDetailBiz showMeetingDetailBiz;
 	
 	@Autowired
 	ShowMeetingDetail2Biz showMeetingDetail2Biz;
@@ -56,22 +53,7 @@ public class ShowMeetingDetailBizImplTest {
 		logger.info(list.getMtStatus());
 		logger.info(list.getMyParticipantStatus());
 	}
-	//打印与会人员信息列表
-	@Ignore
-	public void testShowMeetingParticipants() {
-		int meetingId = 1;
-		Logger logger = Logger.getLogger(getClass());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
-
-		List<ParticipantBasicInfo> infoList = showMeetingDetailBiz.showMeetingDetail(meetingId);
-		
-		for(ParticipantBasicInfo infolist:infoList) {
-			logger.info(String.valueOf(infolist.getMtId()));
-			logger.info(infolist.getParticipantId());
-			logger.info(infolist.getParticipantName());
-			logger.info(infolist.getParticipantStatus());
-		}
-	}
+	@Transactional
 	@Test
 	public void testAdminShowMeetingDetail() {
 		int meetingId = 1;
@@ -79,7 +61,8 @@ public class ShowMeetingDetailBizImplTest {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 		
 		MeetingDetail list = showMeetingDetail2Biz.showMeetingDetail2(meetingId,1);
-
+		List<ParticipantBasicInfo> personList = showMeetingDetail2Biz.showMeetingDetail(meetingId);
+		
 		logger.info(String.valueOf(list.getMtId()));
 		logger.info(list.getMtTopic());
 		logger.info(sdf.format(list.getBeginTime()));
@@ -92,6 +75,13 @@ public class ShowMeetingDetailBizImplTest {
 		logger.info(list.getMtConclusion());
 		logger.info(list.getMtStatus());
 		logger.info(list.getMyParticipantStatus());
+		for(ParticipantBasicInfo str : personList) {
+			logger.info(str.getMtId());
+			logger.info(str.getParticipantId());
+			logger.info(str.getParticipantName());
+			logger.info(str.getParticipantStatus());
+		
 		}
 	}
+}
 

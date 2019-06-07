@@ -1,11 +1,15 @@
 package team.softwarede.confersys.bizImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import team.softwarede.confersys.biz.ShowMeetingDetail3Biz;
 import team.softwarede.confersys.dto.MeetingDetailWithoutParticipantsList;
+import team.softwarede.confersys.dto.ParticipantBasicInfo;
 import team.softwarede.confersys.dtomapper.ShowMeetingDetail3Mapper;
+import team.softwarede.confersys.dtomapper.ShowMeetingDetailMapper;
 /**
  * 
  * @author SunRonglin
@@ -20,5 +24,9 @@ public class ShowMeetingDetail3BizImpl implements ShowMeetingDetail3Biz{
 	public MeetingDetailWithoutParticipantsList showMeetingDetail3(int meetingId){
 		MeetingDetailWithoutParticipantsList list = showMeetingDetail3Mapper.normalSelectByMeetingId(meetingId);
 		return list;
+	
 	}
+
+	
+	
 }

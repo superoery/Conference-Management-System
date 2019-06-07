@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import team.softwarede.confersys.Application;
-import team.softwarede.confersys.biz.LeaveExaminationBiz;
-import team.softwarede.confersys.entity.LeaveApplication;
+import team.softwarede.confersys.biz.ShowMtRoomInfoBiz;
+import team.softwarede.confersys.entity.MeetingRoom;
 /**
  * 
  * @author SunRonglin
@@ -19,20 +19,22 @@ import team.softwarede.confersys.entity.LeaveApplication;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class LeaveExaminationBizImplTest {
+public class ShowMtRoomImplTest {
 
 	@Autowired
-	LeaveExaminationBiz leaveExaminationBiz;
-	
+	ShowMtRoomInfoBiz showMtRoomInfoBiz;
 	@Test
-	public void testLeaveExamination() {
-		LeaveApplication record = new LeaveApplication();
-		String msg;
-		record.setMeetingId(1);
-		record.setUserId("41624544");
-		record.setReason("感冒");
-		msg = leaveExaminationBiz.leaveExamination(record, 1);
+	public void test() {
+		MeetingRoom meetingRoom = new MeetingRoom();
+		meetingRoom = showMtRoomInfoBiz.showMtRoomInfo(1);
 		Logger logger = Logger.getLogger(getClass());
-		logger.info(msg);
+		logger.info(meetingRoom.getId());
+		logger.info(meetingRoom.getBuilding());
+		logger.info(meetingRoom.getFloor());
+		logger.info(meetingRoom.getRoomNumber());
+		logger.info(meetingRoom.getRoomIntroduce());
+		logger.info(meetingRoom.getCapacity());
+		logger.info(meetingRoom.getStatusId());
 	}
+
 }

@@ -9,6 +9,7 @@ import team.softwarede.confersys.biz.LeaveApplicationBiz;
 import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.mapper.LeaveApplicationMapper;
+import team.softwarede.confersys.mapper.NotificationMapper;
 /**
  * 
  * @author SunRonglin
@@ -19,6 +20,9 @@ public class LeaveAplicationBizImpl implements LeaveApplicationBiz{
 	
 	@Autowired
 	LeaveApplicationMapper leaveApplicationMapper;
+	
+	@Autowired
+	NotificationMapper notificationMapper;
 	
 	@Override
 	public String submitLeaveApplication(LeaveApplication record) {

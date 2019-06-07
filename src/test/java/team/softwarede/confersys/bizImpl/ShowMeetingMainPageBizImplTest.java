@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import team.softwarede.confersys.Application;
+import team.softwarede.confersys.biz.ShowMainPageOrgBiz;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.MeetingMainPage;
 /**
@@ -28,12 +29,16 @@ public class ShowMeetingMainPageBizImplTest {
 	@Autowired
 	ShowMeetingMainPageBiz showMeetingMainPageBiz;
 	
+	@Autowired
+	ShowMainPageOrgBiz showMainPageOrgBiz;
+	
 	@Test
 	public void testShowMeetingMainPage() {
 		String userId = "41624544";
 		Logger logger = Logger.getLogger(getClass());
 		List<MeetingMainPage> testList = new ArrayList<MeetingMainPage>();
-		testList = showMeetingMainPageBiz.showMeetingMainPage(userId, 2);
+		List<MeetingMainPage> orgList = new ArrayList<MeetingMainPage>();
+		testList = showMeetingMainPageBiz.showMeetingMainPage(userId, 3);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 		for(MeetingMainPage string : testList) {
 			logger.info(String.valueOf(string.getMtId()));
@@ -43,6 +48,18 @@ public class ShowMeetingMainPageBizImplTest {
 			logger.info(string.getMtRoomBuilding());
 			logger.info(String.valueOf(string.getMtRoomFloor()));
 			logger.info(string.getMtRoomNum());
+			logger.info(string.getMtStatus());
+		}
+		orgList = showMainPageOrgBiz.showMainPageOrg("41624544", 3);
+		for(MeetingMainPage str : orgList) {
+			logger.info(String.valueOf(str.getMtId()));
+			logger.info(str.getMtTopic());
+			logger.info(sdf.format(str.getBeginTime()));
+			logger.info(sdf.format(str.getBeginTime()));
+			logger.info(str.getMtRoomBuilding());
+			logger.info(String.valueOf(str.getMtRoomFloor()));
+			logger.info(str.getMtRoomNum());
+			logger.info(str.getMtStatus());
 		}
 	}
 

@@ -4,6 +4,6 @@ import java.util.List;
 
 import team.softwarede.confersys.dto.MeetingMainPage;
 
-public interface ShowMeetingMainPageBiz {
-	List<MeetingMainPage> showMeetingMainPage(String userId, int roleId);
+public interface ShowMainPageOrgBiz {
+	List<MeetingMainPage> showMainPageOrg(String userId, int roleId);
 }

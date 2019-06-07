@@ -22,9 +22,12 @@ public class ShowMeetingMainPageBizImpl implements ShowMeetingMainPageBiz {
 	
 	@Override
 	public List<MeetingMainPage> showMeetingMainPage(String userId, int roleId){
-		if(roleId == 1||roleId == 2) {
+		if(roleId == 1) {
 			List<MeetingMainPage> meetingMainPage = showMeetingMainPageMapper.selectByUserId(userId);
 			return meetingMainPage;
+		}else if(roleId == 3){
+			List<MeetingMainPage> meetingMainPage = showMeetingMainPageMapper.selectByUserId(userId);
+			return meetingMainPage;	
 		}else {
 			List<MeetingMainPage> meetingMainPage = showMeetingMainPageMapper.selectByAdmId();
 			return meetingMainPage;	

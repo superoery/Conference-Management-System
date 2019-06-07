@@ -11,7 +11,7 @@
     <result column="building" jdbcType="VARCHAR" property="mtRoomBuilding" />
     <result column="meeting_content" jdbcType="VARCHAR" property="mtContent" />
     <result column="meeting_conclusion" jdbcType="VARCHAR" property="mtConclusion" />
-    <result column="status_id" jdbcType="VARCHAR" property="mtStatus" />
+    <result column="meeting_status_id" jdbcType="VARCHAR" property="mtStatus" />
     <result column="number" jdbcType="INTEGER" property="mtNum" />
     <result column="participants_status" jdbcType="VARCHAR" property="myParticipantStatus" />
 

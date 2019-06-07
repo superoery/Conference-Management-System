@@ -14,9 +14,9 @@
   </sql>
     <select id="selectByMeetingId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
  	select 
- 	p.user_id, name, participants_status, meeting_id
+ 	u.user_id, u.name, participants_status, meeting_id
  	from user u, participates p
  	where 
-	 	meeting_id = #{meetingId}
+	 	u.user_id = p.user_id and meeting_id = #{meetingId}
  </select>
  </mapper>

@@ -1,11 +1,15 @@
 package team.softwarede.confersys.bizImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import team.softwarede.confersys.biz.ShowMeetingDetail2Biz;
 import team.softwarede.confersys.dto.MeetingDetail;
+import team.softwarede.confersys.dto.ParticipantBasicInfo;
 import team.softwarede.confersys.dtomapper.ShowMeetingDetail2Mapper;
+import team.softwarede.confersys.dtomapper.ShowMeetingDetailMapper;
 
 /**
  * 
@@ -28,6 +32,14 @@ public class ShowMeetingDetail2BizImpl implements ShowMeetingDetail2Biz{
 			list.setMyParticipantStatus(null);
 			return list;
 		}
+	}
+	//显示会议参与人员信息列表
+	@Autowired
+	ShowMeetingDetailMapper showMeetingDetailMapper;
+	@Override
+	public List<ParticipantBasicInfo> showMeetingDetail(int meetingId) {
+		List<ParticipantBasicInfo> participantBasicInfo = showMeetingDetailMapper.selectByMeetingId(meetingId);
+		return participantBasicInfo;
 	}
 
 }
