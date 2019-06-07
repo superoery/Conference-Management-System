@@ -40,13 +40,12 @@ public class InformBizImplAuditTest {
         Integer bookStatus = 0;
         informBiz.auditMeeingBookApply(mtRoomApplyId, bookStatus);
         
-        
+        //查meeting表、apply表、notification表、notice表
     }
     
     /**
      * 通过了会议预约，测试通过
      */
-    @Rollback
     @Test
     public void testFail() {
         Integer mtRoomApplyId =2;

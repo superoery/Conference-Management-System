@@ -56,6 +56,14 @@
 			<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		
+		<!-- 使thymeleaf能够配置为非严格检查机制——LEGACYHTML5  -->
+		<dependency> 
+			<groupId>net.sourceforge.nekohtml</groupId> 
+			<artifactId>nekohtml</artifactId> 
+			<version>1.9.22</version> 
+		</dependency> 
+		
 		<!-- MyBatis 数据库持久依赖 -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>

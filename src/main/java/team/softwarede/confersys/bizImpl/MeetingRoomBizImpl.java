@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +16,12 @@ import team.softwarede.confersys.biz.MeetingRoomBiz;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
 import team.softwarede.confersys.dto.MeetingRoomBook;
 import team.softwarede.confersys.dtomapper.MeetingRoomAvailMapper;
+import team.softwarede.confersys.entity.EquipmentType;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.mapper.ApplyMapper;
+import team.softwarede.confersys.mapper.EquipmentTypeMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
 import team.softwarede.confersys.mapper.ScheduleMapper;
@@ -44,7 +47,8 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     MeetingMapper meetingMapper;
     @Autowired
     ScheduleMapper scheduleMapper;
-    
+    @Autowired
+    EquipmentTypeMapper equipmentTypeMapper;    
     
     /**
      * 显示可选会议室列表
@@ -66,31 +70,13 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
         return meetingRoomBookList;
     }
 
-    @Transactional
+
+    @Cacheable(value = "EquipmentTypeCache" , key = "targetClass + methodName")
     @Override
-    public Boolean bookMtRoom(MeetingRoomBook meetingRoomBook) {
+    public List<EquipmentType> showMtRoomBookPage() {
         // TODO Auto-generated method stub
         
-        //根据会议名称、会议状态、会议内容、会议申请状态插入会议
-        Meeting meeting = new Meeting();
-        String mtTopic = meetingRoomBook.getMtTopic();
-        String mtContent = meetingRoomBook.getMtContent();
-        
-        meeting.setTopic(mtTopic);
-        meeting.setMeetingStatusId("in audit");//正在审核   
-        meeting.setMeetingContent(mtContent);
-        meeting.setApplyStatusId("examing");//审核中
-        
-        meetingMapper.insertSelective(meeting);
-        
-        //根据与会者列表和会议编号插入与会关系
-        meetingRoomBook.getMtParticipantsIdList();
-        
-        
-        //根据会议组织者编号、会议编号、会议室申请状态、当前时间插入会议申请
-        //根据会议编号、会议室编号、开始时间和结束时间插入会议室时间安排中
-        
-        return null;
+        return equipmentTypeMapper.selectAll();
     }
 
 }

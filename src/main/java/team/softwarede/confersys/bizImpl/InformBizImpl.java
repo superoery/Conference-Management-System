@@ -58,7 +58,7 @@ public class InformBizImpl implements InformBiz {
         // TODO Auto-generated method stub
         
         Apply apply = applyMapper.selectByPrimaryKey(mtRoomApplyId);
-        applyMapper.updateStatusById(mtRoomApplyId, EnumApplyStatusId.SUCCEED.getDescription());
+        
         
         Integer meetingId = apply.getMeetingId();
         Meeting meeting = meetingMapper.selectByPrimaryKey(meetingId);
@@ -68,12 +68,16 @@ public class InformBizImpl implements InformBiz {
         
         if(bookStatus==0) {
             //如果会议拒绝
+            applyMapper.updateStatusById(mtRoomApplyId, EnumApplyStatusId.FAILED.getDescription());
+            
             meetingMapper.updateStatusById(meetingId, EnumMeetingStatusId.FAILED.getDescription());
             auditdetail = "主题为\""+meetingTopic+"\"的会议预约未通过";
             
             
         }else if(bookStatus==1) {
             //如果会议通过
+            applyMapper.updateStatusById(mtRoomApplyId, EnumApplyStatusId.SUCCEED.getDescription());
+            
             meetingMapper.updateStatusById(meetingId, EnumMeetingStatusId.READY.getDescription());
             auditdetail = "主题为\""+ meetingTopic +"\"的会议预约已通过";
             Date beginDateTime = schedule.getBeginTime();
@@ -133,7 +137,7 @@ public class InformBizImpl implements InformBiz {
         return true;
     }
     
-    
+    @Transactional
     @Override
     public NotificationDetail showNormalInformDetail(Integer informId) {
         // TODO Auto-generated method stub
@@ -152,14 +156,14 @@ public class InformBizImpl implements InformBiz {
         detail.setNoteReferMtId(referId);
         
         Meeting meeting = new Meeting();
-        //闄や簡鎶ヤ慨閫氱煡锛屽叾浠栫被鍨嬬殑閫氱煡鍦ㄨ繖閲岄兘濉細璁俊鎭?
+        
         
         switch (EnumNotificationType.valueOfDescription(type)) {
         case REPAIR:{
                 name =null;
         }break;
         case LEAVE:{
-            //濡傛灉鏄鍋囬€氱煡锛屽垯鎵惧埌璇峰亣瀵瑰簲鐨勪細璁?
+           
             meeting = meetingMapper.selectByPrimaryKey(referId);
             name = meeting.getTopic();                
         }break;
@@ -179,7 +183,7 @@ public class InformBizImpl implements InformBiz {
 
         detail.setNoteReferMtName(name);
         
-        //灏嗛€氱煡鏀逛负宸茶
+       
         alterInformHaveRead(informId);
         
         return detail;

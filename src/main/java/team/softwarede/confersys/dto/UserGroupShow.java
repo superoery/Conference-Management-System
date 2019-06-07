@@ -16,8 +16,6 @@ public class UserGroupShow {
 	
 	private String userGroupName;
 	
-	private List<UserBasicInfo> userBasicInfoList;
-	
 	private Integer creatorId;
 
 	public Integer getUserGroupId() {
@@ -36,13 +34,6 @@ public class UserGroupShow {
 		this.userGroupName = userGroupName;
 	}
 
-	public List<UserBasicInfo> getUserBasicInfoList() {
-		return userBasicInfoList;
-	}
-
-	public void setUserBasicInfoList(List<UserBasicInfo> userBasicInfoList) {
-		this.userBasicInfoList = userBasicInfoList;
-	}
 
 	public Integer getCreatorId() {
 		return creatorId;
