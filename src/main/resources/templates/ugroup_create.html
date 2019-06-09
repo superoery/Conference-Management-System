@@ -200,68 +200,76 @@
 	  <div class="col-12 grid-margin">
 		<div class="card">
 		<div class="card-body">
-		  <h4 class="card-title">会议创建和会议室预约申请——第二步</h4>
-		  <form class="form-sample" action="/user/tobook.do" method="post" th:object="${mtRoomBook}">
+		  <h4 class="card-title">创建新的用户组</h4>
+				
+				<div class="form-group">
+				  <label>查找并添加用户组成员</label>
+			  	  <form class="d-flex align-items-stretch h-100" action="/meetingRoom/searchUAndUG.do">
+					<div class="input-group">
+					  <input type="text" class="form-control" placeholder="用户名或用户组名" name="mtRoomSearch" th:value="*{mtRoomSearch}"></input>
+					  
+					  <div class="input-group-addon bg-transparent border-0 search-button">
+						<button type="submit" class="btn btn-sm bg-transparent px-0">
+						  <i class="mdi mdi-magnify"></i>
+						</button>
+					  </div>
+					</div>
+				  </form>
+					  
+				  <form action="/meetingRoom/addUAndUG.do">
+						 <table class="table" th:if="${uAndGList.getuAndGList()}!=null"  style="text-align:center;">
+						  <thead>
+							<tr>
+							  <th>
+								用户编号
+							  </th>
+							  <th>
+								用户名称
+							  </th>
+							  <th>
+							  	加入用户组
+							  </th>
+							</tr>
+						  </thead>
+						  <tbody>
+							<tr th:each="uAndG : ${uAndGList.getuAndGList()}">
+							  <td th:text="${uAndG.getType()}==0? '用户':'用户组'"></td>
+							  <td th:text="${uAndG.getName()}"></td>
+							  <td><button type="submit" class="btn-btn-secondary" name="uAndG" th:value="*{uAndG}">+</button></td>
+						  </tbody>
+						</table>
+				  </form>
+				  
+				</div>
+				
+			<form class="form-sample" action="/user/searchAvail.do" method="post" th:object="${mtRoomAvail}">
+		  		<div class="form-group">
+				 	<label>用户组成员列表</label>
+					 <table class="table table-bordered" th:if="${selectedUAndGList.getuAndGList()}!=null"
+					 		style="text-align:center;" th:value="*">
+					  <thead>
+						<tr>
+						  <th>
+							用户编号
+						  </th>
+						  <th>
+							用户名称
+						  </th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr th:each="sUAndG : ${selectedUAndGList.getuAndGList()}">
+						  <td th:text="${sUAndG.getType()}==0? '用户':'用户组'"></td>
+						  <td th:text="${sUAndG.getName()}"></td>
+					  </tbody>
+					</table>
+				</div>
 		  
-		  	<p class="card-description">新会议信息</p>
 				<div class="form-group">
-				  	<label>会议名称</label>
+				  	<label>用户组名称</label>
 				  	<input type="text" class="form-control" name="mtTopic" th:field="*{mtTopic}"/>
-				  	<p th:if="${#fields.hasErrors('mtTopic')}" th:errors="*{mtTopic}" style="color:#FF0000">errors mtTopic</p>
+				  	<p th:if="${#fields.hasErrors('mtTopic')}" th:errors="*{mtTopic}" style="color:#FF0000">errors ugName</p>
 				</div>
-			
-				<div class="form-group">
-				  	<label>会议内容概述</label>
-					<textarea class="form-control" id="mtContent" rows="2" name="mtContent" th:field="*{mtContent}"></textarea>
-				 	<p th:if="${#fields.hasErrors('mtContent')}" th:errors="*{mtContent}" style="color:#FF0000">errors mtContent</p>
-				</div>
-
-				 <label>选择可用会议室</label>
-				 <table class="table" th:if="${mtParticipantsIdList}!=null or ${uGroupIdList}!=null">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						主题
-					  </th>
-					  <th>
-						开始时间
-					  </th>
-					  <th>
-						结束时间
-					  </th>
-					  <th>
-						所在建筑
-					  </th>
-					  <th>
-						所在楼层
-					  </th>
-					  <th>
-						所在房间号
-					  </th>
-					  <th>
-						状态
-					  </th>
-					  <th>
-						选择
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="pmt : ${pmtList}">
-					  <td th:text="${pmt.getMtId()}"></td>
-					  <td th:text="${pmt.getMtTopic()}"></td>
-					  <td th:text="${pmt.getBeginTime()}"></td>
-					  <td th:text="${pmt.getEndTime()}"></td>
-					  <td th:text="${pmt.getMtRoomBuilding()}"></td>
-					  <td th:text="${pmt.getMtRoomFloor()}"></td>
-					  <td th:text="${pmt.getMtRoomNum()}"></td>
-					  <td th:text="${pmt.getMtStatus()}"></td>
-					  <td><input type="radio" name="mtRoom" th:value="${pmt}"></input></td>
-				  </tbody>
-				</table>
 			
 			<button type="submit" class="btn btn-success mr-2">Submit</button>
             <button class="btn btn-light">Cancel</button>

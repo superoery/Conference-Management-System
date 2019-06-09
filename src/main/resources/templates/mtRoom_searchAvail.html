@@ -200,10 +200,10 @@
 	  <div class="col-12 grid-margin">
 		<div class="card">
 		<div class="card-body">
-		  <h4 class="card-title">会议创建和会议室预约申请</h4>
+		  <h4 class="card-title">会议创建和会议室预约申请——第一步</h4>
 				
 				<div class="form-group">
-				  <label>添加与会的用户或用户组</label>
+				  <label>查找并添加与会的用户或用户组</label>
 			  	  <form class="d-flex align-items-stretch h-100" action="/meetingRoom/searchUAndUG.do">
 					<div class="input-group">
 					  <input type="text" class="form-control" placeholder="用户名或用户组名" name="mtRoomSearch" th:value="*{mtRoomSearch}"></input>
@@ -216,6 +216,7 @@
 					</div>
 				  </form>
 					  
+				  <form action="/meetingRoom/addUAndUG.do">
 						 <table class="table" th:if="${uAndGList.getuAndGList()}!=null"  style="text-align:center;">
 						  <thead>
 							<tr>
@@ -234,14 +235,40 @@
 							<tr th:each="uAndG : ${uAndGList.getuAndGList()}">
 							  <td th:text="${uAndG.getType()}==0? '用户':'用户组'"></td>
 							  <td th:text="${uAndG.getName()}"></td>
-							  <td><button type="button" class="btn-btn-secondary">+</button></td>
+							  <td><button type="submit" class="btn-btn-secondary" name="uAndG" th:value="*{uAndG}">+</button></td>
 						  </tbody>
 						</table>
+				  </form>
+				  
 				</div>
 			
 			<br/><br/>
-		  	<p class="card-description">会议室预约</p>
+		  	<p class="card-description">会议室预约——查找可用会议室</p>
 		  	<form class="form-sample" action="/user/searchAvail.do" method="post" th:object="${mtRoomAvail}">
+		  		<div class="form-group">
+				 	<label>与会用户和用户组列表</label>
+					 <table class="table table-bordered" th:if="${selectedUAndGList.getuAndGList()}!=null"
+					 		style="text-align:center;" th:value="*">
+					  <thead>
+						<tr>
+						  <th>
+							类型
+						  </th>
+						  <th>
+							名称
+						  </th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr th:each="sUAndG : ${selectedUAndGList.getuAndGList()}">
+						  <td th:text="${sUAndG.getType()}==0? '用户':'用户组'"></td>
+						  <td th:text="${sUAndG.getName()}"></td>
+					  </tbody>
+					</table>
+					<label>总数</label>
+					<input type="text" class="form-control" name="capacity" th:field="*{capacity}" th:value="${selectedUAndGList.getuAndGList().size()}">
+				</div>
+		  		
 				<div class="form-group">
 				 	<label>开始时间</label>
 				 	<input type="text" class="form-control" name="beginTime" th:field="*{beginTime}"/>

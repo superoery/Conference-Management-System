@@ -200,80 +200,11 @@
 	  <div class="col-12 grid-margin">
 		<div class="card">
 		<div class="card-body">
-		  <h4 class="card-title">会议创建和会议室预约申请——第二步</h4>
-		  <form class="form-sample" action="/user/tobook.do" method="post" th:object="${mtRoomBook}">
-		  
-		  	<p class="card-description">新会议信息</p>
-				<div class="form-group">
-				  	<label>会议名称</label>
-				  	<input type="text" class="form-control" name="mtTopic" th:field="*{mtTopic}"/>
-				  	<p th:if="${#fields.hasErrors('mtTopic')}" th:errors="*{mtTopic}" style="color:#FF0000">errors mtTopic</p>
-				</div>
-			
-				<div class="form-group">
-				  	<label>会议内容概述</label>
-					<textarea class="form-control" id="mtContent" rows="2" name="mtContent" th:field="*{mtContent}"></textarea>
-				 	<p th:if="${#fields.hasErrors('mtContent')}" th:errors="*{mtContent}" style="color:#FF0000">errors mtContent</p>
-				</div>
-
-				 <label>选择可用会议室</label>
-				 <table class="table" th:if="${mtParticipantsIdList}!=null or ${uGroupIdList}!=null">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						主题
-					  </th>
-					  <th>
-						开始时间
-					  </th>
-					  <th>
-						结束时间
-					  </th>
-					  <th>
-						所在建筑
-					  </th>
-					  <th>
-						所在楼层
-					  </th>
-					  <th>
-						所在房间号
-					  </th>
-					  <th>
-						状态
-					  </th>
-					  <th>
-						选择
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="pmt : ${pmtList}">
-					  <td th:text="${pmt.getMtId()}"></td>
-					  <td th:text="${pmt.getMtTopic()}"></td>
-					  <td th:text="${pmt.getBeginTime()}"></td>
-					  <td th:text="${pmt.getEndTime()}"></td>
-					  <td th:text="${pmt.getMtRoomBuilding()}"></td>
-					  <td th:text="${pmt.getMtRoomFloor()}"></td>
-					  <td th:text="${pmt.getMtRoomNum()}"></td>
-					  <td th:text="${pmt.getMtStatus()}"></td>
-					  <td><input type="radio" name="mtRoom" th:value="${pmt}"></input></td>
-				  </tbody>
-				</table>
-			
-			<button type="submit" class="btn btn-success mr-2">Submit</button>
-            <button class="btn btn-light">Cancel</button>
-			
-		  </form>
+		  <h4 class="card-title">会议创建和会议室预约申请——提示</h4>
+		  <br/>
+		  <label>&nbsp &nbsp &nbsp &nbsp &nbsp 您已成功创建新用户组。</label>
 		</div>
 		</div>
-	  </div>
-		
-	  
-	  <div style="float: right;">
-		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
 	  </div>
 	  
 	</div>
