@@ -1,6 +1,8 @@
 package team.softwarede.confersys.bizImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,4 +64,19 @@ public class RepairApplicationBizImpl implements RepairApplicationBiz{
 		return msg;
 		
 	}
+
+    @Override
+    public List<String> showAllRepairType() {
+        // TODO Auto-generated method stub
+        
+        List<String> repairTypeList = new ArrayList<String>();
+        
+        for (EnumRepairType eRepairType : EnumRepairType.values()) {
+            
+            repairTypeList.add(eRepairType.getDescription());
+            
+        }
+        
+        return repairTypeList;
+    }
 }
