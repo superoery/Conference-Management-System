@@ -5,3 +5,4 @@ import team.softwarede.confersys.dto.RepairApply;
 public interface RepairExaminationBiz {
 	String repairExamination(int repairEquipmentId, RepairApply repairApply);
 }
+

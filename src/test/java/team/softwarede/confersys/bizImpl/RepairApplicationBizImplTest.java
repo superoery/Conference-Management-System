@@ -1,5 +1,12 @@
 package team.softwarede.confersys.bizImpl;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +31,23 @@ public class RepairApplicationBizImplTest {
 	@Autowired
 	RepairApplicationBiz repairApplicationBiz;
 	
-	@Test
+	@Ignore
 	public void test() {
 		RepairApply repairApply = new RepairApply();
 		repairApply.setRepairDetail("can't use");
 		repairApply.setRepairEquipmentId(1);
 		repairApply.setRepairType(EnumRepairType.REPAIRMENT.getDescription());
 		repairApplicationBiz.repairApplication("41624544", repairApply);
+	}
+	
+	@Test
+	public void testShowAllRepairType() {
+	    List<String> typeListValid = Arrays.asList("维修","补充");
+	    
+	    List<String> typeListTest = repairApplicationBiz.showAllRepairType();
+
+	    assertEquals(typeListValid, typeListTest);
+	    
 	}
 
 }
