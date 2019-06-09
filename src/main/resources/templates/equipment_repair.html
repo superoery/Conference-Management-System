@@ -215,8 +215,8 @@
                        
                        <select th:field="*{repairType}" style="font-size: 14px;">
 		            	<option th:each="repairType : ${repairTypeList}"
-		            		th:text="${repairType.getTypeName()}"
-		            		th:value="${repairType.getTypeName()}">
+		            		th:text="${repairType}"
+		            		th:value="${repairType}">
 		            	</option>
 					  </select>
 					  
