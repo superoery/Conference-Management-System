@@ -16,4 +16,5 @@ import team.softwarede.confersys.dto.MeetingMainPage;
 public interface ShowMeetingMainPageMapper {
 	List<MeetingMainPage> selectByUserId(@Param("userId")String userId);
 	List<MeetingMainPage> selectByAdmId();
+	List<MeetingMainPage> selectByOrgId(String userId);
 }

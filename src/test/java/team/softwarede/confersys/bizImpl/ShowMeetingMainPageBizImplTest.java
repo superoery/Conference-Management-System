@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.Application;
+import team.softwarede.confersys.biz.ShowMainPageOrgBiz;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingMainPage;
-import team.softwarede.confersys.entity.Role;
 /**
  * 
  * @author SunRonglin
@@ -33,12 +33,17 @@ public class ShowMeetingMainPageBizImplTest {
 	@Autowired
 	ShowMeetingMainPageBiz showMeetingMainPageBiz;
 	
-	@Ignore
+	@Autowired
+	ShowMainPageOrgBiz showMainPageOrgBiz;
+	
+	@Transactional
+	@Test
 	public void testShowMeetingMainPage() {
 		String userId = "41624544";
 		Logger logger = Logger.getLogger(getClass());
 		List<MeetingMainPage> testList = new ArrayList<MeetingMainPage>();
-		testList = showMeetingMainPageBiz.showParticipatedMeeting(userId, 2);
+		List<MeetingMainPage> orgList = new ArrayList<MeetingMainPage>();
+		testList = showMeetingMainPageBiz.showMeetingMainPage(userId, 3);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 		for(MeetingMainPage string : testList) {
 			logger.info(String.valueOf(string.getMtId()));
@@ -48,6 +53,18 @@ public class ShowMeetingMainPageBizImplTest {
 			logger.info(string.getMtRoomBuilding());
 			logger.info(String.valueOf(string.getMtRoomFloor()));
 			logger.info(string.getMtRoomNum());
+			logger.info(string.getMtStatus());
+		}
+		orgList = showMainPageOrgBiz.showMainPageOrg("41624544", 3);
+		for(MeetingMainPage str : orgList) {
+			logger.info(String.valueOf(str.getMtId()));
+			logger.info(str.getMtTopic());
+			logger.info(sdf.format(str.getBeginTime()));
+			logger.info(sdf.format(str.getBeginTime()));
+			logger.info(str.getMtRoomBuilding());
+			logger.info(String.valueOf(str.getMtRoomFloor()));
+			logger.info(str.getMtRoomNum());
+			logger.info(str.getMtStatus());
 		}
 	}
 	

@@ -152,7 +152,7 @@ public class InformBizImpl implements InformBiz {
         detail.setNoteId(informId);
         detail.setNoteType(type);
         detail.setNoteDetail(notification.getNotificationDetail());
-        detail.setNoteStatus(notification.getNotificationnStatus());
+        detail.setNoteStatus(notification.getNotificationStatus());
         detail.setNoteReferMtId(referId);
         
         Meeting meeting = new Meeting();

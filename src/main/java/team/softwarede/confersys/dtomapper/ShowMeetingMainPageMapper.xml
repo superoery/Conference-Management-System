@@ -9,10 +9,10 @@
     <result column="room_number" jdbcType="VARCHAR" property="mtRoomNum" />
     <result column="floor" jdbcType="INTEGER" property="mtRoomFloor" />
     <result column="building" jdbcType="VARCHAR" property="mtRoomBuilding" />
-    <result column="status_id" jdbcType="VARCHAR" property="mtStatus" />
+    <result column="meeting_status_id" jdbcType="VARCHAR" property="mtStatus" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, topic, begin_time, end_time, room_number, floor, building, status_id
+    id, topic, begin_time, end_time, room_number, floor, building, meeting_status_id
   </sql>
  <select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
  	select 
@@ -27,5 +27,13 @@
  	from meeting m, schedule s, meeting_room mr
  	where 
 	 	m.id = s.meeting_id and s.meeting_room_id = mr.id
+ </select>
+ 
+   <select id="selectByOrgId" parameterType="java.lang.String" resultMap="BaseResultMap">
+ 	select 
+ 	m.id, topic, begin_time, end_time, room_number, floor, building, meeting_status_id
+ 	from meeting m, schedule s, meeting_room mr, apply a
+ 	where 
+	 	m.id = s.meeting_id and s.meeting_room_id = mr.id and a.user_id = #{userId} and m.id = a.meeting_id
  </select>
 </mapper>

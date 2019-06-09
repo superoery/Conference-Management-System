@@ -1,6 +1,5 @@
 package team.softwarede.confersys.bizImpl;
 
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import team.softwarede.confersys.Application;
-import team.softwarede.confersys.biz.LeaveExaminationBiz;
-import team.softwarede.confersys.entity.LeaveApplication;
+import team.softwarede.confersys.biz.RepairApplicationBiz;
+import team.softwarede.confersys.dto.RepairApply;
+import team.softwarede.confersys.enums.EnumRepairType;
 /**
  * 
  * @author SunRonglin
@@ -19,20 +19,18 @@ import team.softwarede.confersys.entity.LeaveApplication;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class LeaveExaminationBizImplTest {
+public class RepairApplicationBizImplTest {
 
 	@Autowired
-	LeaveExaminationBiz leaveExaminationBiz;
+	RepairApplicationBiz repairApplicationBiz;
 	
 	@Test
-	public void testLeaveExamination() {
-		LeaveApplication record = new LeaveApplication();
-		String msg;
-		record.setMeetingId(1);
-		record.setUserId("41624544");
-		record.setReason("感冒");
-		msg = leaveExaminationBiz.leaveExamination(record, 1);
-		Logger logger = Logger.getLogger(getClass());
-		logger.info(msg);
+	public void test() {
+		RepairApply repairApply = new RepairApply();
+		repairApply.setRepairDetail("can't use");
+		repairApply.setRepairEquipmentId(1);
+		repairApply.setRepairType(EnumRepairType.REPAIRMENT.getDescription());
+		repairApplicationBiz.repairApplication("41624544", repairApply);
 	}
+
 }

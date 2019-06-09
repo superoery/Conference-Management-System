@@ -1,7 +1,6 @@
 
 package team.softwarede.confersys.bizImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +31,15 @@ public class ShowMeetingMainPageBizImpl implements ShowMeetingMainPageBiz {
 	@Autowired
 	UserMapper userMapper; 
 	
-	
+	@Transactional
 	@Override
-	public List<MeetingMainPage> showParticipatedMeeting(String userId, int roleId){
-		if(roleId == 1||roleId == 2) {
+	public List<MeetingMainPage> showMeetingMainPage(String userId, int roleId){
+		if(roleId == 1) {
 			List<MeetingMainPage> meetingMainPage = showMeetingMainPageMapper.selectByUserId(userId);
 			return meetingMainPage;
+		}else if(roleId == 3){
+			List<MeetingMainPage> meetingMainPage = showMeetingMainPageMapper.selectByUserId(userId);
+			return meetingMainPage;	
 		}else {
 			List<MeetingMainPage> meetingMainPage = showMeetingMainPageMapper.selectByAdmId();
 			return meetingMainPage;	
@@ -59,5 +61,4 @@ public class ShowMeetingMainPageBizImpl implements ShowMeetingMainPageBiz {
         
         return basicSession;
     }
-
 }

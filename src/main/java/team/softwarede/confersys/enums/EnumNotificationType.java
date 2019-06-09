@@ -45,7 +45,6 @@ public enum EnumNotificationType {
             default :{
                 
             }break;
-            
         }
         return enumNoteType;
     }

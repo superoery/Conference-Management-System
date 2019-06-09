@@ -4,11 +4,13 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.LeaveApplicationBiz;
 import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.mapper.LeaveApplicationMapper;
+import team.softwarede.confersys.mapper.NotificationMapper;
 /**
  * 
  * @author SunRonglin
@@ -20,6 +22,10 @@ public class LeaveAplicationBizImpl implements LeaveApplicationBiz{
 	@Autowired
 	LeaveApplicationMapper leaveApplicationMapper;
 	
+	@Autowired
+	NotificationMapper notificationMapper;
+	
+	@Transactional
 	@Override
 	public String submitLeaveApplication(LeaveApplication record) {
 		String msg;
