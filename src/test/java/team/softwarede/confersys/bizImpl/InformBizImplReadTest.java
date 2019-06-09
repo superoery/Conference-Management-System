@@ -43,7 +43,7 @@ public class InformBizImplReadTest {
         informBiz.alterInformHaveRead(5);
         Notification notification = notificationMapper.selectByPrimaryKey(5);
        
-        assertEquals(EnumNotificationStatus.READ.getDescription(), notification.getNotificationnStatus());
+        assertEquals(EnumNotificationStatus.READ.getDescription(), notification.getNotificationStatus());
        
     }
 }
