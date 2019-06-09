@@ -171,16 +171,16 @@
 		</li>
 		
 		
-		<li class="nav-item">
-		  <a class="nav-link" href="#" th:if="${userSession.getRole().getRole()} != '管理员' ">
+		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '管理员' ">
+		  <a class="nav-link" href="equipment_repair.html"  th:href="@{/equipment/repair.do}">
 			<span class="menu-title">报修</span>
 			<i class="mdi mdi-crosshairs-gps menu-icon"></i>
 		  </a>
 		</li>
 		
 		
-		<li class="nav-item">
-		  <a class="nav-link" href="#" th:if="${userSession.getRole().getRole()} != '普通用户' ">
+		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '普通用户' ">
+		  <a class="nav-link" href="#">
 			<span class="menu-title">用户组</span>
 			<i class="mdi mdi-table-large menu-icon"></i>
 		  </a>

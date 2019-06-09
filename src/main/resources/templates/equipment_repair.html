@@ -201,34 +201,34 @@
 		<div class="card">
 		<div class="card-body">
 		  <h4 class="card-title">报修</h4>
-		  <form class="form-sample" action="/user/tobook.do" method="post" th:object="${mtRoomBook}">
+		  <form class="form-sample" action="/equipment/repair_submit.do" method="post" th:object="${repairApply}">
 		  
 				<div class="form-group">
-				  	<label>设备ID</label>
-				  	<input type="text" class="form-control" name="mtTopic" th:field="*{mtTopic}"/>
-				  	<p th:if="${#fields.hasErrors('mtTopic')}" th:errors="*{mtTopic}" style="color:#FF0000">errors mtTopic</p>
+				  	<label>设备编号</label>
+				  	<input type="text" class="form-control" name="repairEquipmentId" th:field="*{repairEquipmentId}"/>
+				  	<p th:if="${#fields.hasErrors('repairEquipmentId')}" th:errors="*{repairEquipmentId}" style="color:#FF0000">errors repairEquipmentId</p>
 				</div>
 				
 				<div class="form-group">
 				  <label>所需会议室设备列表</label>
                    <div class="form-group">
                        
-                       <select th:field="*{equipmentTypeIdList}" style="font-size: 14px;">
-		            	<option th:each="equipmentType : ${equipmentTypeList}"
-		            		th:text="${equipmentType.getTypeName()}"
-		            		th:value="${equipmentType.getId()}">
+                       <select th:field="*{repairType}" style="font-size: 14px;">
+		            	<option th:each="repairType : ${repairTypeList}"
+		            		th:text="${repairType.getTypeName()}"
+		            		th:value="${repairType.getTypeName()}">
 		            	</option>
 					  </select>
 					  
                    </div>
                    <br/>
-                   <p th:if="${#fields.hasErrors('equipmentTypeIdList')}" th:errors="*{equipmentTypeIdList}" style="color:#FF0000">errors equipmentTypeIdList</p>
+                   <p th:if="${#fields.hasErrors('repairType')}" th:errors="*{repairType}" style="color:#FF0000">errors repairType</p>
 				</div>
 			
 				<div class="form-group">
 				  	<label>报修问题详述</label>
-					<textarea class="form-control" id="mtContent" rows="2" name="mtContent" th:field="*{mtContent}"></textarea>
-				 	<p th:if="${#fields.hasErrors('mtContent')}" th:errors="*{mtContent}" style="color:#FF0000">errors mtContent</p>
+					<textarea class="form-control" id="repairDetail" rows="2" name="repairDetail" th:field="*{repairDetail}"></textarea>
+				 	<p th:if="${#fields.hasErrors('repairDetail')}" th:errors="*{repairDetail}" style="color:#FF0000">errors repairDetail</p>
 				</div>
 			
 			<button type="submit" class="btn btn-success mr-2">Submit</button>

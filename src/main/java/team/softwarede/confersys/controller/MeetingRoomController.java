@@ -59,17 +59,19 @@ public class MeetingRoomController {
 		return "redirect:/meetingRoom/book.do";
 	}
 	
-	@RequestMapping("/addUAndUG.do")
-	public String searchAvail(ModelMap map,
-			@ModelAttribute("uAndG") UserAndGroup uAndG,
-			RedirectAttributes attributes, 
-			HttpSession session) {
-		System.out.println("输入："+mtRoomSearch);
-		List<UserAndGroup> ListuAndG = userGroupBiz.searchUAndUGByKeyword(mtRoomSearch, ((BasicSession) session.getAttribute("userSession")).getUserId());
-		UserAndGroupList uAndGList = new UserAndGroupList();
-		uAndGList.setuAndGList(ListuAndG);
-		attributes.addFlashAttribute("uAndGList",uAndGList);
-		return "redirect:/meetingRoom/book.do";
-	}
+//	@RequestMapping("/addUAndUG.do")
+//	public String searchAvail(ModelMap map,
+//			@ModelAttribute("uAndG") UserAndGroup uAndG,
+//			RedirectAttributes attributes, 
+//			HttpSession session) {
+//		System.out.println("输入："+mtRoomSearch);
+//		List<UserAndGroup> ListuAndG = userGroupBiz.searchUAndUGByKeyword(mtRoomSearch, ((BasicSession) session.getAttribute("userSession")).getUserId());
+//		UserAndGroupList uAndGList = new UserAndGroupList();
+//		uAndGList.setuAndGList(ListuAndG);
+//		attributes.addFlashAttribute("uAndGList",uAndGList);
+//		return "redirect:/meetingRoom/book.do";
+//	}
 //	@RequestMapping("/tobook.do")
+	
+	
 }

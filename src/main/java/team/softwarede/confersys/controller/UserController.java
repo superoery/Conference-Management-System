@@ -70,9 +70,9 @@ public class UserController {
 			session.setAttribute("userSession", userSession);
 			map.addAttribute("userSession",userSession);
 			
-			List<MeetingMainPage> pmtList = showMeetingMainPageBiz.showParticipatedMeeting(userSession.getUserId(), userSession.getRole().getId());
-			map.addAttribute("pmtList",pmtList);
-			
+//			List<MeetingMainPage> pmtList = showMeetingMainPageBiz.showParticipatedMeeting(userSession.getUserId(), userSession.getRole().getId());
+//			map.addAttribute("pmtList",pmtList);
+//			
 //			List<MeetingMainPage> omtList = showMeetingMainPageBiz.showOranizedMeeting(userSession.getUserId(), userSession.getRole().getId());
 //			map.addAttribute("omtList",omtList);
 //			
