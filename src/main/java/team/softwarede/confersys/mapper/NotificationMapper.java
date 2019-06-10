@@ -23,7 +23,7 @@ public interface NotificationMapper {
     int updateByPrimaryKey(Notification record);
     
     int updateStatusByPrimaryKey(@Param("id")Integer informId,
-                                 @Param("notificationnStatus")String status);  
+                                 @Param("notificationStatus")String status);  
     
     int selectByNotification(Notification record);
 }

@@ -20,5 +20,9 @@ public interface InformBiz {
     NotificationDetail showNormalInformDetail(Integer informId);
     
     boolean alterInformHaveRead (Integer informId);
+    
+    
+    
+    
 
 }

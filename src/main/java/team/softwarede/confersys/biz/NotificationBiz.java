@@ -9,5 +9,8 @@ import team.softwarede.confersys.dto.NotificationMainPage;
  *
  */
 public interface NotificationBiz {
+	
 	List<NotificationMainPage> notificationNewMeeting(String userId, int roleId);
+	
+	
 }
