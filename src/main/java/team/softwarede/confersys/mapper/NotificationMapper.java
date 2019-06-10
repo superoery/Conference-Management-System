@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import team.softwarede.confersys.dto.NotificationMainPage;
 import team.softwarede.confersys.entity.Notification;
 
 @Mapper
@@ -26,4 +27,6 @@ public interface NotificationMapper {
                                  @Param("notificationnStatus")String status);  
     
     int selectByNotification(Notification record);
+    
+    List<NotificationMainPage> selectNotification(@Param("userId")String userId);
 }

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.dto.NotificationDetail;
+import team.softwarede.confersys.dto.NotificationMainPage;
 import team.softwarede.confersys.entity.Apply;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.NoticesKey;
@@ -152,7 +153,7 @@ public class InformBizImpl implements InformBiz {
         detail.setNoteId(informId);
         detail.setNoteType(type);
         detail.setNoteDetail(notification.getNotificationDetail());
-        detail.setNoteStatus(notification.getNotificationnStatus());
+        detail.setNoteStatus(notification.getNotificationStatus());
         detail.setNoteReferMtId(referId);
         
         Meeting meeting = new Meeting();
@@ -197,5 +198,11 @@ public class InformBizImpl implements InformBiz {
         return true;
     
     }
-
+    
+    @Override
+    public List<NotificationMainPage> notificationNewMeeting(String userId, int roleId){
+    	
+    	List<NotificationMainPage> list= notificationMapper.selectNotification(userId);
+    	return list;
+    }
 }

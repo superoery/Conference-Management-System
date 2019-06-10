@@ -39,7 +39,7 @@ public class RepairApplicationBizImpl implements RepairApplicationBiz{
 		RepairEquipment record = new RepairEquipment();
 		Date repairTime = new Date();
 		record.setRepairType(repairApply.getRepairType());
-		record.setRepairDetail(record.getRepairDetail());
+		record.setRepairDetail(repairApply.getRepairDetail());
 		record.setRepairTime(repairTime);
 		record.setRepairStatus(EnumRepairStatus.UNTREATED.getDescription());
 		record.setId(null);
