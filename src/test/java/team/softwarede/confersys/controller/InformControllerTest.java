@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,22 +36,18 @@ public class InformControllerTest {
 	
     private MockMvc mvc;
     @Autowired
-    protected WebApplicationContext wac;
-	@Autowired
-	InformController informController; 
-	
+    protected WebApplicationContext wac;	
+    
+    
     @Before
     public void setup() {
         mvc = MockMvcBuilders.webAppContextSetup(wac).build();
-        
-        
-
     }
     /**
      * 测试显示一般通知的详情
      */
-	@Test
-	public void test() {
+	@Ignore
+	public void testDetails() {
 		BasicSession userSession = new BasicSession();
 		Role role = new Role();
 		
@@ -73,6 +70,40 @@ public class InformControllerTest {
 		}
 		
 	}
+	
+	/**
+	 * 测试显示一般通知列表
+	 */
+	@Ignore
+	public void testList() {
+		BasicSession userSession = new BasicSession();
+		Role role = new Role();
+		
+		role.setId(3);
+		role.setRole("普通用户");
+		
+		userSession.setRole(role);
+		userSession.setUserName("小明");
+		userSession.setUserId("10000002");
 
+		
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/inform/normal/list");
 
+		requestBuilder.requestAttr("userSession", userSession);
+
+		try {
+			mvc.perform(requestBuilder).andDo(print());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+	/**
+	 * 测试从通知列表跳转到通知详情
+	 */
+	public void testListSkipDetails() {
+		
+	}
 }
