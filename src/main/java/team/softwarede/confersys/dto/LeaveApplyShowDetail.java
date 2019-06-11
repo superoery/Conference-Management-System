@@ -10,25 +10,23 @@ import java.util.Date;
  */
 public class LeaveApplyShowDetail {
 
-	private Integer leaveApplicationId;
+	private String leaveApplicationId;
 	
 	private String leaveApplicantName;
 	
 	private String leaveApplyReason;
 	
 	private Date leaveApplyTime;
-	
-	private String leaveApplyStatus;
-	
+		
 	private Integer mtId;
 	
 	private String mtTopic;
 
-	public Integer getLeaveApplicationId() {
+	public String getLeaveApplicationId() {
 		return leaveApplicationId;
 	}
 
-	public void setLeaveApplicationId(Integer leaveApplicationId) {
+	public void setLeaveApplicationId(String leaveApplicationId) {
 		this.leaveApplicationId = leaveApplicationId;
 	}
 
@@ -54,14 +52,6 @@ public class LeaveApplyShowDetail {
 
 	public void setLeaveApplyTime(Date leaveApplyTime) {
 		this.leaveApplyTime = leaveApplyTime;
-	}
-
-	public String getLeaveApplyStatus() {
-		return leaveApplyStatus;
-	}
-
-	public void setLeaveApplyStatus(String leaveApplyStatus) {
-		this.leaveApplyStatus = leaveApplyStatus;
 	}
 
 	public Integer getMtId() {

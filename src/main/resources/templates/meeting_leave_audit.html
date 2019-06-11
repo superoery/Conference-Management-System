@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Home</title>
+<!-- plugins:css -->
+<link rel="stylesheet" href="../static/example/node_modules/mdi/css/materialdesignicons.min.css"
+	th:href="@{/example/node_modules/mdi/css/materialdesignicons.min.css}" >
+<link rel="stylesheet" href="../static/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"
+	th:href="@{/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css}" >
+<!-- endinject -->
+<!-- plugin css for this page -->
+<link rel="stylesheet" href="../static/example/node_modules/jquery-bar-rating/dist/themes/css-stars.css"
+	th:href="@{/example/node_modules/jquery-bar-rating/dist/themes/css-stars.css}" >
+<link rel="stylesheet" href="../static/example/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"
+	th:href="@{/example/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}" />
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="../static/example/css/style.css" 
+	th:href="@{/example/css/style.css}">
+<!-- endinject -->
+<link rel="shortcut icon" href="../static/example/images/favicon.png"
+	th:href="@{/example/images/favicon.png}" />
+</head>
+
+
+<body>
+
+	<!-- partial -->
+	<div class="content-wrapper">
+	
+	  
+	  <div class="row" id="notificationDetail">
+		<div class="col-12 grid-margin">
+		  <div class="card">
+			<div class="card-body">
+			  <h4 class="card-title">请假详情</h4>
+			  <div class="table-responsive">
+				<table class="table" th:if="${details}!=null">
+				  
+					<tr>
+					  	<td>申请者编号</td>
+					  	<td th:text="${details.getLeaveApplicationId()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>申请人名字</td>
+				    	<td th:text="${details.getLeaveApplicantName()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>请假原因</td>
+				    	<td th:text="${details.getLeaveApplyReason()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>会议编号</td>
+				    	<td th:text="${details.getMtId()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>会议主题</td>
+				    	<td th:text="${details.getMtTopic()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>申请时间</td>
+				    	<td th:text="${#dates.format(details.getLeaveApplyTime(), 'yyyy-MM-dd HH:mm')}"></td>
+				    </tr>
+				    <tr>
+				    	<td>
+						<a class="btn btn-secondary" th:href="@{/meeting/leave/audit.do(
+						audit=1,
+						meetingId=${details.getMtId()},
+						userId=${details.getLeaveApplicationId()}
+						)}">
+						同意
+						</a>
+				    	</td>
+				    	<td>
+						<a class="btn btn-secondary" th:href="@{/meeting/leave/audit.do(
+						audit=0,
+						meetingId=${details.getMtId()},
+						userId=${details.getLeaveApplicationId()}
+						)}">
+						拒绝
+						</a>
+				    	</td>
+				    </tr>			
+			
+				</table>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	  
+	  
+</body>
+</html>

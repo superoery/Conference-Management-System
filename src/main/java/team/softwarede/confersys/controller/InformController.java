@@ -20,6 +20,7 @@ import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.biz.NotificationBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.EquipmentRepairDetails;
+import team.softwarede.confersys.dto.LeaveApplyShowDetail;
 import team.softwarede.confersys.dto.MeetingApplyDetails;
 import team.softwarede.confersys.dto.NotificationDetail;
 import team.softwarede.confersys.dto.NotificationMainPage;
@@ -187,13 +188,23 @@ public class InformController {
 		}else if(type.equals(EnumNotificationSpType.LEAVE.getDescription())) {
 			//显示请假详情
 			
+			LeaveApplyShowDetail leaveDetails = new LeaveApplyShowDetail();
 			
+			leaveDetails.setLeaveApplicationId("10000005");
+			leaveDetails.setLeaveApplicantName("云雀");
+			leaveDetails.setLeaveApplyReason("病假");
+			leaveDetails.setLeaveApplyTime(new Date());
+			leaveDetails.setMtId(14);
+			leaveDetails.setMtTopic("srtp开会");
 			
+			map.addAttribute("details", leaveDetails);
+			
+			return "meeting_leave_audit";
+			
+		}else {
+			
+			return "forward:/universal/result/show.do";
 		}
-		
-		
-		
-		return null;
 		
 	}
 	

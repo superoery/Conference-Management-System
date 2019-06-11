@@ -46,8 +46,6 @@ public class LeaveExaminationBizImpl implements LeaveExaminationBiz{
 			record.setApplyStatusId(EnumApplyStatusId.FAILED.getDescription());
 			leaveApplicationMapper.updateLeaveStatus(record);
 			notification.setNotificationDetail("对不起，您的请假申请未通过。");
-
-			
 		}else {
 			record.setApplyStatusId(EnumApplyStatusId.SUCCEED.getDescription());
 			leaveApplicationMapper.updateLeaveStatus(record);
