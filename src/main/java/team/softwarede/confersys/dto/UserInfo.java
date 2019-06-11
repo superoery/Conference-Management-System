@@ -4,7 +4,7 @@ public class UserInfo {
 
 	private String userId;
 	
-	private String identity;
+	private Integer identity;
 	
 	private String name;
 	
@@ -22,11 +22,11 @@ public class UserInfo {
 		this.userId = userId;
 	}
 
-	public String getIdentity() {
+	public Integer getIdentity() {
 		return identity;
 	}
 
-	public void setIdentity(String identity) {
+	public void setIdentity(Integer identity) {
 		this.identity = identity;
 	}
 

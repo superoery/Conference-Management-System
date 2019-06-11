@@ -26,4 +26,6 @@ public interface NotificationMapper {
                                  @Param("notificationnStatus")String status);  
     
     int selectByNotification(Notification record);
+    
+    List<Notification> selectNotification(@Param("userId")String userId);
 }

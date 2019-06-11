@@ -1,6 +1,5 @@
 package team.softwarede.confersys.bizImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -14,43 +13,26 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import team.softwarede.confersys.Application;
 import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.dto.NotificationMainPage;
-/**
- * 
- * @author SunRonglin
- *
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class NotificationBizImplTest {
+public class InformBizImplOrdinaryNotificationTest {
 
 	@Autowired
 	InformBiz informBiz;
-
+	//显示一般通知
 	@Test
-	public void testNotificationMainPage() {
-		String userId = "41624544";
-		int roleId = 3;
+	public void test() {
+		String userId = "10000002";
+		int roleId = 1;
+		List<NotificationMainPage> list = informBiz.ordinaryNotification(userId, roleId);
 		Logger logger = Logger.getLogger(getClass());
-		List<NotificationMainPage> testList = new ArrayList<NotificationMainPage>();
-		
-		  testList = informBiz.notificationNewMeeting(userId,roleId);
-		  
-		  if(roleId == 3){
-			  if(testList == null) { logger.info("无最新会议通知");
-			  
-			  }else {
-			  
-			  for(NotificationMainPage n:testList) { 
-				  logger.info(n.getNotificationId());
-				  logger.info(n.getNotificationType()); 
-				  logger.info(n.getReferMsg()); } 
-			  }
-		  } else {
-			  logger.info(null);
-		  }
+		for(NotificationMainPage str : list) {
+			logger.info(str.getNotificationId());
+			logger.info(str.getNotificationType());
+			logger.info(str.getReferMsg());
+		}
 
-		 
 	}
 
 }
