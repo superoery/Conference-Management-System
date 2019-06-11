@@ -35,25 +35,25 @@
               <form action="/user/tologin.do" method="post" th:object="${loginForm}">
                 <div class="form-group">
                   <label>UserId *</label>
-                  <input type="text" class="form-control p_input" name="userId" th:field="*{userId}"
-                  			data-rule="用户编号：required"
-                  			data-rule-number="[/^\d{8}$/, '用户编号必须由8位数字组成'] " ></input>
+                  <input type="text" class="form-control p_input" name="userId" th:field="*{userId}"></input>
+                  <p th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" style="color:#FF0000">errors userId</p>
                 </div>
                 <div class="form-group">
                   <label>Password *</label>
-                  <input type="password" class="form-control p_input" name="password" th:field="*{password}"
-                  			data-rule="密码：required" ></input>
+                  <input type="password" class="form-control p_input" name="password" th:field="*{password}"></input>
+                  <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#FF0000">errors password</p>
                 </div>
 				<div class="form-group">
                   <label>Role * &nbsp;</label>
-                  <select th:field="*{identityId}" style="font-size: 14px;">
+                  <select th:field="*{identityId}" style="font-size: 14px;">投影笔
 	            	<option th:each="identity : ${identities}"
 	            		th:text="${identity.getDescription()}"
 	            		th:value="${identity.getValue()}"
-	            		data-rule="身份：checked">
+	            		text="投影笔">
 	            	</option>
 				  </select>
 				  <a href="#" class="forgot-pass" style="float: right;">Forgot password</a>
+				  <p th:if="${#fields.hasErrors('identityId')}" th:errors="*{identityId}" style="color:#FF0000">errors identityId</p>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
