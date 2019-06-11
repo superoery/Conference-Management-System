@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.softwarede.confersys.dtomapper.LeaveApplyShowDetailMapper">
+  <resultMap id="BaseResultMap" type="team.softwarede.confersys.dto.LeaveApplyShowDetail">
+    <id column="user_id" jdbcType="VARCHAR" property="leaveApplicationId" />
+    <id column="meeting_id" jdbcType="INTEGER" property="mtId" />
+    <result column="name" jdbcType="VARCHAR" property="leaveApplicantName" />
+    <result column="reason" jdbcType="VARCHAR" property="leaveApplyReason" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="leaveApplyTime" />
+    <result column="topic" jdbcType="INTEGER" property="mtTopic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, `name`, reason, apply_time,meeting_id,topic
+  </sql>
+  <select id="selectByUIdMtId" resultMap="BaseResultMap">
+	select l.user_id,u.`name`,l.reason,l.apply_time,l.meeting_id,m.topic
+	from 
+		(leave_application l INNER JOIN `user` u on l.user_id=u.user_id)
+		INNER JOIN meeting m ON m.id = l.meeting_id
+	where 
+		l.user_id=#{userId} AND
+		l.meeting_id=#{meetingId}
+  </select>
+
+
+
+</mapper>
