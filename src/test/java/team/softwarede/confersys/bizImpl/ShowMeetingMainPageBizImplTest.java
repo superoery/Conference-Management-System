@@ -39,11 +39,11 @@ public class ShowMeetingMainPageBizImplTest {
 	@Transactional
 	@Test
 	public void testShowMeetingMainPage() {
-		String userId = "41624544";
+		String userId = "00000009";
 		Logger logger = Logger.getLogger(getClass());
 		List<MeetingMainPage> testList = new ArrayList<MeetingMainPage>();
 		List<MeetingMainPage> orgList = new ArrayList<MeetingMainPage>();
-		testList = showMeetingMainPageBiz.showMeetingMainPage(userId, 3);
+		testList = showMeetingMainPageBiz.showMeetingMainPage(userId, 1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 		for(MeetingMainPage string : testList) {
 			logger.info(String.valueOf(string.getMtId()));
@@ -55,7 +55,7 @@ public class ShowMeetingMainPageBizImplTest {
 			logger.info(string.getMtRoomNum());
 			logger.info(string.getMtStatus());
 		}
-		orgList = showMainPageOrgBiz.showMainPageOrg("41624544", 3);
+		orgList = showMainPageOrgBiz.showMainPageOrg("00000009", 1);
 		for(MeetingMainPage str : orgList) {
 			logger.info(String.valueOf(str.getMtId()));
 			logger.info(str.getMtTopic());

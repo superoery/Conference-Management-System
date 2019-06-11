@@ -13,11 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.UserBiz;
+import team.softwarede.confersys.dto.UserInfo;
 import team.softwarede.confersys.dto.UserLogin;
 import team.softwarede.confersys.dtomapper.UserLoginMapper;
 import team.softwarede.confersys.entity.Login;
+import team.softwarede.confersys.entity.User;
 import team.softwarede.confersys.enums.EnumIdentity;
 import team.softwarede.confersys.mapper.LoginMapper;
+import team.softwarede.confersys.mapper.UserMapper;
 
 /**
  * @author Mity1299
@@ -30,6 +33,8 @@ public class UserBizImpl implements UserBiz {
     UserLoginMapper userLoginMapper;
     @Autowired
     LoginMapper loginMapper;
+    @Autowired
+    UserMapper userMapper;
     
     @Transactional
     @Override
@@ -68,6 +73,19 @@ public class UserBizImpl implements UserBiz {
         }
         
         return identities;
+    }
+    
+    @Override
+    public UserInfo showUserInfo(String userId) {
+    	User userInfo = userMapper.selectByPrimaryKey(userId);
+    	UserInfo showUserInfo = new UserInfo();
+    	showUserInfo.setUserId(userInfo.getUserId());
+    	showUserInfo.setTelephone(userInfo.getTelephone());
+    	showUserInfo.setSex(userInfo.getSex());
+    	showUserInfo.setName(userInfo.getName());
+    	showUserInfo.setIdentity(userInfo.getIdentityId());
+    	showUserInfo.setEmail(userInfo.getEmail());
+    	return showUserInfo;
     }
 
 }

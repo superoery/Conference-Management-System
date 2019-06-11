@@ -9,6 +9,8 @@ import java.util.List;
 
 import team.softwarede.confersys.dto.NotificationDetail;
 import team.softwarede.confersys.dto.NotificationSpIntro;
+import team.softwarede.confersys.dto.NotificationMainPage;
+import team.softwarede.confersys.dto.UserInfo;
 
 
 /**
@@ -28,7 +30,6 @@ public interface InformBiz {
     NotificationDetail showNormalInformDetail(Integer informId);
     
     boolean alterInformHaveRead (Integer informId);
-    
-//    List<NotificationSpIntro> showNotificationSpList(String userId); 
-    
+    //显示一般通知
+    List<NotificationMainPage> ordinaryNotification(String userId, int roleId);
 }

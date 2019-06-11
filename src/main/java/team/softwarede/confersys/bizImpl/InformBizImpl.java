@@ -6,6 +6,7 @@ package team.softwarede.confersys.bizImpl;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.dto.NotificationDetail;
+import team.softwarede.confersys.dto.NotificationMainPage;
 import team.softwarede.confersys.entity.Apply;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.NoticesKey;
@@ -197,5 +199,22 @@ public class InformBizImpl implements InformBiz {
         return true;
     
     }
+    //显示一般通知
+    @Override
+    public List<NotificationMainPage> ordinaryNotification(String userId, int roleId){
+    	Notification dataItem = new Notification();
+    	List<Notification> list= notificationMapper.selectNotification(userId);
+    	List<NotificationMainPage> showList = new ArrayList();
+    	for(int i = 0; i < list.size(); i++) {
+    		dataItem = list.get(i);
+    		NotificationMainPage showDataItem = new NotificationMainPage();
+    		showDataItem.setNotificationId(dataItem.getId());
+    		showDataItem.setNotificationType(dataItem.getNotificationType());
+    		showDataItem.setReferMsg(dataItem.getReferId());
+    		showList.add(showDataItem);
+    		
+    	}
 
+    	return showList;
+    }
 }

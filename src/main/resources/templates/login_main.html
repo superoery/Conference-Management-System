@@ -203,7 +203,7 @@
 			<div class="card-body">
 			  <h4 class="card-title">参与的会议</h4>
 			  <div class="table-responsive">
-			  	<p th:if="${pmtList}==null" th:text=${'没有需要参加的会议！'}></p>
+			  	<p th:if="${pmtList}==null" th:text="没有需要参加的会议！"></p>
 				<table class="table" th:if="${pmtList}!=null">
 				  <thead>
 					<tr>
@@ -264,7 +264,7 @@
 			<div class="card-body">
 			  <h4 class="card-title">组织的会议</h4>
 			  <div class="table-responsive">
-			  	<p th:if="${omtList}==null" th:text=${'没有您组织的会议！'}></p>
+			  	<p th:if="${omtList}==null" th:text="没有您组织的会议！"></p>
 				<table class="table"  th:if="${omtList}!=null">
 				  <thead>
 					<tr>
@@ -324,7 +324,7 @@
 			<div class="card-body">
 			  <h4 class="card-title">全部会议</h4>
 			  <div class="table-responsive">
-			  	<p th:if="${amtList}==null" th:text=${'没有会议！'}></p>
+			  	<p th:if="${amtList}==null" th:text="没有会议！"></p>
 				<table class="table" th:if="${amtList}!=null">
 				  <thead>
 					<tr>

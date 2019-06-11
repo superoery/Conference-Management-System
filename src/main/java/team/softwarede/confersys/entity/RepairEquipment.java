@@ -35,6 +35,7 @@ public class RepairEquipment {
     public Date getRepairTime() {
         return repairTime;
     }
+    
 
     public void setRepairTime(Date repairTime) {
         this.repairTime = repairTime;

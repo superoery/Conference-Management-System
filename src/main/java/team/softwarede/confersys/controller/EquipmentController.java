@@ -1,5 +1,7 @@
 package team.softwarede.confersys.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,10 @@ public class EquipmentController {
 
 	@RequestMapping("/repair.do")
 	public String repairApply(ModelMap map,
+			@ModelAttribute("repairApply") RepairApply repairApply,
 			HttpSession session) {
-//		RepairTypeList repairTypeList = repairApplicationBiz.showAllRepairType();
-//		map.addAttribute("repairTypeList", repairTypeList);
+		List<String> repairTypeList = repairApplicationBiz.showAllRepairType();
+		map.addAttribute("repairTypeList", repairTypeList);
 
 		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
 		map.addAttribute("userSession",userSession);
@@ -37,6 +40,7 @@ public class EquipmentController {
 			HttpSession session,
 			@ModelAttribute("repairApply") RepairApply repairApply) {
 		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		System.out.println(repairApply.getRepairDetail());
 		repairApplicationBiz.repairApplication(userSession.getUserId(), repairApply);
 		map.addAttribute("userSession",userSession);
 		return "equipment_repair_submitMsg";

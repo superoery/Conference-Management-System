@@ -23,13 +23,12 @@ public class ShowMeetingDetail2BizImpl implements ShowMeetingDetail2Biz{
 	ShowMeetingDetail2Mapper showMeetingDetail2Mapper;
 	
 	@Override
-	public MeetingDetail showMeetingDetail2(int meetingId,int roleId) {
-		if(roleId == 1){
-			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(meetingId);
+	public MeetingDetail showMeetingDetail2(String userId, int meetingId, int roleId) {
+		if(roleId == 3){
+			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(userId, meetingId);
 			return list;
 		}else {
-			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(meetingId);
-			list.setMyParticipantStatus(null);
+			MeetingDetail list = showMeetingDetail2Mapper.selectByAdmin(meetingId);
 			return list;
 		}
 	}

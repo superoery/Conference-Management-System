@@ -8,7 +8,7 @@ import java.util.Date;
  * 作用：登录系统-显示主界面-返回参与的/组织的/全部的会议列表
  */
 public class MeetingMainPage {
-
+	
 	private Integer mtId;
 	
 	private String mtTopic;
