@@ -83,7 +83,7 @@ public class UserBizImpl implements UserBiz {
     	showUserInfo.setTelephone(userInfo.getTelephone());
     	showUserInfo.setSex(userInfo.getSex());
     	showUserInfo.setName(userInfo.getName());
-    	showUserInfo.setIdentity(userInfo.getIdentityId());
+    	showUserInfo.setIdentity(String.valueOf(userInfo.getIdentityId()));
     	showUserInfo.setEmail(userInfo.getEmail());
     	return showUserInfo;
     }

@@ -33,12 +33,13 @@ public class ShowMeetingDetailBizImplTest {
 	@Test
 	public void testAdminShowMeetingDetail() {
 		int meetingId = 21;
-		String userId = "00000009";
+		int roleId = 2;
+		String userId = "10000003";
 		Logger logger = Logger.getLogger(getClass());
 		
-		MeetingDetail list = showMeetingDetail2Biz.showMeetingDetail2(userId, meetingId, 1);
+		MeetingDetail list = showMeetingDetail2Biz.showMeetingDetail2(userId, meetingId, roleId);
 		
-		List<ParticipantBasicInfo> personList = showMeetingDetail2Biz.showMeetingDetail(meetingId, 1);
+		List<ParticipantBasicInfo> personList = showMeetingDetail2Biz.showMeetingDetail(meetingId, roleId);
 
 		for(ParticipantBasicInfo str : personList) {
 			logger.info(str.getMtId());
@@ -47,6 +48,8 @@ public class ShowMeetingDetailBizImplTest {
 			logger.info(str.getParticipantStatus());
 		
 		}
+		logger.info(list.getMtId());
+		logger.info(list.getMtTopic());
 	}
 }
 

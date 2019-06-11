@@ -32,6 +32,13 @@
     from apply
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+    <select id="selectAllApply" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from apply
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated

@@ -20,6 +20,12 @@
     where meeting_id = #{meetingId,jdbcType=INTEGER}
   </select>
   
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from leave_application
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from leave_application
     where meeting_id = #{meetingId,jdbcType=INTEGER}

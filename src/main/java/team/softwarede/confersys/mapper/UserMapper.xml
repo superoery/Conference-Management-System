@@ -47,6 +47,14 @@
     from user
     where identity_id = #{identityId,jdbcType=INTEGER}
   </select>  
+  
+    <select id="selectNameByUserId" parameterType="java.lang.String" resultType="java.lang.String">
+    select 
+    name
+    from user
+    where user_id = #{userId}
+  </select>  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--
       WARNING - @mbg.generated
