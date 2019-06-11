@@ -38,9 +38,9 @@
     where id = #{id,jdbcType=INTEGER} and notification_type = #{notificationType, jdbcType=CHAR} and notification_detail = #{notificationDetail, jdbcType=VARCHAR} and notification_status = #{notificationStatus, jdbcType=CHAR} and refer_id = #{referId, jdbcType=VARCHAR}
   </select>
   
-  <select id="selectNotification" parameterType="java.lang.String" resultType="team.softwarede.confersys.entity.NotificationMainPage">
+  <select id="selectNotification" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
-    id, notification_type, refer_id
+    <include refid="Base_Column_List" />
     from notification, notices
     where #{userId} = user_id and notification_id = id
   </select>

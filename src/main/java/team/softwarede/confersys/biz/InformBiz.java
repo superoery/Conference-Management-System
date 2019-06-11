@@ -9,6 +9,7 @@ import java.util.List;
 
 import team.softwarede.confersys.dto.NotificationDetail;
 import team.softwarede.confersys.dto.NotificationMainPage;
+import team.softwarede.confersys.dto.UserInfo;
 
 
 /**
@@ -23,7 +24,8 @@ public interface InformBiz {
     NotificationDetail showNormalInformDetail(Integer informId);
     
     boolean alterInformHaveRead (Integer informId);
-    
-    List<NotificationMainPage> notificationNewMeeting(String userId, int roleId);
+    //显示一般通知
+    List<NotificationMainPage> ordinaryNotification(String userId, int roleId);
+
 
 }

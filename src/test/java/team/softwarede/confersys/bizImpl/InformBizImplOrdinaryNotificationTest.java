@@ -20,12 +20,12 @@ public class InformBizImplOrdinaryNotificationTest {
 
 	@Autowired
 	InformBiz informBiz;
-	
+	//显示一般通知
 	@Test
 	public void test() {
-		String userId = "10000001";
+		String userId = "10000002";
 		int roleId = 1;
-		List<NotificationMainPage> list = informBiz.notificationNewMeeting(userId, roleId);
+		List<NotificationMainPage> list = informBiz.ordinaryNotification(userId, roleId);
 		Logger logger = Logger.getLogger(getClass());
 		for(NotificationMainPage str : list) {
 			logger.info(str.getNotificationId());
