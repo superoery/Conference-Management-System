@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import team.softwarede.confersys.biz.RepairApplicationBiz;
+import team.softwarede.confersys.biz.RepairExaminationBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.RepairApply;
 
@@ -17,6 +18,8 @@ import team.softwarede.confersys.dto.RepairApply;
 public class EquipmentController {
 	@Autowired
 	RepairApplicationBiz repairApplicationBiz;
+	@Autowired
+	RepairExaminationBiz repairExaminationBiz;
 
 	@RequestMapping("/repair.do")
 	public String repairApply(ModelMap map,
@@ -37,5 +40,22 @@ public class EquipmentController {
 		repairApplicationBiz.repairApplication(userSession.getUserId(), repairApply);
 		map.addAttribute("userSession",userSession);
 		return "equipment_repair_submitMsg";
+	}
+	
+	@RequestMapping(value = "/repair/audit.do" , params = {"repairEquipmentId"})
+	public String repairAudit(ModelMap map,
+							  @ModelAttribute("repairEquipmentId")Integer repairEquipmentId) {
+		String title = "审核报修申请";
+		String msg = null;
+		String result = repairExaminationBiz.repairExamination(repairEquipmentId);
+		
+		if("succeed!".equals(result)) {
+			msg = "成功处理报修申请";
+		}
+		
+		map.addAttribute("title", title);
+		map.addAttribute("msg", msg);
+		
+		return "forward:/universal/result/show.do";
 	}
 }

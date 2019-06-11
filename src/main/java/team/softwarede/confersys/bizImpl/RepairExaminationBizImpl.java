@@ -10,6 +10,7 @@ import team.softwarede.confersys.entity.Equipment;
 import team.softwarede.confersys.entity.NoticesKey;
 import team.softwarede.confersys.entity.Notification;
 import team.softwarede.confersys.entity.RepairEquipment;
+import team.softwarede.confersys.entity.RepairsKey;
 import team.softwarede.confersys.enums.EnumEquipmentStatus;
 import team.softwarede.confersys.enums.EnumNotificationStatus;
 import team.softwarede.confersys.enums.EnumNotificationType;
@@ -18,6 +19,7 @@ import team.softwarede.confersys.mapper.EquipmentMapper;
 import team.softwarede.confersys.mapper.NoticesMapper;
 import team.softwarede.confersys.mapper.NotificationMapper;
 import team.softwarede.confersys.mapper.RepairEquipmentMapper;
+import team.softwarede.confersys.mapper.RepairsMapper;
 
 @Service("repairExaminationBiz")
 public class RepairExaminationBizImpl implements RepairExaminationBiz{
@@ -33,9 +35,13 @@ public class RepairExaminationBizImpl implements RepairExaminationBiz{
 	@Autowired
 	EquipmentMapper equipmentMapper;
 	
+	@Autowired
+	RepairsMapper repairsMapper;
+	
+	
 	@Transactional
 	@Override
-	public String repairExamination(int repairEquipmentId, RepairApply repairApply) {
+	public String repairExamination(int repairEquipmentId) {
 		String msg;
 		Notification notification = new Notification();
 		notification.setId(null);
@@ -46,8 +52,11 @@ public class RepairExaminationBizImpl implements RepairExaminationBiz{
 		RepairEquipment record = repairEquipmentMapper.selectByPrimaryKey(repairEquipmentId);
 		record.setRepairStatus(EnumRepairStatus.TREATED.getDescription());
 		repairEquipmentMapper.updateByPrimaryKey(record);
+		
+		RepairsKey repaire = repairsMapper.selectByReEquipmentId(repairEquipmentId);
+		
 			
-		Equipment equipment = equipmentMapper.selectByPrimaryKey(repairApply.getRepairEquipmentId());
+		Equipment equipment = equipmentMapper.selectByPrimaryKey(repaire.getEquipmentId());
 		equipment.setEquipmentStatus(EnumEquipmentStatus.AVAILABLE.getDescription());
 		equipmentMapper.updateByPrimaryKey(equipment);
 			

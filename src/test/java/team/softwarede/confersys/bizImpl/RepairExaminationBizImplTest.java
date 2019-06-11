@@ -22,12 +22,9 @@ import team.softwarede.confersys.enums.EnumRepairType;
 public class RepairExaminationBizImplTest {
 	@Autowired
 	RepairExaminationBiz repairExaminationBiz;
+	
 	@Test
 	public void test() {
-		RepairApply repairApply = new RepairApply();
-		repairApply.setRepairEquipmentId(1);
-		repairApply.setRepairDetail("can't use");
-		repairApply.setRepairType(EnumRepairType.REPAIRMENT.getDescription());
-		repairExaminationBiz.repairExamination(2, repairApply);
+		repairExaminationBiz.repairExamination(1);
 	}
 }

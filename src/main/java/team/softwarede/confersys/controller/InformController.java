@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.biz.NotificationBiz;
 import team.softwarede.confersys.dto.BasicSession;
+import team.softwarede.confersys.dto.EquipmentRepairDetails;
 import team.softwarede.confersys.dto.MeetingApplyDetails;
 import team.softwarede.confersys.dto.NotificationDetail;
 import team.softwarede.confersys.dto.NotificationMainPage;
@@ -162,15 +163,31 @@ public class InformController {
 			
 			map.addAttribute("mtApplyDetails",mtApplyDetails);
 			
-			return "meeting_book_details_show";
+			return "meeting_book_details_audit";
 			
 		}else if(type.equals(EnumNotificationSpType.REPAIR.getDescription())) {
 			//显示报修详情
 			
+			EquipmentRepairDetails eRepairDetails = new EquipmentRepairDetails();
 			
+			eRepairDetails.setRepairId(1);
+			eRepairDetails.setEquipmentId(13);
+			eRepairDetails.setEquipmentName("投影仪1");
+			eRepairDetails.setEquipmentType("投影仪");
+			eRepairDetails.setRepairDetail("坏了");
+			eRepairDetails.setRepairType("维修");
+			eRepairDetails.setApplyTime(new Date());
+			eRepairDetails.setApplicantName("大脸妹");
+			eRepairDetails.setLocation("逸夫楼604");
+			
+			map.addAttribute("details", eRepairDetails);
+			
+			return "equipment_repair_audit";
 			
 		}else if(type.equals(EnumNotificationSpType.LEAVE.getDescription())) {
 			//显示请假详情
+			
+			
 			
 		}
 		

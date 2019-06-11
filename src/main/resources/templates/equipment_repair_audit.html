@@ -29,74 +29,68 @@
 
 <body>
 
-
 	<!-- partial -->
 	<div class="content-wrapper">
 	
-
-	  <div class="row" >
+	  
+	  <div class="row" id="notificationDetail">
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
-			  <h4 class="card-title">特殊通知</h4>
+			  <h4 class="card-title">通知详情</h4>
 			  <div class="table-responsive">
-				<table class="table" th:if="${notiSpIntroList}!=null">
-				  <thead>
+				<table class="table" th:if="${details}!=null">
+				  
 					<tr>
-					  <th>
-						申请者编号
-					  </th>
-					  <th>
-						申请者
-					  </th>
-					  <th>
-						类型
-					  </th> 
-					  <th>
-					  	相关编号
-					  </th>
-					  <th>
-					  	申请时间
-					  </th>
-					  <th>
-						  <select th:field="*{types}" style="font-size: 14px;">投影笔
-			            	<option th:each="type : ${types}"
-			            		th:text="${type.getDescription()}"
-			            		th:value="${type.ordinal()}"
-			            		text="投影笔">
-			            	</option>
-						  </select>
-					  
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="notification : ${notiSpIntroList}">
-					    <td th:text="${notification.getUserId()}"></td>
-					    <td th:text="${notification.getApplicantName()}"></td>
-					    <td th:text="${notification.getNotificationSpType()}"></td>
-					    <td th:text="${notification.getReferId()}"></td>
-					    <td th:text="${#dates.format(notification.getApplyTime(), 'yyyy-MM-dd HH:mm')}"></td>
-						<td>
-						<a class="btn btn-secondary" th:href="@{/inform/sp/details.do(
-							referId=${notification.getReferId()},
-							type=${notification.getNotificationSpType()},
-							applicantId=${notification.getUserId()}
+					  	<td>报修编号</td>
+					  	<td th:text="${details.getRepairId()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>设备名称</td>
+				    	<td th:text="${details.getEquipmentName()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>设备类型</td>
+				    	<td th:text="${details.getEquipmentType()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>报修详情</td>
+				    	<td th:text="${details.getRepairDetail()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>报修类型</td>
+				    	<td th:text="${details.getRepairType()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>报修时间</td>
+				    	<td th:text="${#dates.format(details.getApplyTime(), 'yyyy-MM-dd HH:mm')}"></td>
+				    </tr>
+				    <tr>
+				    	<td>报修人名字</td>
+				    	<td th:text="${details.getApplicantName()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>会议室</td>
+				    	<td th:text="${details.getLocation()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>
+						<a class="btn btn-secondary" th:href="@{/equipment/repair/audit.do(
+						repairEquipmentId=${details.getRepairId()}
 						)}">
-						查看详情
+						修复
 						</a>
-						</td>
-					</tr>
-			      </tbody>
+				    	</td>
+				    </tr>			
+			
 				</table>
 			  </div>
 			</div>
 		  </div>
 		</div>
 	  </div>
-  </div>
-
-	
-	
+	</div>
+	  
+	  
 </body>
 </html>
