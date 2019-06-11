@@ -59,7 +59,7 @@ public class MeetingBizImplEditTest {
         meetingBiz.bookMtRoomAgain(organizerId, meetingId, meetingRoomBook);
     }
     
-    @Test
+    @Ignore
     public void testBefore() throws ParseException {
         MeetingRoomBook meetingRoomBook = new MeetingRoomBook();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -83,6 +83,12 @@ public class MeetingBizImplEditTest {
         meetingRoomBook.setMtParticipantsIdList(mtParticipantsIdList);
 
         meetingBiz.bookMtRoomAgain(organizerId, meetingId, meetingRoomBook);
+    }
+    @Test
+    public void editMeetingContentTest() {
+    	String meetingContent = "DANCING";
+    	String meetingConclusion = "LOVE&PEACE";
+    	meetingBiz.editMeetingContent(5, meetingContent, meetingConclusion);
     }
 
 }

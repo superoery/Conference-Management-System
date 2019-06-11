@@ -11,23 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import org.springframework.transaction.annotation.Transactional;
 import team.softwarede.confersys.biz.MeetingRoomBiz;
+import team.softwarede.confersys.dto.EquipmentRepairDetails;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
-import team.softwarede.confersys.dto.MeetingRoomBook;
+import team.softwarede.confersys.dtomapper.EquipmentRepairDetailsMapper;
 import team.softwarede.confersys.dtomapper.MeetingRoomAvailMapper;
 import team.softwarede.confersys.entity.EquipmentType;
-import team.softwarede.confersys.entity.Meeting;
-import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.mapper.ApplyMapper;
 import team.softwarede.confersys.mapper.EquipmentTypeMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
 import team.softwarede.confersys.mapper.ScheduleMapper;
-import team.softwarede.confersys.biz.MeetingRoomBiz;
-import team.softwarede.confersys.dto.MeetingRoomAvail;
-import team.softwarede.confersys.dtomapper.MeetingRoomAvailMapper;
 
 
 /**
@@ -49,6 +44,8 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     ScheduleMapper scheduleMapper;
     @Autowired
     EquipmentTypeMapper equipmentTypeMapper;    
+    @Autowired
+    EquipmentRepairDetailsMapper equipmentRepairDetailsMapper;
     
     /**
      * 显示可选会议室列表
@@ -77,6 +74,12 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
         // TODO Auto-generated method stub
         
         return equipmentTypeMapper.selectAll();
+    }
+    
+    @Override
+    public EquipmentRepairDetails repairDetails(int repairId) {
+    	EquipmentRepairDetails repairDetails = equipmentRepairDetailsMapper.showEquipmentDetail(repairId);
+    	return repairDetails;
     }
 
 }

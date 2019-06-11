@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.softwarede.confersys.dtomapper.MeetingApplyDetailsMapper">
+  <resultMap id="BaseResultMap" type="team.softwarede.confersys.dto.MeetingApplyDetails">
+    <id column="id" jdbcType="INTEGER" property="applyId" />
+    <result column="user_id" jdbcType="VARCHAR" property="applicantId" />
+    <result column="name" jdbcType="VARCHAR" property="applicantName" />
+    <result column="topic" jdbcType="VARCHAR" property="mtTopic" />
+    <result column="meeting_content" jdbcType="VARCHAR" property="mtContent" />
+    <result column="building" jdbcType="VARCHAR" property="building" />
+    <result column="floor" jdbcType="INTEGER" property="floor" />
+    <result column="room_number" jdbcType="VARCHAR" property="roomNumber" />
+    <result column="meeting_id" jdbcType="INTEGER" property="meetingId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+ 	id, user_id, name, topic, meeting_content, building, floor, room_number, meeting_id
+  </sql>
+ <select id="selectByMeetingId" resultMap="BaseResultMap">
+ 	select 
+ 	a.id, a.user_id, name, topic, meeting_content, building, floor, room_number, a.meeting_id
+ 	from apply a, user u, meeting m, schedule s, meeting_room mr
+ 	where 
+ 		a.id = #{applyId} 
+ 		and m.id = s.meeting_id 
+ 		and s.meeting_room_id = mr.id 
+ 		and a.meeting_id = m.id 
+ 		and a.user_id = u.user_id
+ 		
+ </select>
+ 
+</mapper>
