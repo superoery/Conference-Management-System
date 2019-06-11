@@ -17,21 +17,28 @@ import org.springframework.transaction.annotation.Transactional;
 import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.dto.NotificationDetail;
 import team.softwarede.confersys.dto.NotificationMainPage;
+import team.softwarede.confersys.dto.NotificationSpIntro;
 import team.softwarede.confersys.entity.Apply;
+import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.NoticesKey;
 import team.softwarede.confersys.entity.Notification;
+import team.softwarede.confersys.entity.RepairEquipment;
 import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.enums.EnumMeetingStatusId;
+import team.softwarede.confersys.enums.EnumNotificationSpType;
 import team.softwarede.confersys.enums.EnumNotificationStatus;
 import team.softwarede.confersys.enums.EnumNotificationType;
 import team.softwarede.confersys.mapper.ApplyMapper;
+import team.softwarede.confersys.mapper.LeaveApplicationMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.NoticesMapper;
 import team.softwarede.confersys.mapper.NotificationMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
+import team.softwarede.confersys.mapper.RepairEquipmentMapper;
 import team.softwarede.confersys.mapper.ScheduleMapper;
+import team.softwarede.confersys.mapper.UserMapper;
 
 
 /**
@@ -53,6 +60,12 @@ public class InformBizImpl implements InformBiz {
     NoticesMapper noticesMapper;
     @Autowired
     ParticipatesMapper participatesMapper; 
+    @Autowired
+    UserMapper userMapper;
+    @Autowired
+    LeaveApplicationMapper leaveApplicationMapper;
+    @Autowired
+    RepairEquipmentMapper repairEquipmentMapper;
     
     @Transactional
     @Override
@@ -217,4 +230,102 @@ public class InformBizImpl implements InformBiz {
 
     	return showList;
     }
-}
+
+    //显示特殊通知
+    @Override
+    public List<NotificationSpIntro> spNotificastion(int typeNum){
+    	if(typeNum == EnumNotificationSpType.BOOK.ordinal()) {
+    		List<Apply> applyList = applyMapper.selectAllApply();
+    		List<NotificationSpIntro> spInfoList = new ArrayList();
+    		Apply applyInfo = new Apply();
+    		for(int i = 0; i < applyList.size(); i++) {
+    			applyInfo = applyList.get(i);
+    			NotificationSpIntro spInfo = new NotificationSpIntro();
+    			spInfo.setUserId(applyInfo.getUserId());
+    			spInfo.setReferId(applyInfo.getId());
+    			spInfo.setNotificationSpType(EnumNotificationSpType.BOOK.getDescription());
+    			spInfo.setApplyTime(applyInfo.getApplyTime());
+    			String userName = userMapper.selectNameByUserId(applyInfo.getUserId());
+    			spInfo.setApplicantName(userName);
+    			spInfoList.add(spInfo);
+    		}
+    		return spInfoList;
+    		
+    	}else if(typeNum == EnumNotificationSpType.LEAVE.ordinal()) {
+    		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectAll();
+    		List<NotificationSpIntro> spInfoList = new ArrayList();
+    		LeaveApplication leaApp = new LeaveApplication();
+    		for(int i = 0; i < leaveApplicationList.size(); i++) {
+    			leaApp = leaveApplicationList.get(i);
+    			NotificationSpIntro spInfo = new NotificationSpIntro();
+    			spInfo.setUserId(leaApp.getUserId());
+    			spInfo.setReferId(leaApp.getMeetingId());
+    			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
+    			spInfo.setApplyTime(leaApp.getApplyTime());
+    			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
+    			spInfo.setApplicantName(userName);
+    			spInfoList.add(spInfo);
+    		}
+    		return spInfoList;
+    		
+    	}else if(typeNum == EnumNotificationSpType.REPAIR.ordinal()){
+    		List<RepairEquipment> repairEquipmentList = repairEquipmentMapper.selectAll();
+    		List<NotificationSpIntro> spInfoList = new ArrayList();
+    		RepairEquipment repairEquipment = new RepairEquipment();
+    		for(int i = 0; i < repairEquipmentList.size(); i++) {
+    			repairEquipment = repairEquipmentList.get(i);
+    			NotificationSpIntro spInfo = new NotificationSpIntro();
+    			spInfo.setUserId(repairEquipment.getUserId());
+    			spInfo.setReferId(repairEquipment.getId());
+    			spInfo.setNotificationSpType(EnumNotificationSpType.REPAIR.getDescription());
+    			spInfo.setApplyTime(repairEquipment.getRepairTime());
+    			String userName = userMapper.selectNameByUserId(repairEquipment.getUserId());
+    			spInfo.setApplicantName(userName);
+    			spInfoList.add(spInfo);
+    		}
+    		return spInfoList;
+    	}else {
+    		List<Apply> applyList = applyMapper.selectAllApply();
+    		List<NotificationSpIntro> spInfoList = new ArrayList();
+    		Apply applyInfo = new Apply();
+    		for(int i = 0; i < applyList.size(); i++) {
+    			applyInfo = applyList.get(i);
+    			NotificationSpIntro spInfo = new NotificationSpIntro();
+    			spInfo.setUserId(applyInfo.getUserId());
+    			spInfo.setReferId(applyInfo.getId());
+    			spInfo.setNotificationSpType(EnumNotificationSpType.BOOK.getDescription());
+    			spInfo.setApplyTime(applyInfo.getApplyTime());
+    			String userName = userMapper.selectNameByUserId(applyInfo.getUserId());
+    			spInfo.setApplicantName(userName);
+    			spInfoList.add(spInfo);
+    		}
+    		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectAll();
+    		LeaveApplication leaApp = new LeaveApplication();
+    		for(int i = 0; i < leaveApplicationList.size(); i++) {
+    			leaApp = leaveApplicationList.get(i);
+    			NotificationSpIntro spInfo = new NotificationSpIntro();
+    			spInfo.setUserId(leaApp.getUserId());
+    			spInfo.setReferId(leaApp.getMeetingId());
+    			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
+    			spInfo.setApplyTime(leaApp.getApplyTime());
+    			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
+    			spInfo.setApplicantName(userName);
+    			spInfoList.add(spInfo);
+    		}
+    		List<RepairEquipment> repairEquipmentList = repairEquipmentMapper.selectAll();
+    		RepairEquipment repairEquipment = new RepairEquipment();
+    		for(int i = 0; i < repairEquipmentList.size(); i++) {
+    			repairEquipment = repairEquipmentList.get(i);
+    			NotificationSpIntro spInfo = new NotificationSpIntro();
+    			spInfo.setUserId(repairEquipment.getUserId());
+    			spInfo.setReferId(repairEquipment.getId());
+    			spInfo.setNotificationSpType(EnumNotificationSpType.REPAIR.getDescription());
+    			spInfo.setApplyTime(repairEquipment.getRepairTime());
+    			String userName = userMapper.selectNameByUserId(repairEquipment.getUserId());
+    			spInfo.setApplicantName(userName);
+    			spInfoList.add(spInfo);
+    		}
+    		return spInfoList;
+    	}
+    }
+}   

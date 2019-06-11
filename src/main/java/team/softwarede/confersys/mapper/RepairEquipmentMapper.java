@@ -1,5 +1,7 @@
 package team.softwarede.confersys.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import team.softwarede.confersys.entity.RepairEquipment;
@@ -18,4 +20,6 @@ public interface RepairEquipmentMapper {
     int updateByPrimaryKeySelective(RepairEquipment record);
 
     int updateByPrimaryKey(RepairEquipment record);
+    
+    List<RepairEquipment> selectAll();
 }

@@ -28,7 +28,7 @@ public class ShowMeetingDetail2BizImpl implements ShowMeetingDetail2Biz{
 			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(userId, meetingId);
 			return list;
 		}else {
-			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(userId, meetingId);
+			MeetingDetail list = showMeetingDetail2Mapper.selectByAdmin(meetingId);
 			return list;
 		}
 	}
