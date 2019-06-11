@@ -28,7 +28,6 @@ public class ShowMeetingDetailBizImplTest {
 	@Autowired
 	ShowMeetingDetail2Biz showMeetingDetail2Biz;
 	//测试普通用户返回的会议详情
-
 	
 	@Transactional
 	@Test
@@ -39,7 +38,7 @@ public class ShowMeetingDetailBizImplTest {
 		
 		MeetingDetail list = showMeetingDetail2Biz.showMeetingDetail2(userId, meetingId, 1);
 		
-		List<ParticipantBasicInfo> personList = showMeetingDetail2Biz.showMeetingDetail(meetingId);
+		List<ParticipantBasicInfo> personList = showMeetingDetail2Biz.showMeetingDetail(meetingId, 1);
 
 		for(ParticipantBasicInfo str : personList) {
 			logger.info(str.getMtId());

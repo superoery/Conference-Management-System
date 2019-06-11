@@ -202,9 +202,11 @@
 		  <div class="card">
 			<div class="card-body">
 			  <h4 class="card-title">用户创建的用户组</h4>
+			  <a class="btn btn-success" style="color:#FFFFFF"
+							th:href="@{/userGroup/createUG.do}">+ 创建新用户组</a>
 			  <div class="table-responsive">
-			  	<p th:if="$${myUGList}==null" th:text=${'没有用户自己创建的用户组！'}></p>
-				<table class="table" th:if="${myUGList}!=null">
+			  	<p th:if="${myUGList}==null or ${myUGList.size()}==0" th:text=${'没有用户自己创建的用户组！'}></p>
+				<table class="table" th:if="${myUGList}!=null and ${myUGList.size()}!=0">
 				  <thead>
 					<tr>
 					  <th>
@@ -216,8 +218,10 @@
 				  </thead>
 				  <tbody>
 					<tr th:each="myUG : ${myUGList}">
-					  <td th:text="${myUG.getUserGroupId()}"></td>
-					  <td th:text="${myUG.getUserGroupName()}"></td>
+					  <td th:text="${myUG.getId()}"></td>
+					  <td th:text="${myUG.getName()}"></td>
+					  <td><a class="btn btn-secondary" 
+							th:href="@{/userGroup/deleteUG.do(deleteUGId=${myUG.getId()})}">删除该用户组</a></td>
 					</tr>
 				  </tbody>
 				</table>
@@ -233,8 +237,8 @@
 			<div class="card-body">
 			  <h4 class="card-title">系统设立的用户组</h4>
 			  <div class="table-responsive">
-			  	<p th:if="${sysUGList}==null"></p>
-				<table class="table" th:if="${sysUGList}!=null">
+			  	<p th:if="${sysUGList}==null or ${sysUGList.size()}==0"></p>
+				<table class="table" th:if="${sysUGList}!=null and ${sysUGList.size()}!=0">
 				  <thead>
 					<tr>
 					  <th>
@@ -246,8 +250,8 @@
 				  </thead>
 				  <tbody>
 					<tr th:each="sysUG : ${sysUGList}">
-					  <td th:text="${sysUG.getUserGroupId()}"></td>
-					  <td th:text="${sysUG.getUserGroupName()}"></td>
+					  <td th:text="${sysUG.getId()}"></td>
+					  <td th:text="${sysUG.getName()}"></td>
 					</tr>
 				  </tbody>
 				</table>

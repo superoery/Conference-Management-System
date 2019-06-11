@@ -3,12 +3,10 @@ package team.softwarede.confersys.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -18,9 +16,8 @@ import team.softwarede.confersys.biz.UserGroupBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingRoomShowAvail;
 import team.softwarede.confersys.dto.UserAndGroup;
-import team.softwarede.confersys.dto.UserAndGroupList;
 import team.softwarede.confersys.entity.EquipmentType;
-import team.softwarede.confersys.enums.EnumIdentity;
+import team.softwarede.confersys.vo.UserAndGroupList;
 
 @Controller
 @RequestMapping("/meetingRoom")
@@ -43,7 +40,7 @@ public class MeetingRoomController {
 		List<EquipmentType> equipmentTypeList = meetingRoomBiz.showMtRoomBookPage();
 		map.addAttribute("equipmentTypeList",equipmentTypeList);
 		
-		return "ugroup_mtroom_searchAvail";
+		return "mtRoom_searchAvail";
 	}
 	
 	@RequestMapping("/searchUAndUG.do")

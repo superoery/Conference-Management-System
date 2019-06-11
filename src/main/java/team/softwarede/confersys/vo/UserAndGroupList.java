@@ -1,6 +1,8 @@
-package team.softwarede.confersys.dto;
+package team.softwarede.confersys.vo;
 
 import java.util.List;
+
+import team.softwarede.confersys.dto.UserAndGroup;
 
 public class UserAndGroupList {
 

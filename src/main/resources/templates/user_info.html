@@ -147,7 +147,7 @@
 		  </a>
 		  <div class="collapse" id="meeting">
 			<ul class="nav flex-column sub-menu">
-			  <li class="nav-item"> <a class="nav-link" href="#participatedMeeting"  th:if="${userSession.getRole().getRole()} != '管理员' "> 参与的会议 </a></li>
+			  <li class="nav-item"> <a class="nav-link" href="#participatedMeeting" th:if="${userSession.getRole().getRole()} != '管理员' "> 参与的会议 </a></li>
 			  <li class="nav-item"> <a class="nav-link" href="#organizedMeeting"  th:if="${userSession.getRole().getRole()} == '会议组织者' "> 组织的会议 </a></li>
 			  <li class="nav-item"> <a class="nav-link" href="#allMeeting"  th:if="${userSession.getRole().getRole()} == '管理员' "> 全部会议 </a></li>
 			</ul>
@@ -164,23 +164,23 @@
 		
 		
 		<li class="nav-item" th:if="${userSession.getRole().getRole()} == '会议组织者' ">
-		  <a class="nav-link" href="ugroup_mtroom_book.html">
+		  <a class="nav-link" href="ugroup_mtroom_book.html" th:href="@{/meetingRoom/book.do}">
 			<span class="menu-title">会议室预约</span>
 			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
 		  </a>
 		</li>
 		
 		
-		<li class="nav-item">
-		  <a class="nav-link" href="#" th:if="${userSession.getRole().getRole()} != '管理员' ">
+		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '管理员' ">
+		  <a class="nav-link" href="equipment_repair.html"  th:href="@{/equipment/repair.do}">
 			<span class="menu-title">报修</span>
 			<i class="mdi mdi-crosshairs-gps menu-icon"></i>
 		  </a>
 		</li>
 		
 		
-		<li class="nav-item">
-		  <a class="nav-link" href="#" th:if="${userSession.getRole().getRole()} != '普通用户' ">
+		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '普通用户' ">
+		  <a class="nav-link" href="#">
 			<span class="menu-title">用户组</span>
 			<i class="mdi mdi-table-large menu-icon"></i>
 		  </a>
@@ -197,144 +197,53 @@
 	<div class="content-wrapper">
 	
 	  
-	  <div class="col-12 grid-margin">
-		<div class="card">
-		<div class="card-body">
-		  <h4 class="card-title">创建新的用户组</h4>
-		  
- 		  <script>
-		  function addUserIdOnclick( addUserId, selectedUserList ){
-			//addUserId, selectedUserList 作为js的参数传递进来
-				window.location.href = 'localhost:8080/userGroup/addUserId.do?addUserId=' + addUserId + '&selectedUserList=' + selectedUserList;
-				window.event.returnValue=false; 
-			}
-		  </script>
-		  
-		  
-		  	<label>添加用户组成员</label>
-		  	<form action="/userGroup/addUserId.do">
-		  		<div class="input-group">
- 		  		<input type="text" class="form-control" placeholder="用户编号" name="addUserId" th:value="${addUserId}"></input>
-	 		  	<div style="display:none" th:each="selectedUser : ${selectedUserList.getSelectedUserList()}" 
-	 		  		th:if="${selectedUserList} != null and ${selectedUserList.getSelectedUserList()} != null and ${selectedUserList.getSelectedUserList().size()}!=0">
-	 		  		<input type="hidden" class="form-control" name="selectedUserList" th:value="${selectedUser}"></input>
-	 		  	</div>
-
-				<div class="input-group-addon bg-transparent border-0 search-button">
-						<button type="submit" class="btn btn-secondary">+</button>
-				</div>
-		  		</div>
-		  	</form>
-		  	
-		  	<br/><br/>
-		  	<label>用户组成员列表</label>
-		  	<p th:if="${selectedUserList} == null or ${selectedUserList.getSelectedUserList()} == null or ${selectedUserList.getSelectedUserList().size()}==0" th:text="暂无成员，请查找并添加用户组成员"></p>
-		  	<div class="input-group">
-			  	<table class="table table-bordered" th:if="${selectedUserList}!=null and ${selectedUserList.getSelectedUserList()} != null and ${selectedUserList.getSelectedUserList().size()}!=0">
-				  <thead>
+	  <div class="row" id="participatedMeeting">
+		<div class="col-12 grid-margin">
+		  <div class="card">
+			<div class="card-body">
+			  <h4 class="card-title">参与的会议</h4>
+			  <div class="table-responsive">
+			  	<p th:if="${userInfo}==null" th:text=${'没有用户的相关信息！发生错误！'}></p>
+				<table class="table table-bordered" th:if="${userInfo}!=null">
 					<tr>
-					  <th>
-						用户编号
-					  </th>
+						<th>编号</th>
+						<td th:text="${userInfo.getUserId()}"></td>
 					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="selectedUser : ${selectedUserList.getSelectedUserList()}">
-					  <td th:text="${selectedUser}"></td>
-					 </tr>
-				  </tbody>
+					
+					<tr>
+						<th>名称</th>
+						<td th:text="${userInfo.getName()}"></td>
+					</tr>
+					
+					<tr>
+						<th>身份</th>
+						<td th:text="${userInfo.getIdentity()}"></td>
+					</tr>
+					
+					<tr>
+						<th>性别</th>
+						<td th:text="${userInfo.getSex()}"></td>
+					</tr>
+					
+					<tr>
+						<th>电话</th>
+						<td th:text="${userInfo.getTelephone()}"></td>
+					</tr>
+					
+					<tr>
+						<th>邮箱</th>
+						<td th:text="${userInfo.getEmail()}"></td>
+					</tr>
 				</table>
+			  </div>
 			</div>
-				
-<!--				<div class="form-group">
-				  <label>查找并添加用户组成员</label>
-			  	  <form class="d-flex align-items-stretch h-100" action="/meetingRoom/searchUAndUG.do">
-					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="用户名" name="mtRoomSearch" th:value="*{mtRoomSearch}"></input>
-					  
-					  <div class="input-group-addon bg-transparent border-0 search-button">
-						<button type="submit" class="btn btn-sm bg-transparent px-0">
-						  <i class="mdi mdi-magnify"></i>
-						</button>
-					  </div>
-					</div>
-				  </form>
-					  
-					<p th:if="${uAndGList} != null and ${uAndGList.size()}==0" th:text="没有检索到相关结果"></p>
-				  <form action="/meetingRoom/addUAndUG.do" th:if="${uAndGList} != null and ${uAndGList.size()}!=0">
-						 <table class="table" th:if="${uAndGList.getuAndGList()}!=null"  style="text-align:center;">
-						  <thead>
-							<tr>
-							  <th>
-								用户编号
-							  </th>
-							  <th>
-								用户名称
-							  </th>
-							  <th>
-							  	加入用户组
-							  </th>
-							</tr>
-						  </thead>
-						  <tbody>
-							<tr th:each="uAndG : ${uAndGList.getuAndGList()}">
-							  <td th:text="${uAndG.getType()}==0? '用户':'用户组'"></td>
-							  <td th:text="${uAndG.getName()}"></td>
-							  <td><button type="submit" class="btn-btn-secondary" name="uAndG" th:value="*{uAndG}">+</button></td>
-						  </tbody>
-						</table>
-				  </form>
-				  
-				</div>
-				
-				
-				<div class="form-group">
-				 	<label>用户组成员列表</label>
-				 		<p th:if="${selectedUserList} == null or ${selectedUserList.getuAndGList().size()}==0" th:text="暂无成员，请查找并添加用户组成员"></p>
-					 <table class="table table-bordered" th:if="${selectedUserList}!=null and ${selectedUserList.getUserList().size()}!=0"
-					 		style="text-align:center;" th:value="*">
-					  <thead>
-						<tr>
-						  <th>
-							用户编号
-						  </th>
-						  <th>
-							用户名称
-						  </th>
-						</tr>
-					  </thead>
-					  <tbody>
-						<tr th:each="sUAndG : ${selectedUAndGList.getuAndGList()}">
-						  <td th:text="${sUAndG.getType()}==0? '用户':'用户组'"></td>
-						  <td th:text="${sUAndG.getName()}"></td>
-					  </tbody>
-					</table>
-				</div> -->
-				
-				
-			<br/><br/>
- 			<form class="form-sample" action="/userGroup/submitUG.do" method="post">
-		  
-		  		<div style="display:none" th:each="selectedUser : ${selectedUserList.getSelectedUserList()}" 
-	 		  		th:if="${selectedUserList} != null and ${selectedUserList.getSelectedUserList()} != null and ${selectedUserList.getSelectedUserList().size()}!=0">
-	 		  		<input type="hidden" class="form-control" name="selectedUserList" th:value="${selectedUser}"></input>
-	 		  	</div>
-		  
-				<div class="form-group">
-				  	<label>用户组名称</label>
-				  	<input type="text" class="form-control" name="userGroupName" th:value="${userGroupName}"/>
-<!-- 				  	<p th:if="${#fields.hasErrors('userGroupName')}" th:errors="*{userGroupName}" style="color:#FF0000">errors userGroupName</p>
- -->				
-				</div>
-			
-			<button type="submit" class="btn btn-success mr-2">Submit</button>
-            <button class="btn btn-light">Cancel</button>
-			
-		  </form>
-		</div>
+		  </div>
 		</div>
 	  </div>
-		
+	  <a class="btn btn-secondary" 
+		th:href="@{/user/info_change.do(userInfo=${userInfo})}">修改个人信息</a>
+	  <a class="btn btn-secondary" 
+		th:href="@{/user/psw_change.do}">修改密码</a>
 	  
 	  <div style="float: right;">
 		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
