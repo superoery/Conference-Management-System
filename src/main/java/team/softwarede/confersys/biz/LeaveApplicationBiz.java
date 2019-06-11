@@ -7,5 +7,8 @@ import team.softwarede.confersys.entity.LeaveApplication;
  *
  */
 public interface LeaveApplicationBiz {
+	
 	String submitLeaveApplication(LeaveApplication record);
+	
+	
 }
