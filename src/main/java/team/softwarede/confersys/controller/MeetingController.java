@@ -183,13 +183,43 @@ public class MeetingController {
 	/**
 	 * 显示会议信息修改界面
 	 */
-	@RequestMapping(value = "/details/edit.do",method = RequestMethod.GET)
-	public String showEditMtDetailsPage() {
+	@RequestMapping(value = "/details/edit.do",params = {"meetingId"},method = RequestMethod.GET)
+	public String showEditMtDetailsPage(ModelMap map,
+										HttpSession session,
+										@ModelAttribute("meetingId")Integer meetingId,
+										@ModelAttribute("mtContent")String mtContent,
+										@ModelAttribute("mtConclude")String mtConclude) {
+		
+		BasicSession userSession = new BasicSession();
+		Role role = new Role();
+		String userId = "10000004";
+		String userName = "大脸妹";
+		
+		role.setId(EnumRoleName.NORMAL.getValue());
+		role.setRole(EnumRoleName.NORMAL.getDescription());
+		
+		userSession.setUserId(userId);
+		userSession.setUserName(userName);
+		userSession.setRole(role);
+		
+		session.setAttribute("userSession", userSession);
 		
 		
+
+		
+		MeetingDetail meetingDetail = showMeetingDetail2Biz.showMeetingDetail2(userSession.getUserId(), 
+																			   meetingId, 
+																			   userSession.getRole().getId());
+		
+//		System.out.println("会议编号1："+meetingDetail.getMtId());
+//		
+//		System.out.println("会议编号2："+meetingId);
 		
 		
-		return null;
+		map.addAttribute("details", meetingDetail);
+		map.addAttribute("meetingId", meetingId);
+		
+		return "meeting_details_edit";
 	}
 	
 	
@@ -198,17 +228,21 @@ public class MeetingController {
 	 */
 	@RequestMapping(value = "/details/edit.do",method = RequestMethod.POST)
 	public String editMeetingContent(ModelMap map,
-									 @ModelAttribute("mtId")Integer mtId,
+									 @ModelAttribute("meetingId")Integer meetingId,
 									 @ModelAttribute("mtContent")String mtContent,
 									 @ModelAttribute("mtConclude")String mtConclude
 									 ) {
 		String title = "修改会议信息";
 		String msg = "修改成功";
+
+//		System.out.println("会议编号："+ meetingId);
+//		System.out.println("会议内容："+ mtContent);
+//		System.out.println("会议结论："+ mtConclude);
 		
 		map.addAttribute("title", title);
 		map.addAttribute("msg", msg);
-		
-		return "/universal/result/show.do";
+			
+		return "forward:/universal/result/show.do";
 	}
 	
 	

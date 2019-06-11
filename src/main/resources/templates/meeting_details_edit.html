@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Home</title>
+<!-- plugins:css -->
+<link rel="stylesheet" href="../static/example/node_modules/mdi/css/materialdesignicons.min.css"
+	th:href="@{/example/node_modules/mdi/css/materialdesignicons.min.css}" >
+<link rel="stylesheet" href="../static/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"
+	th:href="@{/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css}" >
+<!-- endinject -->
+<!-- plugin css for this page -->
+<link rel="stylesheet" href="../static/example/node_modules/jquery-bar-rating/dist/themes/css-stars.css"
+	th:href="@{/example/node_modules/jquery-bar-rating/dist/themes/css-stars.css}" >
+<link rel="stylesheet" href="../static/example/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"
+	th:href="@{/example/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}" />
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="../static/example/css/style.css" 
+	th:href="@{/example/css/style.css}">
+<!-- endinject -->
+<link rel="shortcut icon" href="../static/example/images/favicon.png"
+	th:href="@{/example/images/favicon.png}" />
+</head>
+
+
+<body>
+
+	<!-- partial -->
+	<div class="content-wrapper">
+	
+	  
+	  <div class="row" id="notificationDetail">
+		<div class="col-12 grid-margin">
+		  <div class="card">
+			<div class="card-body">
+			  <h4 class="card-title">会议信息修改</h4>
+			  <div class="table-responsive">
+			  <form action="/meeting/details/edit.do" method="post">
+				<table class="table" th:if="${details}!=null">
+				  
+					<tr>
+					  	<td>会议编号</td>
+					  	<td th:text="${details.getMtId()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>隐藏域</td>
+					  	<td>
+					  	<input type="text" class="form-control p_input" name="meetingId" 
+				    	       th:value="${meetingId}" 
+				    	       ></input>
+					  	
+					  	</td>
+				    </tr>
+				    <tr>
+				    	<td>会议主题</td>
+				    	<td th:text="${details.getMtTopic()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>会议内容</td>
+				    	<td>
+				    	<input type="text" class="form-control p_input" name="mtContent" 
+				    	       th:value="${details.getMtContent()}" th:placeholder="${details.getMtContent()}"></input>
+				    	</td>
+				    </tr>
+				    <tr>
+				    	<td>会议结论</td>
+				    	<td>
+				    	<input type="text" class="form-control p_input" name="mtConclude" 
+				    	       th:value="${details.getMtConclusion()}" th:placeholder="${details.getMtConclusion()}"></input>
+				    	</td>
+				    </tr>
+					
+				 </table>
+				<div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-block enter-btn">提交</button>
+                </div>
+				</form>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	  
+	  
+</body>
+</html>
