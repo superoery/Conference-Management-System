@@ -37,6 +37,7 @@
     select 
     <include refid="Base_Column_List" />
     from apply
+    where apply_status_id = "审核中"
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
