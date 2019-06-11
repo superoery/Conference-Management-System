@@ -37,7 +37,7 @@ public class LeaveExaminationBizImpl implements LeaveExaminationBiz{
 		Notification notification = new Notification();
 		notification.setNotificationType(EnumNotificationType.LEAVE.getDescription());
 		notification.setReferId(record.getMeetingId().toString());
-		notification.setNotificationnStatus(EnumNotificationStatus.UNREAD.getDescription());
+		notification.setNotificationStatus(EnumNotificationStatus.UNREAD.getDescription());
 		notification.setId(null);
 		NoticesKey notices = new NoticesKey();
 

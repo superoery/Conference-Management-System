@@ -38,35 +38,9 @@
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
-			  <h4 class="card-title">一般通知</h4>
+			  <h4 th:text="${title}">标题</h4>
 			  <div class="table-responsive">
-				<table class="table" th:if="${notiList}!=null">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						类型
-					  </th>
-					  <th>
-						信息
-					  </th>  
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="notification : ${notiList}">
-					    <td th:text="${notification.getNotificationId()}"></td>
-					    <td th:text="${notification.getNotificationType()}"></td>
-					    <td th:text="${notification.getReferMsg()}"></td>
-						<td>
-						<a class="btn btn-secondary" th:href="@{/inform/normal/details.do(informId=${notification.getNotificationId()})}">
-						查看详情
-						</a>
-						</td>
-					</tr>
-			      </tbody>
-				</table>
+			  <p th:text="${msg}">结果</p>
 			  </div>
 			</div>
 		  </div>

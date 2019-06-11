@@ -101,7 +101,7 @@ public class InformBizImpl implements InformBiz {
                 Notification attendNoti = new Notification();
                 attendNoti.setNotificationType(EnumNotificationType.MEETING.getDescription());
                 attendNoti.setNotificationDetail(attendMtDetail);
-                attendNoti.setNotificationnStatus(EnumNotificationStatus.UNREAD.getDescription());
+                attendNoti.setNotificationStatus(EnumNotificationStatus.UNREAD.getDescription());
                 attendNoti.setReferId(meetingId.toString());
                 
                 notificationMapper.insertSelective(attendNoti);
@@ -122,7 +122,7 @@ public class InformBizImpl implements InformBiz {
         Notification auditNoti = new Notification();
         auditNoti.setNotificationType(EnumNotificationType.AUIDIT.getDescription());
         auditNoti.setNotificationDetail(auditdetail);
-        auditNoti.setNotificationnStatus(EnumNotificationStatus.UNREAD.getDescription());
+        auditNoti.setNotificationStatus(EnumNotificationStatus.UNREAD.getDescription());
         auditNoti.setReferId(meetingId.toString());
         
         notificationMapper.insertSelective(auditNoti);

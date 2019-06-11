@@ -45,6 +45,7 @@
                 </div>
 				<div class="form-group">
                   <label>Role * &nbsp;</label>
+                  
                   <select th:field="*{identityId}" style="font-size: 14px;">投影笔
 	            	<option th:each="identity : ${identities}"
 	            		th:text="${identity.getDescription()}"
@@ -52,6 +53,7 @@
 	            		text="投影笔">
 	            	</option>
 				  </select>
+				  
 				  <a href="#" class="forgot-pass" style="float: right;">Forgot password</a>
 				  <p th:if="${#fields.hasErrors('identityId')}" th:errors="*{identityId}" style="color:#FF0000">errors identityId</p>
                 </div>

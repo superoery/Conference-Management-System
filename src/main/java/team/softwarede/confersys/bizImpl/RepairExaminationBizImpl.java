@@ -40,7 +40,7 @@ public class RepairExaminationBizImpl implements RepairExaminationBiz{
 		Notification notification = new Notification();
 		notification.setId(null);
 		notification.setNotificationType(EnumNotificationType.REPAIR.getDescription());
-		notification.setNotificationnStatus(EnumNotificationStatus.UNREAD.getDescription());
+		notification.setNotificationStatus(EnumNotificationStatus.UNREAD.getDescription());
 		notification.setReferId(String.valueOf(repairEquipmentId));
 		NoticesKey notices = new NoticesKey();
 		RepairEquipment record = repairEquipmentMapper.selectByPrimaryKey(repairEquipmentId);

@@ -29,52 +29,73 @@
 
 <body>
 
-
 	<!-- partial -->
 	<div class="content-wrapper">
 	
-
-	  <div class="row" >
+	  
+	  <div class="row" id="notificationDetail">
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
-			  <h4 class="card-title">一般通知</h4>
+			  <h4 class="card-title">通知详情</h4>
 			  <div class="table-responsive">
-				<table class="table" th:if="${notiList}!=null">
-				  <thead>
+				<table class="table" th:if="${mtApplyDetails}!=null">
+				  
 					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						类型
-					  </th>
-					  <th>
-						信息
-					  </th>  
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="notification : ${notiList}">
-					    <td th:text="${notification.getNotificationId()}"></td>
-					    <td th:text="${notification.getNotificationType()}"></td>
-					    <td th:text="${notification.getReferMsg()}"></td>
-						<td>
-						<a class="btn btn-secondary" th:href="@{/inform/normal/details.do(informId=${notification.getNotificationId()})}">
-						查看详情
+					  	<td>申请编号</td>
+					  	<td th:text="${mtApplyDetails.getApplyId()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>会议编号</td>
+				    	<td th:text="${mtApplyDetails.getMeetingId()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>会议主题</td>
+				    	<td th:text="${mtApplyDetails.getMtTopic()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>会议内容</td>
+				    	<td th:text="${mtApplyDetails.getMtContent()}"></td>
+				    </tr>
+				    <tr>
+				    	<td>申请者编号</td>
+				    	<td th:text="${mtApplyDetails.getApplicantId()}"></td>
+				    </tr>
+					<tr>
+				    	<td>申请者名字</td>
+				    	<td th:text="${mtApplyDetails.getApplicantName()}"></td>
+				    </tr>
+					<tr>
+				    	<td>会议室地点</td>
+				    	<td th:text="${mtApplyDetails.getMtRoomLocation()}"></td>
+				    </tr>
+				    <tr>
+				    	
+				    	<td>
+						<a class="btn btn-secondary" th:href="@{/meeting/audit.do(
+						mtRoomApplyId=${mtApplyDetails.getApplyId()},
+						mtRoomApplyStatus=1
+						)}">
+						同意
 						</a>
-						</td>
-					</tr>
-			      </tbody>
+				    	</td>
+				    	<td>
+						<a class="btn btn-secondary" th:href="@{/meeting/audit.do(
+						mtRoomApplyId=${mtApplyDetails.getApplyId()},
+						mtRoomApplyStatus=0
+						)}">
+						拒绝
+						</a>
+				    	</td>
+				    </tr>			
 				</table>
 			  </div>
 			</div>
 		  </div>
 		</div>
 	  </div>
-  </div>
-
-	
-	
+	</div>
+	  
+	  
 </body>
 </html>

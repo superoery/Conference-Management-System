@@ -103,7 +103,16 @@ public class InformControllerTest {
 	/**
 	 * 测试从通知列表跳转到通知详情
 	 */
-	public void testListSkipDetails() {
+	@Test
+	public void testSpList() {
 		
+			
+		try {
+			mvc.perform(post("/inform/sp/list.do")).andDo(print());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+                   
 	}
 }
