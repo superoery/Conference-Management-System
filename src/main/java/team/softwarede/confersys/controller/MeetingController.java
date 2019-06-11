@@ -11,22 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import team.softwarede.confersys.biz.ShowMeetingDetail2Biz;
-import team.softwarede.confersys.biz.ShowMeetingDetail3Biz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingDetail;
-import team.softwarede.confersys.dto.MeetingDetailWithoutParticipantsList;
 import team.softwarede.confersys.dto.ParticipantBasicInfo;
 import team.softwarede.confersys.entity.Role;
-import team.softwarede.confersys.enums.EnumRoleName;
 
 @Controller
 @RequestMapping("/meeting")
 public class MeetingController {
 	@Autowired
 	ShowMeetingDetail2Biz showMeetingDetail2Biz;
-
-	@Autowired
-	ShowMeetingDetail3Biz showMeetingDetail3Biz;
 
 	@RequestMapping(value = "/mt_detail.do", params = {"mtId"})
 	public String index(ModelMap map, 
