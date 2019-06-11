@@ -7,11 +7,8 @@ package team.softwarede.confersys.biz;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
+import team.softwarede.confersys.dto.EquipmentRepairDetails;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
-import team.softwarede.confersys.dto.MeetingRoomBook;
-import team.softwarede.confersys.entity.Equipment;
 import team.softwarede.confersys.entity.EquipmentType;
 
 /**
@@ -26,4 +23,5 @@ public interface MeetingRoomBiz {
                                           Integer capacity);
 
     List<EquipmentType> showMtRoomBookPage();
+    EquipmentRepairDetails repairDetails(int repairId);
 }

@@ -26,9 +26,11 @@ public class ShowMeetingDetail2BizImpl implements ShowMeetingDetail2Biz{
 	public MeetingDetail showMeetingDetail2(String userId, int meetingId,int roleId) {
 		if(roleId == 1 || roleId == 3){
 			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(userId, meetingId);
+			list.setMtId(meetingId);
 			return list;
 		}else {
 			MeetingDetail list = showMeetingDetail2Mapper.selectByAdmin(meetingId);
+			list.setMtId(meetingId);
 			return list;
 		}
 	}

@@ -20,8 +20,11 @@ public class EquipmentRepairDetails {
 	
 	private Date applyTime;
 	
-	private String location;
+	private String building;
 
+	private int floor;
+	
+	private String roomNumber;
 	public Integer getRepairId() {
 		return repairId;
 	}
@@ -86,12 +89,28 @@ public class EquipmentRepairDetails {
 		this.applyTime = applyTime;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getBuilding() {
+		return building;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setBuilding(String building) {
+		this.building = building;
+	}
+	
+	public int getFloor() {
+		return floor;
+	}
+
+	public void setBuilding(int floor) {
+		this.floor = floor;
+	}
+	
+	public String roomNumber() {
+		return roomNumber;
+	}
+
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
 	}
 	
 	

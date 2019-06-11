@@ -1,8 +1,5 @@
 package team.softwarede.confersys.dto;
 
-import team.softwarede.confersys.entity.Apply;
-import team.softwarede.confersys.entity.Meeting;
-
 public class MeetingApplyDetails {
 
 	private Integer applyId;
@@ -15,7 +12,11 @@ public class MeetingApplyDetails {
 	
 	private String mtContent;
 	
-	private String mtRoomLocation;
+	private String building;
+	
+	private Integer floor;
+	
+	private String roomNumber;
 	
 	private Integer meetingId;
 
@@ -59,12 +60,28 @@ public class MeetingApplyDetails {
 		this.mtContent = mtContent;
 	}
 
-	public String getMtRoomLocation() {
-		return mtRoomLocation;
+	public String getBuilding() {
+		return building;
 	}
 
-	public void setMtRoomLocation(String mtRoomLocation) {
-		this.mtRoomLocation = mtRoomLocation;
+	public void setBuilding(String building) {
+		this.building = building;
+	}
+
+	public Integer getFloor() {
+		return floor;
+	}
+
+	public void setFloor(Integer floor) {
+		this.floor = floor;
+	}
+	
+	public String getRoomNumber() {
+		return roomNumber;
+	}
+
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
 	}
 
 	public Integer getMeetingId() {

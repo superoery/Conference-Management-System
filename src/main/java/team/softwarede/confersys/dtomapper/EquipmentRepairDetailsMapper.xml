@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.softwarede.confersys.dtomapper.EquipmentRepairDetailsMapper">
+  <resultMap id="BaseResultMap" type="team.softwarede.confersys.dto.EquipmentRepairDetails">
+    <id column="repair_equipment_id" jdbcType="INTEGER" property="repairId" />
+    <result column="equipment_id" jdbcType="INTEGER" property="equipmentId" />
+    <result column="type_name" jdbcType="VARCHAR" property="equipmentType" />
+    <result column="equipment_name" jdbcType="VARCHAR" property="equipmentName" />
+    <result column="repair_detail" jdbcType="VARCHAR" property="repairDetail" />
+    <result column="repair_type" jdbcType="VARCHAR" property="repairType" />
+    <result column="name" jdbcType="VARCHAR" property="applicantName" />
+    <result column="repair_time" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="building" jdbcType="VARCHAR" property="building" />
+    <result column="floor" jdbcType="INTEGER" property="floor" />
+    <result column="room_number" jdbcType="VARCHAR" property="roomNumber" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    repair_equipment_id, equipment_id, type_name, equipment_name, repair_detail, repair_type, name, repair_time, building, floor, room_number
+  </sql>
+
+ <select id="showEquipmentDetail" resultMap="BaseResultMap">
+ 	select 
+ 	repair_equipment_id, e.equipment_id, type_name, equipment_name, repair_detail, repair_type, name, repair_time, building, floor, room_number
+ 	from equipment e, equipment_type et, repair_equipment re, repairs r, user u, meeting_room mr
+ 	where 
+	 	repair_equipment_id = #{repairId} 
+	 	and repair_equipment_id = re.id 
+	 	and r.equipment_id = e.equipment_id 
+	 	and re.user_id = u.user_id 
+	 	and equipment_type_id = et.id 
+	 	and e.meeting_room_id = mr.id
+ </select>
+</mapper>

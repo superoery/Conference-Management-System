@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.MeetingBiz;
+import team.softwarede.confersys.dto.MeetingApplyDetails;
 import team.softwarede.confersys.dto.MeetingRoomBook;
+import team.softwarede.confersys.dtomapper.MeetingApplyDetailsMapper;
 import team.softwarede.confersys.entity.Apply;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.Participates;
@@ -42,6 +43,8 @@ public class MeetingBizImpl implements MeetingBiz {
     ScheduleMapper scheduleMapper; 
     @Autowired
     BelongsToMapper belongsToMapper; 
+    @Autowired
+    MeetingApplyDetailsMapper meetingApplyDetailsMapper;
     
     @Transactional
     @Override
@@ -194,9 +197,24 @@ public class MeetingBizImpl implements MeetingBiz {
         
         return true;
     }
+    @Override
+    public boolean editMeetingContent(int meetingId, String meetingContent, String meetingConclusion) {
+    	Meeting meeting = meetingMapper.selectByPrimaryKey(meetingId);
+    	if(meetingContent != null) {
+    		meeting.setMeetingContent(meetingContent);
+    	}
+    	if(meetingConclusion != null) {
+    		meeting.setMeetingConclusion(meetingConclusion);
+    	}else {
+    		return false;
+    	}
+    	meetingMapper.updateByPrimaryKey(meeting);
+    	return true;
+    }
     
-    
-    
-    
+    @Override
+    public MeetingApplyDetails showMtRoomBookDetails(int applyId) {
+    	return(meetingApplyDetailsMapper.selectByMeetingId(applyId));
+    }
 
 }
