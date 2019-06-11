@@ -199,6 +199,8 @@ public class InformController {
 			
 			map.addAttribute("details", leaveDetails);
 			
+			EnumNotificationSpType.BOOK.ordinal();
+			
 			return "meeting_leave_audit";
 			
 		}else {

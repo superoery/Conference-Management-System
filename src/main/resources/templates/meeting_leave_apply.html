@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+  <title>Purple Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../static/example/node_modules/mdi/css/materialdesignicons.min.css"
+  		th:href="@{/example/node_modules/mdi/css/materialdesignicons.min.css}"></link>
+  <link rel="stylesheet" href="../static/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"
+  		th:href="@{/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css}"></link>
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="../static/example/node_modules/font-awesome/css/font-awesome.min.css" 
+  		th:href="@{example/node_modules/font-awesome/css/font-awesome.min.css}" />
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../static/example/css/style.css"
+  		th:href="@{/example/css/style.css}" ></link>
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../static/example/images/favicon.png"
+  		 th:href="@{example/images/favicon.png}" />
+</head>
+
+<body>
+
+	<div class="content-wrapper">
+	
+	  
+	  <div class="row" id="notificationDetail">
+		<div class="col-12 grid-margin">
+		  <div class="card">
+			<div class="card-body">
+			  <h4 class="card-title">请假申请</h4>
+			  <div class="table-responsive">
+
+              <form action="/meeting/leave/apply/apply.do" method="post">
+                <div class="form-group">
+                  <label>请假理由</label>
+                  <input type="text" class="form-control p_input" name="reason" th:value="${reason}"></input>
+                </div>
+				<div class="form-group">
+                  <label>请假会议 &nbsp;</label><br/>
+                  
+                  <input type="radio" name="meetingId"
+					   th:each ="meeting:${meetingList}"
+					   th:value="${meeting.getMtId()}"
+					   th:text ="${meeting.getMtTopic()}">
+                </div> 
+                 
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-block enter-btn">提交</button>
+                </div>
+              </form>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+</body>
+
+</html>

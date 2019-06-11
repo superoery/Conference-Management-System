@@ -10,15 +10,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import team.softwarede.confersys.biz.InformBiz;
+import team.softwarede.confersys.biz.LeaveApplicationBiz;
 import team.softwarede.confersys.biz.LeaveExaminationBiz;
 import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.biz.ShowMeetingDetail2Biz;
+import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingDetail;
+import team.softwarede.confersys.dto.MeetingMainPage;
 import team.softwarede.confersys.dto.ParticipantBasicInfo;
 import team.softwarede.confersys.entity.Role;
+import team.softwarede.confersys.enums.EnumRoleName;
 
 @Controller
 @RequestMapping("/meeting")
@@ -30,6 +35,12 @@ public class MeetingController {
 	LeaveExaminationBiz leaveExaminationBiz;
 	@Autowired
 	ShowMeetingDetail2Biz showMeetingDetail2Biz;
+	@Autowired
+	LeaveApplicationBiz leaveApplicationBiz;
+	@Autowired
+	ShowMeetingMainPageBiz showMeetingMainPageBiz;
+	
+	
 	
 	/**
 	 * 审核会议室申请
@@ -101,5 +112,104 @@ public class MeetingController {
 
 		return "mt_detail";
     }
+	
+	
+	/**
+	 * 显示请假申请界面
+	 */
+	@RequestMapping(value = "/leave/apply/show.do")
+	public String showLeaveApplyPage(ModelMap map,
+									 HttpSession session) {
+		
+		BasicSession userSession = new BasicSession();
+		Role role = new Role();
+		String userId = "10000004";
+		String userName = "大脸妹";
+		
+		role.setId(EnumRoleName.NORMAL.getValue());
+		role.setRole(EnumRoleName.NORMAL.getDescription());
+		
+		userSession.setUserId(userId);
+		userSession.setUserName(userName);
+		userSession.setRole(role);
+		
+		session.setAttribute("userSession", userSession);
+		
+		List<MeetingMainPage> meetingList = 
+				showMeetingMainPageBiz.showMeetingMainPage(userSession.getUserId(),
+														   userSession.getRole().getId());
+		map.addAttribute("meetingList", meetingList);
+		
+		return "meeting_leave_apply";
+	}
+	
+	
+	
+	/**
+	 * 提交请假申请
+	 */
+	@RequestMapping(value = "/leave/apply/apply.do",method = RequestMethod.POST)
+	public String applyLeaveApply(ModelMap map,
+								  HttpSession session,								  
+								  @ModelAttribute("reason")String reason,
+								  @ModelAttribute("meetingId")Integer meetingId) {
+
+		LeaveApplication leaveApplication = new LeaveApplication();
+		String result = null;
+		String title = "申请请假";
+		String msg = null;
+		
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		String userId = userSession.getUserId();
+
+		leaveApplication.setUserId(userId);
+		leaveApplication.setReason(reason);
+		leaveApplication.setMeetingId(meetingId);
+		
+		result = leaveApplicationBiz.submitLeaveApplication(leaveApplication);
+		
+		if(result.equals("succeed")) {
+			
+			msg = "申请请假成功";
+			
+		}else {
+			msg = "申请请假失败";
+		}
+		
+		return "forward:/universal/result/show.do";
+		
+	}
+	
+	/**
+	 * 显示会议信息修改界面
+	 */
+	@RequestMapping(value = "/details/edit.do",method = RequestMethod.GET)
+	public String showEditMtDetailsPage() {
+		
+		
+		
+		
+		return null;
+	}
+	
+	
+	/**
+	 * 会议信息修改
+	 */
+	@RequestMapping(value = "/details/edit.do",method = RequestMethod.POST)
+	public String editMeetingContent(ModelMap map,
+									 @ModelAttribute("mtId")Integer mtId,
+									 @ModelAttribute("mtContent")String mtContent,
+									 @ModelAttribute("mtConclude")String mtConclude
+									 ) {
+		String title = "修改会议信息";
+		String msg = "修改成功";
+		
+		map.addAttribute("title", title);
+		map.addAttribute("msg", msg);
+		
+		return "/universal/result/show.do";
+	}
+	
 	
 }

@@ -79,12 +79,12 @@ public class UserBizImpl implements UserBiz {
     public UserInfo showUserInfo(String userId) {
     	User userInfo = userMapper.selectByPrimaryKey(userId);
     	UserInfo showUserInfo = new UserInfo();
-    	showUserInfo.setUserId(userInfo.getUserId());
-    	showUserInfo.setTelephone(userInfo.getTelephone());
-    	showUserInfo.setSex(userInfo.getSex());
-    	showUserInfo.setName(userInfo.getName());
-    	showUserInfo.setIdentity(userInfo.getIdentityId());
-    	showUserInfo.setEmail(userInfo.getEmail());
+//    	showUserInfo.setUserId(userInfo.getUserId());
+//    	showUserInfo.setTelephone(userInfo.getTelephone());
+//    	showUserInfo.setSex(userInfo.getSex());
+//    	showUserInfo.setName(userInfo.getName());
+//    	showUserInfo.setIdentity(userInfo.getIdentityId());
+//    	showUserInfo.setEmail(userInfo.getEmail());
     	return showUserInfo;
     }
 
