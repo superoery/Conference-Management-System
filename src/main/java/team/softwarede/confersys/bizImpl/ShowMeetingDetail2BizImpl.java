@@ -23,13 +23,13 @@ public class ShowMeetingDetail2BizImpl implements ShowMeetingDetail2Biz{
 	ShowMeetingDetail2Mapper showMeetingDetail2Mapper;
 	
 	@Override
-	public MeetingDetail showMeetingDetail2(int meetingId,int roleId) {
-		if(roleId == 1){
-			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(meetingId);
+	public MeetingDetail showMeetingDetail2(String userId, int meetingId,int roleId) {
+		if(roleId == 1 || roleId == 3){
+			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(userId, meetingId);
 			return list;
 		}else {
-			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(meetingId);
-			list.setMyParticipantStatus(null);
+			MeetingDetail list = showMeetingDetail2Mapper.selectByMeetingId(userId, meetingId);
+//			list.setMyParticipantStatus(null);
 			return list;
 		}
 	}
@@ -37,9 +37,13 @@ public class ShowMeetingDetail2BizImpl implements ShowMeetingDetail2Biz{
 	@Autowired
 	ShowMeetingDetailMapper showMeetingDetailMapper;
 	@Override
-	public List<ParticipantBasicInfo> showMeetingDetail(int meetingId) {
-		List<ParticipantBasicInfo> participantBasicInfo = showMeetingDetailMapper.selectByMeetingId(meetingId);
-		return participantBasicInfo;
+	public List<ParticipantBasicInfo> showMeetingDetail(int meetingId, int roleId) {
+		if(roleId == 1 || roleId == 2){
+			List<ParticipantBasicInfo> participantBasicInfo = showMeetingDetailMapper.selectByMeetingId(meetingId);
+			return participantBasicInfo;
+		}else {
+			return null;
+		}
 	}
 
 }

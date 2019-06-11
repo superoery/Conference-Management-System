@@ -35,7 +35,9 @@ public class ShowMeetingDetailBizImplTest {
 	@Autowired
 	ShowMeetingDetail2Biz showMeetingDetail2Biz;
 	//测试普通用户返回的会议详情
-	@Ignore
+
+	@Transactional
+	 @Test
 	public void testShowMeetingDetail() {
 		int meetingId = 1;
 		Logger logger = Logger.getLogger(getClass());
@@ -53,35 +55,23 @@ public class ShowMeetingDetailBizImplTest {
 		logger.info(list.getMtStatus());
 		logger.info(list.getMyParticipantStatus());
 	}
-	@Transactional
-	@Test
-	public void testAdminShowMeetingDetail() {
-		int meetingId = 1;
-		Logger logger = Logger.getLogger(getClass());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
-		
-		MeetingDetail list = showMeetingDetail2Biz.showMeetingDetail2(meetingId,1);
-		List<ParticipantBasicInfo> personList = showMeetingDetail2Biz.showMeetingDetail(meetingId);
-		
-		logger.info(String.valueOf(list.getMtId()));
-		logger.info(list.getMtTopic());
-		logger.info(sdf.format(list.getBeginTime()));
-		logger.info(sdf.format(list.getBeginTime()));
-		logger.info(list.getMtRoomNum());
-		logger.info(String.valueOf(list.getMtRoomFloor()));
-		logger.info(String.valueOf(list.getMtNum()));
-		logger.info(list.getMtRoomBuilding());
-		logger.info(list.getMtContent());
-		logger.info(list.getMtConclusion());
-		logger.info(list.getMtStatus());
-		logger.info(list.getMyParticipantStatus());
-		for(ParticipantBasicInfo str : personList) {
-			logger.info(str.getMtId());
-			logger.info(str.getParticipantId());
-			logger.info(str.getParticipantName());
-			logger.info(str.getParticipantStatus());
-		
-		}
-	}
+	 @Ignore
+	 public void testAdminShowMeetingDetail() {
+	  int meetingId = 21;
+	  String userId = "00000011";
+	  Logger logger = Logger.getLogger(getClass());
+	  
+	  MeetingDetail list = showMeetingDetail2Biz.showMeetingDetail2(userId, meetingId, 1);
+	  logger.info(list.getMtTopic());
+	  List<ParticipantBasicInfo> personList = showMeetingDetail2Biz.showMeetingDetail(meetingId, 1);
+
+	  for(ParticipantBasicInfo str : personList) {
+	   logger.info(str.getMtId());
+	   logger.info(str.getParticipantId());
+	   logger.info(str.getParticipantName());
+	   logger.info(str.getParticipantStatus());
+	  
+	  }
+	 }
 }
 

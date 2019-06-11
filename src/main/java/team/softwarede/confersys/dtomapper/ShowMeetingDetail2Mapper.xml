@@ -20,11 +20,11 @@
   <sql id="Base_Column_List">
     id, topic, begin_time, end_time, room_number, floor, building, meeting_content, meeting_conclusion, status_id, number, participants_status
   </sql>
-    <select id="selectByMeetingId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
- 	select 
- 	m.id, topic, begin_time, end_time, room_number, floor, building, meeting_content, meeting_conclusion, meeting_status_id, number, participants_status
- 	from participates p, meeting m, schedule s, meeting_room mr
- 	where 
-	 	m.id = #{meetingId} and p.meeting_id = m.id and m.id = s.meeting_id and s.meeting_room_id = mr.id
+ <select id="selectByMeetingId" resultMap="BaseResultMap">
+  select 
+  m.id, topic, begin_time, end_time, room_number, floor, building, meeting_content, meeting_conclusion, meeting_status_id, number, participants_status
+  from participates p, meeting m, schedule s, meeting_room mr
+  where 
+   p.user_id = #{userId} and m.id = #{meetingId} and p.meeting_id = m.id and m.id = s.meeting_id and s.meeting_room_id = mr.id
  </select>
  </mapper>

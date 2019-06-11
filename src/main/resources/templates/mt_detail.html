@@ -264,8 +264,9 @@
 						<th>与会者列表</th>
 						<td>
 							<table class="table table">
-								<tr   th:each="p : ${participantsList.getParticipantsList()}">
-									<td th:text="${p.getParticipantName()} + '  ' + ${p.getParticipantStatus()}"></td>
+								<tr   th:each="p : ${participantsList}">
+									<td th:text="${p.getParticipantName()}"></td>
+									<td th:text="${p.getParticipantStatus()}"></td>
 								</tr>
 							</table>
 						</td>

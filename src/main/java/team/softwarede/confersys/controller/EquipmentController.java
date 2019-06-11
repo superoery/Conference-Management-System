@@ -27,8 +27,8 @@ public class EquipmentController {
 		List<String> repairTypeList = repairApplicationBiz.showAllRepairType();
 		map.addAttribute("repairTypeList", repairTypeList);
 
-		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
-		map.addAttribute("userSession",userSession);
+//		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+//		map.addAttribute("userSession",userSession);
 		return "equipment_repair";
 	}
 	
@@ -37,7 +37,6 @@ public class EquipmentController {
 			HttpSession session,
 			@ModelAttribute("repairApply") RepairApply repairApply) {
 		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
-		System.out.println(repairApply.getRepairDetail());
 		repairApplicationBiz.repairApplication(userSession.getUserId(), repairApply);
 		map.addAttribute("userSession",userSession);
 		return "equipment_repair_submitMsg";

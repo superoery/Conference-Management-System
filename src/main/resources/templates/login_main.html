@@ -164,7 +164,7 @@
 		
 		
 		<li class="nav-item" th:if="${userSession.getRole().getRole()} == '会议组织者' ">
-		  <a class="nav-link" href="ugroup_mtroom_book.html" th:href="@{/meetingRoom/book.do}">
+		  <a class="nav-link" href="mtroom_book.html" th:href="@{/meetingRoom/book.do}">
 			<span class="menu-title">会议室预约</span>
 			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
 		  </a>
@@ -180,7 +180,7 @@
 		
 		
 		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '普通用户' ">
-		  <a class="nav-link" href="#">
+		  <a class="nav-link" href="#" th:href="@{/userGroup/showUG.do}">
 			<span class="menu-title">用户组</span>
 			<i class="mdi mdi-table-large menu-icon"></i>
 		  </a>
@@ -203,8 +203,8 @@
 			<div class="card-body">
 			  <h4 class="card-title">参与的会议</h4>
 			  <div class="table-responsive">
-			  	<p th:if="${pmtList}==null" th:text="没有需要参加的会议！"></p>
-				<table class="table" th:if="${pmtList}!=null">
+			  	<p th:if="${pmtList}==null or ${pmtList.size()}==0" th:text="没有需要参加的会议！"></p>
+				<table class="table" th:if="${pmtList}!=null and ${pmtList.size()}!=0">
 				  <thead>
 					<tr>
 					  <th>
@@ -243,6 +243,9 @@
 					  <td th:text="${pmt.getMtRoomFloor()}"></td>
 					  <td th:text="${pmt.getMtRoomNum()}"></td>
 					  <td th:text="${pmt.getMtStatus()}"></td>
+					  <td><a class="btn btn-success" style="color:#FFFFFF"
+							th:href="@{/meeting/mt_detail.do(mtId=${pmt.getMtId()}) }">查看详情</a></td>
+					</tr>
 				  </tbody>
 				</table>
 			  </div>
@@ -264,8 +267,8 @@
 			<div class="card-body">
 			  <h4 class="card-title">组织的会议</h4>
 			  <div class="table-responsive">
-			  	<p th:if="${omtList}==null" th:text="没有您组织的会议！"></p>
-				<table class="table"  th:if="${omtList}!=null">
+			  	<p th:if="${omtList}==null or ${omtList.size()}==0" th:text="没有您组织的会议！"></p>
+				<table class="table"  th:if="${omtList}!=null and ${omtList.size()}!=0">
 				  <thead>
 					<tr>
 					  <th>
@@ -304,6 +307,9 @@
 					  <td th:text="${omt.getMtRoomFloor()}"></td>
 					  <td th:text="${omt.getMtRoomNum()}"></td>
 					  <td th:text="${omt.getMtStatus()}"></td>
+					  <td><a class="btn btn-secondary" 
+							th:href="@{/meeting/mt_detail.do(mtId=${omt.getMtId()})}">查看详情</a></td>
+					</tr>
 				  </tbody>
 				</table>
 			  </div>
@@ -324,8 +330,8 @@
 			<div class="card-body">
 			  <h4 class="card-title">全部会议</h4>
 			  <div class="table-responsive">
-			  	<p th:if="${amtList}==null" th:text="没有会议！"></p>
-				<table class="table" th:if="${amtList}!=null">
+			  	<p th:if="${amtList}==null or ${amtList.size()}==0" th:text="没有会议！"></p>
+				<table class="table" th:if="${amtList}!=null and ${amtList.size()}!=0">
 				  <thead>
 					<tr>
 					  <th>
@@ -364,6 +370,9 @@
 					  <td th:text="${amt.getMtRoomFloor()}"></td>
 					  <td th:text="${amt.getMtRoomNum()}"></td>
 					  <td th:text="${amt.getMtStatus()}"></td>
+					  <td><a class="btn btn-success" style="color:#FFFFFF"
+							th:href="@{/meeting/mt_detail.do(mtId=${amt.getMtId()}) }">查看详情</a></td>
+					</tr>
 				  </tbody>
 				</table>
 			  </div>

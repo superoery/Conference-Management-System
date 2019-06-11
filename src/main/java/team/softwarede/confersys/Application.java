@@ -17,7 +17,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  *
  */
 @SpringBootApplication
-@EnableCaching
+//@EnableCaching
 @EnableTransactionManagement
 public class Application {
 
