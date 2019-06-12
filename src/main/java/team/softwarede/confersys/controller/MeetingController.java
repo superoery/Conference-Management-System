@@ -16,6 +16,7 @@ import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.biz.LeaveApplicationBiz;
 import team.softwarede.confersys.biz.LeaveExaminationBiz;
 import team.softwarede.confersys.biz.MeetingBiz;
+import team.softwarede.confersys.biz.ShowMainPageOrgBiz;
 import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.biz.ShowMeetingDetail2Biz;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
@@ -23,6 +24,7 @@ import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingDetail;
 import team.softwarede.confersys.dto.MeetingMainPage;
 import team.softwarede.confersys.dto.ParticipantBasicInfo;
+import team.softwarede.confersys.dto.UserLogin;
 import team.softwarede.confersys.entity.Role;
 import team.softwarede.confersys.enums.EnumRoleName;
 
@@ -40,10 +42,29 @@ public class MeetingController {
 	LeaveApplicationBiz leaveApplicationBiz;
 	@Autowired
 	ShowMeetingMainPageBiz showMeetingMainPageBiz;
+    @Autowired
+    ShowMainPageOrgBiz showMainPageOrgBiz;
 	@Autowired
 	MeetingBiz meetingBiz; 
 	
-	
+	@RequestMapping("/show_list.do")
+	public String showMeetingList(ModelMap map,
+			@ModelAttribute("userlogin") UserLogin userlogin,
+			HttpSession session) {
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		map.addAttribute("userSession",userSession);
+		
+		List<MeetingMainPage> pmtList = showMeetingMainPageBiz.showMeetingMainPage(userSession.getUserId(), userSession.getRole().getId());
+		map.addAttribute("pmtList",pmtList);
+		
+		List<MeetingMainPage> omtList = showMainPageOrgBiz.showMainPageOrg(userSession.getUserId(), userSession.getRole().getId());
+		map.addAttribute("omtList",omtList);
+		
+		List<MeetingMainPage> amtList = showMeetingMainPageBiz.showMeetingMainPage(userSession.getUserId(), userSession.getRole().getId());
+		map.addAttribute("amtList",amtList);
+		
+		return "login_main";
+	}
 	
 	/**
 	 * 审核会议室申请
@@ -113,7 +134,7 @@ public class MeetingController {
 		map.addAttribute("mtDetail", mtDetail);
 		map.addAttribute("participantsList", participantsList);
 
-		return "mt_detail";
+		return "meeting_detail";
     }
 	
 	/**

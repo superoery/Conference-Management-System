@@ -20,8 +20,8 @@ import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.biz.LeaveApplicationBiz;
 import team.softwarede.confersys.biz.MeetingBiz;
 import team.softwarede.confersys.biz.MeetingRoomBiz;
-import team.softwarede.confersys.biz.NotificationBiz;
 import team.softwarede.confersys.biz.RepairApplicationBiz;
+import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.EquipmentRepairDetails;
 import team.softwarede.confersys.dto.LeaveApplyShowDetail;
@@ -39,14 +39,15 @@ public class InformController {
 
 	@Autowired
 	InformBiz informBiz;
-//	@Autowired
-//	NotificationBiz notificationBiz;
 	@Autowired
 	LeaveApplicationBiz leaveApplicationBiz;
 	@Autowired
 	MeetingBiz meetingBiz;
 	@Autowired
 	MeetingRoomBiz meetingRoomBiz;
+	@Autowired
+	ShowMeetingMainPageBiz showMeetingMainPageBiz;
+	
 	
 	@RequestMapping(value = "/normal/details.do",params = {"informId"},method = RequestMethod.GET)
 	public String showNormalInformDetails(ModelMap map,
@@ -81,22 +82,11 @@ public class InformController {
 	public String showNormalInformList(HttpSession session,
 									   ModelMap map) {
 		
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
 		
-		List<NotificationMainPage> notificationList = new ArrayList<NotificationMainPage>();
-		
-		NotificationMainPage n = new NotificationMainPage();
-		n.setNotificationId(17);
-		n.setNotificationType("新会议");
-		n.setReferMsg("srtp开会");
-		
-		NotificationMainPage m = new NotificationMainPage();
-		m.setNotificationId(2);
-		m.setNotificationType("报修");
-		m.setReferMsg("逸夫楼601");
-		
-		notificationList.add(n);
-		notificationList.add(m);
-		
+		List<NotificationMainPage> notificationList = 
+				informBiz.ordinaryNotification(userSession.getUserId(), userSession.getRole().getId());
+				
 		map.addAttribute("notiList",notificationList);
 		
 		return "inform_list_show";
@@ -106,10 +96,17 @@ public class InformController {
 	 * 显示待处理的特殊通知列表
 	 */
 	@RequestMapping("/sp/list.do")
-	public String showSpInformList(ModelMap map) {
+	public String showSpInformList(ModelMap map,
+								   HttpSession session,
+								   @ModelAttribute("selectedTypeId")Integer selectedTypeId) {
 		
-		List<NotificationSpIntro> notiSpIntroList = 
-				informBiz.spNotificastion(EnumNotificationSpType.ALL.ordinal());
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		
+		if(selectedTypeId==null) {
+			selectedTypeId = EnumNotificationSpType.ALL.ordinal();
+		}
+		
+		List<NotificationSpIntro> notiSpIntroList = informBiz.spNotificastion(selectedTypeId);
 		List<EnumNotificationSpType> eNotiSpTypeList = new ArrayList<EnumNotificationSpType>();
 		
 		for(EnumNotificationSpType e : EnumNotificationSpType.values()) {
@@ -117,6 +114,8 @@ public class InformController {
 			
 		}
 		
+		
+		map.addAttribute("selectedTypeId", selectedTypeId);
 		map.addAttribute("types",eNotiSpTypeList);
 		map.addAttribute("notiSpIntroList", notiSpIntroList);
 		
@@ -129,9 +128,14 @@ public class InformController {
 	 */
 	@RequestMapping(value = "/sp/details.do" , params = {"referId","type","applicantId"})
 	public String showSpInformDetails(ModelMap map,
+									  HttpSession session,
 									  @ModelAttribute("referId")Integer referId,
 									  @ModelAttribute("type")String type,
 									  @ModelAttribute("applicantId")String applicantId){
+		
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		
+		map.addAttribute("userSession", userSession);
 		
 		if(type.equals(EnumNotificationSpType.BOOK.getDescription())) {
 			//显示预约详情

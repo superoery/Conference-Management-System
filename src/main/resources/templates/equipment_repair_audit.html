@@ -1,36 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html 
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="apublic_fragment">
 
 <head>
-<!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Home</title>
-<!-- plugins:css -->
-<link rel="stylesheet" href="../static/example/node_modules/mdi/css/materialdesignicons.min.css"
-	th:href="@{/example/node_modules/mdi/css/materialdesignicons.min.css}" >
-<link rel="stylesheet" href="../static/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"
-	th:href="@{/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css}" >
-<!-- endinject -->
-<!-- plugin css for this page -->
-<link rel="stylesheet" href="../static/example/node_modules/jquery-bar-rating/dist/themes/css-stars.css"
-	th:href="@{/example/node_modules/jquery-bar-rating/dist/themes/css-stars.css}" >
-<link rel="stylesheet" href="../static/example/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"
-	th:href="@{/example/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}" />
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="../static/example/css/style.css" 
-	th:href="@{/example/css/style.css}">
-<!-- endinject -->
-<link rel="shortcut icon" href="../static/example/images/favicon.png"
-	th:href="@{/example/images/favicon.png}" />
+<title>设备报修</title>
 </head>
-
-
 <body>
 
 	<!-- partial -->
-	<div class="content-wrapper">
+	<div class="card-body" layout:fragment="content">
 	
 	  
 	  <div class="row" id="notificationDetail">
@@ -71,7 +53,6 @@
 				    </tr>
 				    <tr>
 				    	<td>会议室</td>
-				    	<span th:text="|Welcome, ${user.name}|">
 				    	<td th:text="|${details.getBuilding()}${details.getFloor()}${details.getRoomNumber()}|"></td>
 				    </tr>
 				    <tr>
