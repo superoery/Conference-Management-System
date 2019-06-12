@@ -8,7 +8,7 @@
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Home</title>
+<title>Conference-Management-System</title>
 <!-- plugins:css -->
 <link rel="stylesheet" href="../static/example/node_modules/mdi/css/materialdesignicons.min.css"
 	th:href="@{/example/node_modules/mdi/css/materialdesignicons.min.css}" >
@@ -38,8 +38,10 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-	<a class="navbar-brand brand-logo" href="login_main.html"><img src="../static/example/images/logo.svg" th:src="@{/example/images/logo.svg}" alt="logo"/></a>
-	<a class="navbar-brand brand-logo-mini" href="login_main.html"><img src="../static/example/images/logo-mini.svg" th:src="@{/example/images/logo-mini.svg}" alt="logo"/></a>
+	<a class="navbar-brand brand-logo" href="login_main.html"
+		th:href="@{/meeting/show_list.do}"><img src="../static/example/images/logo.svg" th:src="@{/example/images/logo.svg}" alt="logo"/></a>
+	<a class="navbar-brand brand-logo-mini" href="login_main.html"
+		th:href="@{/meeting/show_list.do}"><img src="../static/example/images/logo-mini.svg" th:src="@{/example/images/logo-mini.svg}" alt="logo"/></a>
   </div>
   
   
@@ -80,6 +82,7 @@
 	  </li>
 	  
 	  
+	  <!-- 一般通知 -->
 	  <li class="nav-item dropdown">
 		<a class="nav-link count-indicator dropdown-toggle" id="normalNotice" 
 			href="/notification/showNormalNotice.do" th:href="@{/inform/normal/list.do}">
@@ -88,7 +91,7 @@
 		</a>
 	  </li>
 	  
-	  
+	  <!-- 特殊通知 -->
 	  <li class="nav-item dropdown" th:if="${userSession.getRole().getRole()} != '普通用户' ">
 		<a class="nav-link count-indicator dropdown-toggle" id="applyNotice" 
 			href="/notification/showApplyNotice.do" th:href="@{/inform/sp/list.do}">
@@ -101,17 +104,17 @@
 	  <li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle nav-profile" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
 		  <img src="../static/example/images/faces/face1.jpg" th:src="@{/example/images/faces/face1.jpg}" alt="image">
-		  <span class="d-none d-lg-inline" th:text="${userSession.getRole().getRole() +' '+ userSession.getUserName()}">normal </span>
+		  <span class="d-none d-lg-inline" th:text="${session.userSession.getRole().getRole() +' '+ session.userSession.getUserName()}">normal </span>
 		</a>
 		<div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
 		  <a class="dropdown-item" href="user_info.html"
-		  		th:href="@{/showInfo.do}">
+		  		th:href="@{/user/showInfo.do}">
 			<i class="mdi mdi-contacts menu-icon"></i>
 			&nbsp;&nbsp;个人信息
 		  </a>
 		  <div class="dropdown-divider"></div>
 		  <a class="dropdown-item" href="login.html"
-		  		th:href="@{/login}">
+		  		th:href="@{/user/login}">
 			<i class="mdi mdi-logout mr-2 text-primary"></i>
 			退出登录
 		  </a>
@@ -121,7 +124,7 @@
 	  
 	  <li class="nav-item nav-logout d-none d-lg-block">
 		<a class="nav-link" href="login.html"
-				th:href="@{/login}">
+				th:href="@{/user/login}">
 		  <i class="mdi mdi-power"></i>
 		</a>
 	  </li>
@@ -174,7 +177,7 @@
 		</li>
 		
 		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} == '会议组织者' ">
+		<li class="nav-item" th:if="${session.userSession.getRole().getRole()} == '会议组织者' ">
 		  <a class="nav-link" href="mtroom_book.html" th:href="@{/meetingRoom/book.do}">
 			<span class="menu-title">会议室预约</span>
 			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -182,7 +185,7 @@
 		</li>
 		
 		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '管理员' ">
+		<li class="nav-item" th:if="${session.userSession.getRole().getRole()} != '管理员' ">
 		  <a class="nav-link" href="equipment_repair.html"  th:href="@{/equipment/repair.do}">
 			<span class="menu-title">报修</span>
 			<i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -190,7 +193,7 @@
 		</li>
 		
 		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '普通用户' ">
+		<li class="nav-item" th:if="${session.userSession.getRole().getRole()} != '普通用户' ">
 		  <a class="nav-link" href="#" th:href="@{/userGroup/showUG.do}">
 			<span class="menu-title">用户组</span>
 			<i class="mdi mdi-table-large menu-icon"></i>
