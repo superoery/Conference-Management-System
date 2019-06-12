@@ -2,6 +2,7 @@ package team.softwarede.confersys.bizImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,24 +10,32 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import ch.qos.logback.classic.Logger;
 import team.softwarede.confersys.Application;
-import team.softwarede.confersys.biz.InformBiz;
-import team.softwarede.confersys.dto.NotificationSpIntro;
+import team.softwarede.confersys.biz.MeetingRoomBiz;
+import team.softwarede.confersys.dto.MeetingRoomAvail;
+/**
+ * 
+ * @author SunRonglin
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class InformBizImplSpNotificationTest {
+public class MeetingRoomBizImplAllMeetingRoomListTest {
+
 	@Autowired
-	InformBiz informBiz;
-	
+	MeetingRoomBiz meetingRoomBiz;
 	@Test
 	public void test() {
-		List<NotificationSpIntro> list = informBiz.spNotificastion(3, 14, "10000001");
-		for(NotificationSpIntro intro:list) {
-			System.out.println((intro.getUserId()));
-			System.out.println(String.valueOf(intro.getReferId()));
-			System.out.println(intro.getNotificationSpType());
+		List<MeetingRoomAvail> mtRoomList = meetingRoomBiz.showAllMtRoom();
+		Logger logger = Logger.getLogger(getClass());
+		for(MeetingRoomAvail room:mtRoomList) {
+			logger.info(room.getId());
+			logger.info(room.getRoomNumber());
+			logger.info(room.getBuilding());
+			logger.info(room.getFloor());
+			logger.info(room.getCapacity());
+			
 		}
 	}
 

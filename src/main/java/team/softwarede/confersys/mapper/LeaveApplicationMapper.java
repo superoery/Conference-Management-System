@@ -30,5 +30,9 @@ public interface LeaveApplicationMapper {
     
     List<LeaveApplication> selectAll();
     
+    List<LeaveApplication> selectByUserId(@Param("userId")String userId);
+    
+    List<LeaveApplication> selectByMeetingId(@Param("meetingId")int meetingId);
+    
 
 }

@@ -46,6 +46,8 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     EquipmentTypeMapper equipmentTypeMapper;    
     @Autowired
     EquipmentRepairDetailsMapper equipmentRepairDetailsMapper;
+    @Autowired
+    MeetingRoomAvailMapper meetingRoomAvailMapper;
     
     /**
      * 显示可选会议室列表
@@ -80,6 +82,12 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     public EquipmentRepairDetails repairDetails(int repairId) {
     	EquipmentRepairDetails repairDetails = equipmentRepairDetailsMapper.showEquipmentDetail(repairId);
     	return repairDetails;
+    }
+    
+    @Override
+    public List<MeetingRoomAvail> showAllMtRoom(){
+    	List<MeetingRoomAvail> MtRoomList = meetingRoomAvailMapper.selectAllMtRoomList();
+    	return MtRoomList;
     }
 
 }

@@ -28,7 +28,7 @@ public interface MeetingRoomAvailMapper {
                                                  @Param("capacity") Integer capacity,
                                                  @Param("applyStatusId") String applyStatusId);
 
-
+      List<MeetingRoomAvail> selectAllMtRoomList();
       
 
     

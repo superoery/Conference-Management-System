@@ -233,7 +233,7 @@ public class InformBizImpl implements InformBiz {
 
     //显示特殊通知
     @Override
-    public List<NotificationSpIntro> spNotificastion(int typeNum, int roleId){
+    public List<NotificationSpIntro> spNotificastion(int typeNum, int roleId, String userId){
     	if(roleId == 2) {
     		if(typeNum == EnumNotificationSpType.BOOK.ordinal()) {
         		List<Apply> applyList = applyMapper.selectAllApply();
@@ -329,7 +329,8 @@ public class InformBizImpl implements InformBiz {
         		return spInfoList;
         	}
     	}else {
-        		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectAll();
+    			int meetingId = applyMapper.selectMeetingId(userId);
+        		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectByMeetingId(meetingId);
         		List<NotificationSpIntro> spInfoList = new ArrayList();
         		LeaveApplication leaApp = new LeaveApplication();
         		for(int i = 0; i < leaveApplicationList.size(); i++) {

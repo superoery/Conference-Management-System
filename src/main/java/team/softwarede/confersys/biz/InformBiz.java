@@ -32,5 +32,5 @@ public interface InformBiz {
     //显示一般通知
     List<NotificationMainPage> ordinaryNotification(String userId, int roleId);
     //显示特殊通知
-    List<NotificationSpIntro> spNotificastion(int typeNum, int roleId);
+    List<NotificationSpIntro> spNotificastion(int typeNum, int roleId, String userId);
 }

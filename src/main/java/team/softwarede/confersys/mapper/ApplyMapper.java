@@ -28,4 +28,6 @@ public interface ApplyMapper {
     
     //显示特殊通知——会议申请
     List<Apply> selectAllApply();
+    
+    int selectMeetingId(@Param("userId")String userId);
 }

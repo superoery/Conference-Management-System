@@ -25,4 +25,6 @@ public interface MeetingRoomBiz {
     List<EquipmentType> showMtRoomBookPage();
     
     EquipmentRepairDetails repairDetails(int repairId);
+    
+    List<MeetingRoomAvail> showAllMtRoom();
 }
