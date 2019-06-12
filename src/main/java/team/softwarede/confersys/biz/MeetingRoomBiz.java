@@ -23,5 +23,6 @@ public interface MeetingRoomBiz {
                                           Integer capacity);
 
     List<EquipmentType> showMtRoomBookPage();
+    
     EquipmentRepairDetails repairDetails(int repairId);
 }

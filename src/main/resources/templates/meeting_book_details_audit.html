@@ -67,7 +67,13 @@
 				    </tr>
 					<tr>
 				    	<td>会议室地点</td>
-				    	<td th:text="${mtApplyDetails.getMtRoomLocation()}"></td>
+
+				    	<!-- <td th:text="|${mtApplyDetails.getBuilding()},${mtApplyDetails.getFloor()},${mtApplyDetails.getRoomNumber()}|"></td> -->
+				    	<td th:text="|${mtApplyDetails.getBuilding()}${mtApplyDetails.getFloor()}${mtApplyDetails.getRoomNumber()}|"></td>
+				    	<!-- <td th:text="${mtApplyDetails.getBuilding()}+${mtApplyDetails.getFloor()}+{mtApplyDetails.getRoomNumber()}"></td> -->
+				    	
+				    	<!-- <td th:text="${mtApplyDetails.getBuilding()}+''+${mtApplyDetails.getFloor()}+''+{mtApplyDetails.getRoomNumber()}"></td> -->
+				    	
 				    </tr>
 				    <tr>
 				    	

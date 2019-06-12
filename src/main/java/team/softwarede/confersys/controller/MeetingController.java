@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.biz.LeaveApplicationBiz;
 import team.softwarede.confersys.biz.LeaveExaminationBiz;
+import team.softwarede.confersys.biz.MeetingBiz;
 import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.biz.ShowMeetingDetail2Biz;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
@@ -39,6 +40,8 @@ public class MeetingController {
 	LeaveApplicationBiz leaveApplicationBiz;
 	@Autowired
 	ShowMeetingMainPageBiz showMeetingMainPageBiz;
+	@Autowired
+	MeetingBiz meetingBiz; 
 	
 	
 	
@@ -113,37 +116,26 @@ public class MeetingController {
 		return "mt_detail";
     }
 	
-	
 	/**
-	 * 显示请假申请界面
+	 * 显示请假详情
+	 * @param map
+	 * @param session
+	 * @return
 	 */
 	@RequestMapping(value = "/leave/apply/show.do")
 	public String showLeaveApplyPage(ModelMap map,
 									 HttpSession session) {
 		
-		BasicSession userSession = new BasicSession();
-		Role role = new Role();
-		String userId = "10000004";
-		String userName = "大脸妹";
-		
-		role.setId(EnumRoleName.NORMAL.getValue());
-		role.setRole(EnumRoleName.NORMAL.getDescription());
-		
-		userSession.setUserId(userId);
-		userSession.setUserName(userName);
-		userSession.setRole(role);
-		
-		session.setAttribute("userSession", userSession);
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
 		
 		List<MeetingMainPage> meetingList = 
 				showMeetingMainPageBiz.showMeetingMainPage(userSession.getUserId(),
 														   userSession.getRole().getId());
+
 		map.addAttribute("meetingList", meetingList);
 		
 		return "meeting_leave_apply";
 	}
-	
-	
 	
 	/**
 	 * 提交请假申请
@@ -190,22 +182,7 @@ public class MeetingController {
 										@ModelAttribute("mtContent")String mtContent,
 										@ModelAttribute("mtConclude")String mtConclude) {
 		
-		BasicSession userSession = new BasicSession();
-		Role role = new Role();
-		String userId = "10000004";
-		String userName = "大脸妹";
-		
-		role.setId(EnumRoleName.NORMAL.getValue());
-		role.setRole(EnumRoleName.NORMAL.getDescription());
-		
-		userSession.setUserId(userId);
-		userSession.setUserName(userName);
-		userSession.setRole(role);
-		
-		session.setAttribute("userSession", userSession);
-		
-		
-
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
 		
 		MeetingDetail meetingDetail = showMeetingDetail2Biz.showMeetingDetail2(userSession.getUserId(), 
 																			   meetingId, 
@@ -233,11 +210,18 @@ public class MeetingController {
 									 @ModelAttribute("mtConclude")String mtConclude
 									 ) {
 		String title = "修改会议信息";
-		String msg = "修改成功";
-
+		String msg = null;
+		
+		boolean result = meetingBiz.editMeetingContent(meetingId, mtContent, mtConclude);
 //		System.out.println("会议编号："+ meetingId);
 //		System.out.println("会议内容："+ mtContent);
 //		System.out.println("会议结论："+ mtConclude);
+		
+		if(result==true) {
+			msg = "修改成功";
+		}else {
+			msg = "修改失败";
+		}
 		
 		map.addAttribute("title", title);
 		map.addAttribute("msg", msg);

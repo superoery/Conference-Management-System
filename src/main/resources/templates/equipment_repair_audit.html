@@ -71,7 +71,8 @@
 				    </tr>
 				    <tr>
 				    	<td>会议室</td>
-				    	<td th:text="${details.getLocation()}"></td>
+				    	<span th:text="|Welcome, ${user.name}|">
+				    	<td th:text="|${details.getBuilding()}${details.getFloor()}${details.getRoomNumber()}|"></td>
 				    </tr>
 				    <tr>
 				    	<td>
