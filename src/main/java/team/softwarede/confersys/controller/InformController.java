@@ -22,6 +22,7 @@ import team.softwarede.confersys.biz.MeetingBiz;
 import team.softwarede.confersys.biz.MeetingRoomBiz;
 import team.softwarede.confersys.biz.NotificationBiz;
 import team.softwarede.confersys.biz.RepairApplicationBiz;
+import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.EquipmentRepairDetails;
 import team.softwarede.confersys.dto.LeaveApplyShowDetail;
@@ -39,14 +40,17 @@ public class InformController {
 
 	@Autowired
 	InformBiz informBiz;
-//	@Autowired
-//	NotificationBiz notificationBiz;
+	@Autowired
+	NotificationBiz notificationBiz;
 	@Autowired
 	LeaveApplicationBiz leaveApplicationBiz;
 	@Autowired
 	MeetingBiz meetingBiz;
 	@Autowired
 	MeetingRoomBiz meetingRoomBiz;
+	@Autowired
+	ShowMeetingMainPageBiz showMeetingMainPageBiz;
+	
 	
 	@RequestMapping(value = "/normal/details.do",params = {"informId"},method = RequestMethod.GET)
 	public String showNormalInformDetails(ModelMap map,
@@ -81,6 +85,7 @@ public class InformController {
 	public String showNormalInformList(HttpSession session,
 									   ModelMap map) {
 		
+//		List<NotificationMainPage> notificationList = showMeetingMainPageBiz.showMeetingMainPage();
 		
 		List<NotificationMainPage> notificationList = new ArrayList<NotificationMainPage>();
 		

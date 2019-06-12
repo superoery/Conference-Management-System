@@ -80,6 +80,7 @@
 	  </li>
 	  
 	  
+	  <!-- 一般通知 -->
 	  <li class="nav-item dropdown">
 		<a class="nav-link count-indicator dropdown-toggle" id="normalNotice" href="/notification/showNormalNotice.do">
 		  <i class="mdi mdi-email-outline"></i>
@@ -87,8 +88,8 @@
 		</a>
 	  </li>
 	  
-	  
-	  <li class="nav-item dropdown" th:if="${userSession.getRole().getRole()} != '普通用户' ">
+	  <!-- 特殊通知 -->
+	  <li class="nav-item dropdown" th:if="${session.userSession.getRole().getRole()} != '普通用户' ">
 		<a class="nav-link count-indicator dropdown-toggle" id="applyNotice" href="/notification/showApplyNotice.do">
 		  <i class="mdi mdi-bell-outline"></i>
 		  <span class="count"></span>
@@ -99,7 +100,7 @@
 	  <li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle nav-profile" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
 		  <img src="../static/example/images/faces/face1.jpg" th:src="@{/example/images/faces/face1.jpg}" alt="image">
-		  <span class="d-none d-lg-inline" th:text="${userSession.getRole().getRole() +' '+ userSession.getUserName()}">normal </span>
+		  <span class="d-none d-lg-inline" th:text="${session.userSession.getRole().getRole() +' '+ session.userSession.getUserName()}">normal </span>
 		</a>
 		<div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
 		  <a class="dropdown-item" href="#">
@@ -150,15 +151,15 @@
 		  </a>
 		  <div class="collapse" id="meeting">
 			<ul class="nav flex-column sub-menu">
-			  <li class="nav-item"> <a class="nav-link" href="#participatedMeeting" th:if="${userSession.getRole().getRole()} != '管理员' "> 参与的会议 </a></li>
-			  <li class="nav-item"> <a class="nav-link" href="#organizedMeeting"  th:if="${userSession.getRole().getRole()} == '会议组织者' "> 组织的会议 </a></li>
-			  <li class="nav-item"> <a class="nav-link" href="#allMeeting"  th:if="${userSession.getRole().getRole()} == '管理员' "> 全部会议 </a></li>
+			  <li class="nav-item"> <a class="nav-link" href="#participatedMeeting" th:if="${session.userSession.getRole().getRole()} != '管理员' "> 参与的会议 </a></li>
+			  <li class="nav-item"> <a class="nav-link" href="#organizedMeeting"  th:if="${session.userSession.getRole().getRole()} == '会议组织者' "> 组织的会议 </a></li>
+			  <li class="nav-item"> <a class="nav-link" href="#allMeeting"  th:if="${session.userSession.getRole().getRole()} == '管理员' "> 全部会议 </a></li>
 			</ul>
 		  </div>
 		</li>
 		
 		
-		<li class="nav-item"   th:if="${userSession.getRole().getRole()} == '管理员' ">
+		<li class="nav-item"   th:if="${session.userSession.getRole().getRole()} == '管理员' ">
 		  <a class="nav-link" href="#">
 			<span class="menu-title">会议室列表</span>
 			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -166,7 +167,7 @@
 		</li>
 		
 		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} == '会议组织者' ">
+		<li class="nav-item" th:if="${session.userSession.getRole().getRole()} == '会议组织者' ">
 		  <a class="nav-link" href="mtroom_book.html" th:href="@{/meetingRoom/book.do}">
 			<span class="menu-title">会议室预约</span>
 			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -174,7 +175,7 @@
 		</li>
 		
 		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '管理员' ">
+		<li class="nav-item" th:if="${session.userSession.getRole().getRole()} != '管理员' ">
 		  <a class="nav-link" href="equipment_repair.html"  th:href="@{/equipment/repair.do}">
 			<span class="menu-title">报修</span>
 			<i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -182,7 +183,7 @@
 		</li>
 		
 		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '普通用户' ">
+		<li class="nav-item" th:if="${session.userSession.getRole().getRole()} != '普通用户' ">
 		  <a class="nav-link" href="#" th:href="@{/userGroup/showUG.do}">
 			<span class="menu-title">用户组</span>
 			<i class="mdi mdi-table-large menu-icon"></i>

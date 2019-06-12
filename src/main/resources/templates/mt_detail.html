@@ -1,200 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html 
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="apublic_fragment">
 
 <head>
-<!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Home</title>
-<!-- plugins:css -->
-<link rel="stylesheet" href="../static/example/node_modules/mdi/css/materialdesignicons.min.css"
-	th:href="@{/example/node_modules/mdi/css/materialdesignicons.min.css}" >
-<link rel="stylesheet" href="../static/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"
-	th:href="@{/example/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css}" >
-<!-- endinject -->
-<!-- plugin css for this page -->
-<link rel="stylesheet" href="../static/example/node_modules/jquery-bar-rating/dist/themes/css-stars.css"
-	th:href="@{/example/node_modules/jquery-bar-rating/dist/themes/css-stars.css}" >
-<link rel="stylesheet" href="../static/example/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"
-	th:href="@{/example/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}" />
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="../static/example/css/style.css" 
-	th:href="@{/example/css/style.css}">
-<!-- endinject -->
-<link rel="shortcut icon" href="../static/example/images/favicon.png"
-	th:href="@{/example/images/favicon.png}" />
+<title>会议详情</title>
 </head>
-
-
 <body>
-<div class="container-scroller">
 
-
-<!-- partial:partials/_navbar.html -->
-<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-
-  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-	<a class="navbar-brand brand-logo" href="login_main.html"><img src="../static/example/images/logo.svg" th:src="@{/example/images/logo.svg}" alt="logo"/></a>
-	<a class="navbar-brand brand-logo-mini" href="login_main.html"><img src="../static/example/images/logo-mini.svg" th:src="@{/example/images/logo-mini.svg}" alt="logo"/></a>
-  </div>
-  
-  
-  <div class="navbar-menu-wrapper d-flex align-items-stretch">
-  
-	<div class="search-field ml-4 d-none d-md-block">
-	  <form class="d-flex align-items-stretch h-100" action="#">
-		<div class="input-group">
-		  <input type="text" class="form-control bg-transparent border-0" placeholder="Search">
-		  
-		  <div class="input-group-btn">
-			<button type="button" class="btn bg-transparent dropdown-toggle px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  <i class="mdi mdi-earth"></i>
-			</button>
-			<div class="dropdown-menu dropdown-menu-right">
-			  <a class="dropdown-item" href="#">会议列表</a>
-			  <a class="dropdown-item" href="#">会议室列表</a>
-			</div>
-		  </div>
-		  
-		  <div class="input-group-addon bg-transparent border-0 search-button">
-			<button type="submit" class="btn btn-sm bg-transparent px-0">
-			  <i class="mdi mdi-magnify"></i>
-			</button>
-		  </div>
-		</div>
-	  </form>
-	</div>
-	
-	
-	<ul class="navbar-nav navbar-nav-right">
-	
-	
-	  <li class="nav-item d-none d-lg-block full-screen-link">
-		<a class="nav-link">
-		  <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
-		</a>
-	  </li>
-	  
-	  
-	  <li class="nav-item dropdown">
-		<a class="nav-link count-indicator dropdown-toggle" id="normalNotice" href="/notification/showNormalNotice.do">
-		  <i class="mdi mdi-email-outline"></i>
-		  <span class="count"></span>
-		</a>
-	  </li>
-	  
-	  
-	  <li class="nav-item dropdown" th:if="${userSession.getRole().getRole()} != '普通用户' ">
-		<a class="nav-link count-indicator dropdown-toggle" id="applyNotice" href="/notification/showApplyNotice.do">
-		  <i class="mdi mdi-bell-outline"></i>
-		  <span class="count"></span>
-		</a>
-	  </li>
-	  
-	  
-	  <li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle nav-profile" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-		  <img src="../static/example/images/faces/face1.jpg" th:src="@{/example/images/faces/face1.jpg}" alt="image">
-		  <span class="d-none d-lg-inline" th:text="${userSession.getRole().getRole() +' '+ userSession.getUserName()}">normal </span>
-		</a>
-		<div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
-		  <a class="dropdown-item" href="#">
-			<i class="mdi mdi-contacts menu-icon"></i>
-			&nbsp;&nbsp;个人信息
-		  </a>
-		  <div class="dropdown-divider"></div>
-		  <a class="dropdown-item" href="login.html">
-			<i class="mdi mdi-logout mr-2 text-primary"></i>
-			退出登录
-		  </a>
-		</div>
-	  </li>
-	  
-	  
-	  <li class="nav-item nav-logout d-none d-lg-block">
-		<a class="nav-link" href="login.html">
-		  <i class="mdi mdi-power"></i>
-		</a>
-	  </li>
-	  
-	</ul>
-	
-	
-	<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-	<span class="mdi mdi-menu"></span>
-  </button>
-  </div>
-</nav>
-
-
-
-<!-- partial -->
-<div class="container-fluid page-body-wrapper" id="up">
-  <div class="row row-offcanvas row-offcanvas-right">
-  
-  
-	<!-- partial:partials/_sidebar.html -->
-	<nav class="sidebar sidebar-offcanvas" id="sidebar">
-	  <ul class="nav">
-		
-		
-		<li class="nav-item">
-		  <a class="nav-link" data-toggle="collapse" href="#meeting" aria-expanded="false" aria-controls="auth">
-			<span class="menu-title">会议列表</span>
-			<i class="menu-arrow"></i>
-			<i class="mdi mdi-home menu-icon"></i>
-		  </a>
-		  <div class="collapse" id="meeting">
-			<ul class="nav flex-column sub-menu">
-			  <li class="nav-item"> <a class="nav-link" href="#participatedMeeting" th:if="${userSession.getRole().getRole()} != '管理员' "> 参与的会议 </a></li>
-			  <li class="nav-item"> <a class="nav-link" href="#organizedMeeting"  th:if="${userSession.getRole().getRole()} == '会议组织者' "> 组织的会议 </a></li>
-			  <li class="nav-item"> <a class="nav-link" href="#allMeeting"  th:if="${userSession.getRole().getRole()} == '管理员' "> 全部会议 </a></li>
-			</ul>
-		  </div>
-		</li>
-		
-		
-		<li class="nav-item"   th:if="${userSession.getRole().getRole()} == '管理员' ">
-		  <a class="nav-link" href="#">
-			<span class="menu-title">会议室列表</span>
-			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
-		  </a>
-		</li>
-		
-		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} == '会议组织者' ">
-		  <a class="nav-link" href="ugroup_mtroom_book.html" th:href="@{/meetingRoom/book.do}">
-			<span class="menu-title">会议室预约</span>
-			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
-		  </a>
-		</li>
-		
-		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '管理员' ">
-		  <a class="nav-link" href="equipment_repair.html"  th:href="@{/equipment/repair.do}">
-			<span class="menu-title">报修</span>
-			<i class="mdi mdi-crosshairs-gps menu-icon"></i>
-		  </a>
-		</li>
-		
-		
-		<li class="nav-item" th:if="${userSession.getRole().getRole()} != '普通用户' ">
-		  <a class="nav-link" href="#">
-			<span class="menu-title">用户组</span>
-			<i class="mdi mdi-table-large menu-icon"></i>
-		  </a>
-		</li>
-		
-		
-	  </ul>
-	  
-	</nav>
-	
-	
-	
 	<!-- partial -->
-	<div class="content-wrapper">
+	<div class="card-body" layout:fragment="content">
 	
 	  
 	  <div class="row" id="participatedMeeting">
@@ -287,51 +105,6 @@
 	</div>
 	<!-- content-wrapper ends -->
 	
-	
-	<!-- partial:partials/_footer.html -->
-	<footer class="footer">
-	  <div class="d-sm-flex justify-content-center justify-content-sm-between">
-		<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></span>
-		<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></span>
-	  </div>
-	</footer>
-	<!-- partial -->
-  </div>
-  <!-- row-offcanvas ends -->
-</div>
-<!-- page-body-wrapper ends -->
-
-
-</div>
-<!-- container-scroller -->
-
-
-
-
-<!-- plugins:js -->
-<script src="../static/example/node_modules/jquery/dist/jquery.min.js"
-	th:src="@{/example/node_modules/jquery/dist/jquery.min.js}" ></script>
-<script src="../static/example/node_modules/popper.js/dist/umd/popper.min.js"
-	th:src="@{/example/node_modules/popper.js/dist/umd/popper.min.js}"></script>
-<script src="../static/example/node_modules/bootstrap/dist/js/bootstrap.min.js"
-	th:src="@{/example/node_modules/bootstrap/dist/js/bootstrap.min.js}"></script>
-<script src="../static/example/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"
-	th:src="@{/example/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js}"></script>
-<!-- endinject -->
-<!-- Plugin js for this page-->
-<script src="../static/example/node_modules/chart.js/dist/Chart.min.js"
-	th:src="@{/example/node_modules/chart.js/dist/Chart.min.js}" ></script>
-<!-- End plugin js for this page-->
-<!-- inject:js -->
-<script src="../static/example/js/off-canvas.js"
-	th:src="@{/example/js/off-canvas.js}"></script>
-<script src="../static/example/js/misc.js"
-	th:src="@{/example/js/misc.js}"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="../static/example/js/dashboard.js"
-	th:src="@{/example/js/dashboard.js}"></script>
-<!-- End custom js for this page-->
 </body>
 
 </html>

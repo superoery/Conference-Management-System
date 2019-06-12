@@ -54,6 +54,8 @@ public class EquipmentController {
 		
 		if("succeed!".equals(result)) {
 			msg = "成功处理报修申请";
+		}else {
+			msg = "处理报修申请失败，请重新操作";
 		}
 		
 		map.addAttribute("title", title);
