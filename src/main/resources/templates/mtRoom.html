@@ -14,7 +14,7 @@
 	<!-- partial -->
 	<div class="card-body" layout:fragment="content">	
 	  
-	  <div class="row" id="participatedMeeting"  th:if="${userSession.getRole().getRole()} != '管理员' ">
+	  <div class="row" id="participatedMeeting"  th:if="${session.userSession.getRole().getRole()} != '管理员' ">
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">

@@ -73,12 +73,12 @@
 						<td th:text="${mtDetail.getMtStatus()}"></td>
 					</tr>
 					
-					<tr  th:if="${userSession.getRole().getRole()} == '普通用户' ">
+					<tr  th:if="${session.userSession.getRole().getRole()} == '普通用户' ">
 						<th>本人与会状态</th>
 						<td th:text="${mtDetail.getMyParticipantStatus()}"></td>
 					</tr>
 					
-					<tr  th:if="${userSession.getRole().getRole()} != '普通用户' ">
+					<tr  th:if="${session.userSession.getRole().getRole()} != '普通用户' ">
 						<th>与会者列表</th>
 						<td>
 							<p th:if="${participantsList.size()}==0" th:text=${'暂无与会者'}></p>
@@ -101,7 +101,7 @@
 	  <div style="float: right;">
 		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
 	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
+	  <div  th:if="${session.userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
 	  
 	</div>
 	<!-- content-wrapper ends -->

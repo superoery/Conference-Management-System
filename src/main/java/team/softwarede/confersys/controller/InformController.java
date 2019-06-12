@@ -20,7 +20,6 @@ import team.softwarede.confersys.biz.InformBiz;
 import team.softwarede.confersys.biz.LeaveApplicationBiz;
 import team.softwarede.confersys.biz.MeetingBiz;
 import team.softwarede.confersys.biz.MeetingRoomBiz;
-import team.softwarede.confersys.biz.NotificationBiz;
 import team.softwarede.confersys.biz.RepairApplicationBiz;
 import team.softwarede.confersys.biz.ShowMeetingMainPageBiz;
 import team.softwarede.confersys.dto.BasicSession;
@@ -40,8 +39,6 @@ public class InformController {
 
 	@Autowired
 	InformBiz informBiz;
-	@Autowired
-	NotificationBiz notificationBiz;
 	@Autowired
 	LeaveApplicationBiz leaveApplicationBiz;
 	@Autowired

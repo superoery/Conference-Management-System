@@ -16,7 +16,7 @@
 
 	
 	  
-	  <div class="row" id="participatedMeeting"  th:if="${userSession.getRole().getRole()} != '管理员' ">
+	  <div class="row" id="participatedMeeting"  th:if="${session.userSession.getRole().getRole()} != '管理员' ">
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
@@ -74,13 +74,13 @@
 	  </div>
 	  
 	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} != '管理员' ">
+	  <div style="float: right;"  th:if="${session.userSession.getRole().getRole()} != '管理员' ">
 		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
 	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
+	  <div  th:if="${session.userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
 	  
 	  
-	  <div class="row" id="organizedMeeting" th:if="${userSession.getRole().getRole()} == '会议组织者'">
+	  <div class="row" id="organizedMeeting" th:if="${session.userSession.getRole().getRole()} == '会议组织者'">
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
@@ -138,12 +138,12 @@
 	  </div>
 	  
 	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} == '会议组织者'">
+	  <div style="float: right;"  th:if="${session.userSession.getRole().getRole()} == '会议组织者'">
 		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
 	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} == '会议组织者'"><br/><br/><br/><br/></div>
+	  <div  th:if="${session.userSession.getRole().getRole()} == '会议组织者'"><br/><br/><br/><br/></div>
 	  
-	  <div class="row" id="allMeeting"   th:if="${userSession.getRole().getRole()} == '管理员' ">
+	  <div class="row" id="allMeeting"   th:if="${session.userSession.getRole().getRole()} == '管理员' ">
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
@@ -200,10 +200,10 @@
 		</div>
 	  </div>
 	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} == '管理员' ">
+	  <div style="float: right;"  th:if="${session.userSession.getRole().getRole()} == '管理员' ">
 		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
 	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} == '管理员' "><br/><br/><br/><br/></div>
+	  <div  th:if="${session.userSession.getRole().getRole()} == '管理员' "><br/><br/><br/><br/></div>
 	  
 	  
 	</div>
