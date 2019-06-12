@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html 
+	lang="en" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 
 <head>
 <!-- Required meta tags -->
@@ -193,200 +196,21 @@
 	
 	
 	
+	
+	
 	<!-- partial -->
 	<div class="content-wrapper">
 	
-	  
-	  <div class="row" id="participatedMeeting"  th:if="${userSession.getRole().getRole()} != '管理员' ">
+		  <div class="row">
 		<div class="col-12 grid-margin">
 		  <div class="card">
-			<div class="card-body">
-			  <h4 class="card-title">参与的会议</h4>
-			  <div class="table-responsive">
-			  	<p th:if="${pmtList}==null or ${pmtList.size()}==0" th:text="没有需要参加的会议！"></p>
-				<table class="table" th:if="${pmtList}!=null and ${pmtList.size()}!=0">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						主题
-					  </th>
-					  <th>
-						开始时间
-					  </th>
-					  <th>
-						结束时间
-					  </th>
-					  <th>
-						所在建筑
-					  </th>
-					  <th>
-						所在楼层
-					  </th>
-					  <th>
-						所在房间号
-					  </th>
-					  <th>
-						状态
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="pmt : ${pmtList}">
-					  <td th:text="${pmt.getMtId()}"></td>
-					  <td th:text="${pmt.getMtTopic()}"></td>
-					  <td th:text="${#dates.format(pmt.getBeginTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${#dates.format(pmt.getEndTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${pmt.getMtRoomBuilding()}"></td>
-					  <td th:text="${pmt.getMtRoomFloor()}"></td>
-					  <td th:text="${pmt.getMtRoomNum()}"></td>
-					  <td th:text="${pmt.getMtStatus()}"></td>
-					  <td><a class="btn btn-success" style="color:#FFFFFF"
-							th:href="@{/meeting/mt_detail.do(mtId=${pmt.getMtId()}) }">查看详情</a></td>
-					</tr>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
+			
+				<div class="card-body" layout:fragment="content"></div>
+			  
+			
 		  </div>
 		</div>
 	  </div>
-	  
-	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} != '管理员' ">
-		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
-	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
-	  
-	  
-	  <div class="row" id="organizedMeeting" th:if="${userSession.getRole().getRole()} == '会议组织者'">
-		<div class="col-12 grid-margin">
-		  <div class="card">
-			<div class="card-body">
-			  <h4 class="card-title">组织的会议</h4>
-			  <div class="table-responsive">
-			  	<p th:if="${omtList}==null or ${omtList.size()}==0" th:text="没有您组织的会议！"></p>
-				<table class="table"  th:if="${omtList}!=null and ${omtList.size()}!=0">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						主题
-					  </th>
-					  <th>
-						开始时间
-					  </th>
-					  <th>
-						结束时间
-					  </th>
-					  <th>
-						所在建筑
-					  </th>
-					  <th>
-						所在楼层
-					  </th>
-					  <th>
-						所在房间号
-					  </th>
-					  <th>
-						状态
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="omt : ${omtList}">
-					  <td th:text="${omt.getMtId()}"></td>
-					  <td th:text="${omt.getMtTopic()}"></td>
-					  <td th:text="${#dates.format(omt.getBeginTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${#dates.format(omt.getEndTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${omt.getMtRoomBuilding()}"></td>
-					  <td th:text="${omt.getMtRoomFloor()}"></td>
-					  <td th:text="${omt.getMtRoomNum()}"></td>
-					  <td th:text="${omt.getMtStatus()}"></td>
-					  <td><a class="btn btn-secondary" 
-							th:href="@{/meeting/mt_detail.do(mtId=${omt.getMtId()})}">查看详情</a></td>
-					</tr>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  
-	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} == '会议组织者'">
-		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
-	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} == '会议组织者'"><br/><br/><br/><br/></div>
-	  
-	  <div class="row" id="allMeeting"   th:if="${userSession.getRole().getRole()} == '管理员' ">
-		<div class="col-12 grid-margin">
-		  <div class="card">
-			<div class="card-body">
-			  <h4 class="card-title">全部会议</h4>
-			  <div class="table-responsive">
-			  	<p th:if="${amtList}==null or ${amtList.size()}==0" th:text="没有会议！"></p>
-				<table class="table" th:if="${amtList}!=null and ${amtList.size()}!=0">
-				  <thead>
-					<tr>
-					  <th>
-						编号
-					  </th>
-					  <th>
-						主题
-					  </th>
-					  <th>
-						开始时间
-					  </th>
-					  <th>
-						结束时间
-					  </th>
-					  <th>
-						所在建筑
-					  </th>
-					  <th>
-						所在楼层
-					  </th>
-					  <th>
-						所在房间号
-					  </th>
-					  <th>
-						状态
-					  </th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr th:each="amt : ${amtList}">
-					  <td th:text="${amt.getMtId()}"></td>
-					  <td th:text="${amt.getMtTopic()}"></td>
-					  <td th:text="${#dates.format(amt.getBeginTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${#dates.format(amt.getEndTime(), 'yyyy-MM-dd HH:mm')}"></td>
-					  <td th:text="${amt.getMtRoomBuilding()}"></td>
-					  <td th:text="${amt.getMtRoomFloor()}"></td>
-					  <td th:text="${amt.getMtRoomNum()}"></td>
-					  <td th:text="${amt.getMtStatus()}"></td>
-					  <td><a class="btn btn-success" style="color:#FFFFFF"
-							th:href="@{/meeting/mt_detail.do(mtId=${amt.getMtId()}) }">查看详情</a></td>
-					</tr>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  
-	  <div style="float: right;"  th:if="${userSession.getRole().getRole()} == '管理员' ">
-		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
-	  </div>
-	  <div  th:if="${userSession.getRole().getRole()} == '管理员' "><br/><br/><br/><br/></div>
-	  
-	  
 	</div>
 	<!-- content-wrapper ends -->
 	
@@ -394,7 +218,7 @@
 	<!-- partial:partials/_footer.html -->
 	<footer class="footer">
 	  <div class="d-sm-flex justify-content-center justify-content-sm-between">
-		<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></span>
+		<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright &copy; 2019.Company name All rights reserved.software</span>
 		<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></span>
 	  </div>
 	</footer>

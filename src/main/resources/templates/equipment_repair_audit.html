@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html 
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="apublic_fragment">
 
 <head>
 <!-- Required meta tags -->
@@ -30,7 +34,7 @@
 <body>
 
 	<!-- partial -->
-	<div class="content-wrapper">
+	<div class="card-body" layout:fragment="content">
 	
 	  
 	  <div class="row" id="notificationDetail">
@@ -71,7 +75,6 @@
 				    </tr>
 				    <tr>
 				    	<td>会议室</td>
-				    	<span th:text="|Welcome, ${user.name}|">
 				    	<td th:text="|${details.getBuilding()}${details.getFloor()}${details.getRoomNumber()}|"></td>
 				    </tr>
 				    <tr>
