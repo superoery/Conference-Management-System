@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.LeaveApplicationBiz;
+import team.softwarede.confersys.dto.LeaveApplyShowDetail;
+import team.softwarede.confersys.dtomapper.LeaveApplyShowDetailMapper;
 import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.mapper.LeaveApplicationMapper;
@@ -24,6 +26,8 @@ public class LeaveAplicationBizImpl implements LeaveApplicationBiz{
 	
 	@Autowired
 	NotificationMapper notificationMapper;
+	@Autowired
+	LeaveApplyShowDetailMapper leaveApplyShowDetailMapper; 
 	
 	@Transactional
 	@Override
@@ -38,6 +42,12 @@ public class LeaveAplicationBizImpl implements LeaveApplicationBiz{
 		leaveApplicationMapper.insertSelective(record);
 		
 		return msg;
+	}
+
+	@Override
+	public LeaveApplyShowDetail showLeaveApplylDetails(String applicantId, Integer meetingId) {
+		// TODO Auto-generated method stub
+		return leaveApplyShowDetailMapper.selectByUIdMtId(applicantId, meetingId);
 	};
 
 }

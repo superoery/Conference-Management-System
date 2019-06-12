@@ -104,14 +104,15 @@ public class EquipmentRepairDetails {
 	public void setBuilding(int floor) {
 		this.floor = floor;
 	}
-	
-	public String roomNumber() {
+
+	public String getRoomNumber() {
 		return roomNumber;
 	}
 
 	public void setRoomNumber(String roomNumber) {
 		this.roomNumber = roomNumber;
 	}
+	
 	
 	
 
