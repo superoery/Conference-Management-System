@@ -52,6 +52,7 @@ public class UserController {
     @Autowired
     ChangePasswordBiz changePasswordBiz;
     
+    
 	@RequestMapping("/login")
 	public String index(ModelMap map, @ModelAttribute("loginForm") UserLogin userlogin,
 			@ModelAttribute("msg") String msg) {

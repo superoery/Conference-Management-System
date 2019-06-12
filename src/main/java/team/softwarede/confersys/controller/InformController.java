@@ -129,9 +129,14 @@ public class InformController {
 	 */
 	@RequestMapping(value = "/sp/details.do" , params = {"referId","type","applicantId"})
 	public String showSpInformDetails(ModelMap map,
+									  HttpSession session,
 									  @ModelAttribute("referId")Integer referId,
 									  @ModelAttribute("type")String type,
 									  @ModelAttribute("applicantId")String applicantId){
+		
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		
+		map.addAttribute("userSession", userSession);
 		
 		if(type.equals(EnumNotificationSpType.BOOK.getDescription())) {
 			//显示预约详情

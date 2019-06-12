@@ -33,6 +33,18 @@
     from equipment
     where equipment_id = #{equipmentId,jdbcType=INTEGER}
   </select>
+    <select id="selectRoomId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select 
+    meeting_room_id
+    from equipment
+    where equipment_id = #{equipmentId,jdbcType=INTEGER}
+  </select>
+    <select id="selectEquipmentName" parameterType="java.lang.Integer" resultType="java.lang.String">
+    select 
+    equipment_name
+    from equipment
+    where equipment_id = #{equipmentId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated
