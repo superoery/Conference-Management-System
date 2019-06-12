@@ -80,22 +80,9 @@ public class UserController {
 		              userlogin.getIdentityId(), 
 		              userlogin.getPassword());
 		if(msg.equals("ok")) {
-			// show Main Page
 			BasicSession userSession = showMeetingMainPageBiz.getBasicSession(userlogin.getUserId());
 			session.setAttribute("userSession", userSession);
-			map.addAttribute("userSession",userSession);
-			
-			List<MeetingMainPage> pmtList = showMeetingMainPageBiz.showMeetingMainPage(userSession.getUserId(), userSession.getRole().getId());
-			map.addAttribute("pmtList",pmtList);
-			
-			List<MeetingMainPage> omtList = showMainPageOrgBiz.showMainPageOrg(userSession.getUserId(), userSession.getRole().getId());
-			map.addAttribute("omtList",omtList);
-			
-			List<MeetingMainPage> amtList = showMeetingMainPageBiz.showMeetingMainPage(userSession.getUserId(), userSession.getRole().getId());
-			map.addAttribute("amtList",amtList);
-			
-			// List<NotificationMainPage> normalNotice = showMeetingMainPageBiz.showNormalNotification(userSession.getUserId());
-			return "login_main";
+			return "redirect:/meeting/show_list.do";
 		}else {
 			attributes.addFlashAttribute("msg",msg);
 		    return "redirect:/user/login";
