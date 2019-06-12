@@ -82,23 +82,11 @@ public class InformController {
 	public String showNormalInformList(HttpSession session,
 									   ModelMap map) {
 		
-//		List<NotificationMainPage> notificationList = showMeetingMainPageBiz.showMeetingMainPage();
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
 		
-		List<NotificationMainPage> notificationList = new ArrayList<NotificationMainPage>();
-		
-		NotificationMainPage n = new NotificationMainPage();
-		n.setNotificationId(17);
-		n.setNotificationType("新会议");
-		n.setReferMsg("srtp开会");
-		
-		NotificationMainPage m = new NotificationMainPage();
-		m.setNotificationId(2);
-		m.setNotificationType("报修");
-		m.setReferMsg("逸夫楼601");
-		
-		notificationList.add(n);
-		notificationList.add(m);
-		
+		List<NotificationMainPage> notificationList = 
+				informBiz.ordinaryNotification(userSession.getUserId(), userSession.getRole().getId());
+				
 		map.addAttribute("notiList",notificationList);
 		
 		return "inform_list_show";
@@ -108,10 +96,17 @@ public class InformController {
 	 * 显示待处理的特殊通知列表
 	 */
 	@RequestMapping("/sp/list.do")
-	public String showSpInformList(ModelMap map) {
+	public String showSpInformList(ModelMap map,
+								   HttpSession session,
+								   @ModelAttribute("selectedTypeId")Integer selectedTypeId) {
 		
-		List<NotificationSpIntro> notiSpIntroList = 
-				informBiz.spNotificastion(EnumNotificationSpType.ALL.ordinal());
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		
+		if(selectedTypeId==null) {
+			selectedTypeId = EnumNotificationSpType.ALL.ordinal();
+		}
+		
+		List<NotificationSpIntro> notiSpIntroList = informBiz.spNotificastion(selectedTypeId);
 		List<EnumNotificationSpType> eNotiSpTypeList = new ArrayList<EnumNotificationSpType>();
 		
 		for(EnumNotificationSpType e : EnumNotificationSpType.values()) {
@@ -119,6 +114,8 @@ public class InformController {
 			
 		}
 		
+		
+		map.addAttribute("selectedTypeId", selectedTypeId);
 		map.addAttribute("types",eNotiSpTypeList);
 		map.addAttribute("notiSpIntroList", notiSpIntroList);
 		

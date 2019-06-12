@@ -94,7 +94,7 @@
 	  <!-- 特殊通知 -->
 	  <li class="nav-item dropdown" th:if="${session.userSession.getRole().getRole()} != '普通用户' ">
 		<a class="nav-link count-indicator dropdown-toggle" id="applyNotice" 
-			href="/notification/showApplyNotice.do" th:href="@{/inform/sp/list.do}">
+			href="/notification/showApplyNotice.do" th:href="@{/inform/sp/list.do(selectedTypeId=3)}">
 		  <i class="mdi mdi-bell-outline"></i>
 		  <span class="count"></span>
 		</a>

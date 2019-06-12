@@ -15,6 +15,12 @@
 
 	<!-- partial -->
 	<div class="card-body" layout:fragment="content">
+
+<script type="text/javascript">
+	function test(x){
+		alert(x);
+	}
+</script>
 	
 
 	  <div class="row" >
@@ -42,14 +48,27 @@
 					  	申请时间
 					  </th>
 					  <th>
-						  <select th:field="*{types}" style="font-size: 14px;">投影笔
+						  <select name="typeId" style="font-size: 14px;">投影笔
 			            	<option th:each="type : ${types}"
 			            		th:text="${type.getDescription()}"
 			            		th:value="${type.ordinal()}"
+			            		th:selected="${selectedTypeId}==${type.ordinal()}"
 			            		text="投影笔">
 			            	</option>
 						  </select>
-					  
+						  <button th:onclick="|test('${typeId}')|">-></button>
+					      <!-- <select th:field="*{types}" style="font-size: 14px;">投影笔
+			            	<option th:each="type : ${types}"
+			            		th:text="${type.getDescription()}"
+			            		th:value="${type.ordinal()}"
+			            		th:selected="${selectedTypeId}==${type.ordinal()}"
+			            		th:href="@{/inform/sp/details.do(selectedTypeId=${type.ordinal()})}"
+			            		text="投影笔">
+			            	</option>
+						  </select> -->
+					  	
+					  	
+					  	
 					  </th>
 					</tr>
 				  </thead>
