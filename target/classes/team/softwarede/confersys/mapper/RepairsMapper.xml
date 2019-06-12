@@ -16,6 +16,14 @@
 	from repairs
 	where repair_equipment_id = #{repairEquipmentId,jdbcType=INTEGER}
   </select>
+  
+    <select id="selectByRepairEquipmentId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	select
+	equipment_id
+	from repairs
+	where repair_equipment_id = #{repairEquipmentId,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="team.softwarede.confersys.entity.RepairsKey">
     <!--
       WARNING - @mbg.generated

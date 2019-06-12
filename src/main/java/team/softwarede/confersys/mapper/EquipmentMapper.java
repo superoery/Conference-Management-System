@@ -18,4 +18,8 @@ public interface EquipmentMapper {
 	int updateByPrimaryKeySelective(Equipment record);
 
 	int updateByPrimaryKey(Equipment record);
+	
+	int selectRoomId(int equipmentId);
+	
+	String selectEquipmentName(int equipmentId);
 }

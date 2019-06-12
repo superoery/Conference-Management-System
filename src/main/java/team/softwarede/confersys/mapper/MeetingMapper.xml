@@ -34,6 +34,12 @@
     from meeting
     where id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectTopicById" parameterType="team.softwarede.confersys.entity.Meeting" resultType="java.lang.String">
+    select 
+    topic
+    from meeting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated

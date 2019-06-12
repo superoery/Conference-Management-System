@@ -28,8 +28,8 @@ public class LeaveExaminationBizImplTest {
 	public void testLeaveExamination() {
 		LeaveApplication record = new LeaveApplication();
 		String msg;
-		record.setMeetingId(1);
-		record.setUserId("41624544");
+		record.setMeetingId(14);
+		record.setUserId("10000002");
 		record.setReason("感冒");
 		msg = leaveExaminationBiz.leaveExamination(record, 1);
 		Logger logger = Logger.getLogger(getClass());
