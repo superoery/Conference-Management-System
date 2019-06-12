@@ -233,99 +233,119 @@ public class InformBizImpl implements InformBiz {
 
     //显示特殊通知
     @Override
-    public List<NotificationSpIntro> spNotificastion(int typeNum){
-    	if(typeNum == EnumNotificationSpType.BOOK.ordinal()) {
-    		List<Apply> applyList = applyMapper.selectAllApply();
-    		List<NotificationSpIntro> spInfoList = new ArrayList();
-    		Apply applyInfo = new Apply();
-    		for(int i = 0; i < applyList.size(); i++) {
-    			applyInfo = applyList.get(i);
-    			NotificationSpIntro spInfo = new NotificationSpIntro();
-    			spInfo.setUserId(applyInfo.getUserId());
-    			spInfo.setReferId(applyInfo.getId());
-    			spInfo.setNotificationSpType(EnumNotificationSpType.BOOK.getDescription());
-    			spInfo.setApplyTime(applyInfo.getApplyTime());
-    			String userName = userMapper.selectNameByUserId(applyInfo.getUserId());
-    			spInfo.setApplicantName(userName);
-    			spInfoList.add(spInfo);
-    		}
-    		return spInfoList;
-    		
-    	}else if(typeNum == EnumNotificationSpType.LEAVE.ordinal()) {
-    		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectAll();
-    		List<NotificationSpIntro> spInfoList = new ArrayList();
-    		LeaveApplication leaApp = new LeaveApplication();
-    		for(int i = 0; i < leaveApplicationList.size(); i++) {
-    			leaApp = leaveApplicationList.get(i);
-    			NotificationSpIntro spInfo = new NotificationSpIntro();
-    			spInfo.setUserId(leaApp.getUserId());
-    			spInfo.setReferId(leaApp.getMeetingId());
-    			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
-    			spInfo.setApplyTime(leaApp.getApplyTime());
-    			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
-    			spInfo.setApplicantName(userName);
-    			spInfoList.add(spInfo);
-    		}
-    		return spInfoList;
-    		
-    	}else if(typeNum == EnumNotificationSpType.REPAIR.ordinal()){
-    		List<RepairEquipment> repairEquipmentList = repairEquipmentMapper.selectAll();
-    		List<NotificationSpIntro> spInfoList = new ArrayList();
-    		RepairEquipment repairEquipment = new RepairEquipment();
-    		for(int i = 0; i < repairEquipmentList.size(); i++) {
-    			repairEquipment = repairEquipmentList.get(i);
-    			NotificationSpIntro spInfo = new NotificationSpIntro();
-    			spInfo.setUserId(repairEquipment.getUserId());
-    			spInfo.setReferId(repairEquipment.getId());
-    			spInfo.setNotificationSpType(EnumNotificationSpType.REPAIR.getDescription());
-    			spInfo.setApplyTime(repairEquipment.getRepairTime());
-    			String userName = userMapper.selectNameByUserId(repairEquipment.getUserId());
-    			spInfo.setApplicantName(userName);
-    			spInfoList.add(spInfo);
-    		}
-    		return spInfoList;
+    public List<NotificationSpIntro> spNotificastion(int typeNum, int roleId){
+    	if(roleId == 2) {
+    		if(typeNum == EnumNotificationSpType.BOOK.ordinal()) {
+        		List<Apply> applyList = applyMapper.selectAllApply();
+        		List<NotificationSpIntro> spInfoList = new ArrayList();
+        		Apply applyInfo = new Apply();
+        		for(int i = 0; i < applyList.size(); i++) {
+        			applyInfo = applyList.get(i);
+        			NotificationSpIntro spInfo = new NotificationSpIntro();
+        			spInfo.setUserId(applyInfo.getUserId());
+        			spInfo.setReferId(applyInfo.getId());
+        			spInfo.setNotificationSpType(EnumNotificationSpType.BOOK.getDescription());
+        			spInfo.setApplyTime(applyInfo.getApplyTime());
+        			String userName = userMapper.selectNameByUserId(applyInfo.getUserId());
+        			spInfo.setApplicantName(userName);
+        			spInfoList.add(spInfo);
+        		}
+        		return spInfoList;
+        		
+        	}else if(typeNum == EnumNotificationSpType.LEAVE.ordinal()) {
+        		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectAll();
+        		List<NotificationSpIntro> spInfoList = new ArrayList();
+        		LeaveApplication leaApp = new LeaveApplication();
+        		for(int i = 0; i < leaveApplicationList.size(); i++) {
+        			leaApp = leaveApplicationList.get(i);
+        			NotificationSpIntro spInfo = new NotificationSpIntro();
+        			spInfo.setUserId(leaApp.getUserId());
+        			spInfo.setReferId(leaApp.getMeetingId());
+        			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
+        			spInfo.setApplyTime(leaApp.getApplyTime());
+        			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
+        			spInfo.setApplicantName(userName);
+        			spInfoList.add(spInfo);
+        		}
+        		return spInfoList;
+        		
+        	}else if(typeNum == EnumNotificationSpType.REPAIR.ordinal()){
+        		List<RepairEquipment> repairEquipmentList = repairEquipmentMapper.selectAll();
+        		List<NotificationSpIntro> spInfoList = new ArrayList();
+        		RepairEquipment repairEquipment = new RepairEquipment();
+        		for(int i = 0; i < repairEquipmentList.size(); i++) {
+        			repairEquipment = repairEquipmentList.get(i);
+        			NotificationSpIntro spInfo = new NotificationSpIntro();
+        			spInfo.setUserId(repairEquipment.getUserId());
+        			spInfo.setReferId(repairEquipment.getId());
+        			spInfo.setNotificationSpType(EnumNotificationSpType.REPAIR.getDescription());
+        			spInfo.setApplyTime(repairEquipment.getRepairTime());
+        			String userName = userMapper.selectNameByUserId(repairEquipment.getUserId());
+        			spInfo.setApplicantName(userName);
+        			spInfoList.add(spInfo);
+        		}
+        		return spInfoList;
+        	}else {
+        		List<Apply> applyList = applyMapper.selectAllApply();
+        		List<NotificationSpIntro> spInfoList = new ArrayList();
+        		Apply applyInfo = new Apply();
+        		for(int i = 0; i < applyList.size(); i++) {
+        			applyInfo = applyList.get(i);
+        			NotificationSpIntro spInfo = new NotificationSpIntro();
+        			spInfo.setUserId(applyInfo.getUserId());
+        			spInfo.setReferId(applyInfo.getId());
+        			spInfo.setNotificationSpType(EnumNotificationSpType.BOOK.getDescription());
+        			spInfo.setApplyTime(applyInfo.getApplyTime());
+        			String userName = userMapper.selectNameByUserId(applyInfo.getUserId());
+        			spInfo.setApplicantName(userName);
+        			spInfoList.add(spInfo);
+        		}
+        		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectAll();
+        		LeaveApplication leaApp = new LeaveApplication();
+        		for(int i = 0; i < leaveApplicationList.size(); i++) {
+        			leaApp = leaveApplicationList.get(i);
+        			NotificationSpIntro spInfo = new NotificationSpIntro();
+        			spInfo.setUserId(leaApp.getUserId());
+        			spInfo.setReferId(leaApp.getMeetingId());
+        			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
+        			spInfo.setApplyTime(leaApp.getApplyTime());
+        			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
+        			spInfo.setApplicantName(userName);
+        			spInfoList.add(spInfo);
+        		}
+        		List<RepairEquipment> repairEquipmentList = repairEquipmentMapper.selectAll();
+        		RepairEquipment repairEquipment = new RepairEquipment();
+        		for(int i = 0; i < repairEquipmentList.size(); i++) {
+        			repairEquipment = repairEquipmentList.get(i);
+        			NotificationSpIntro spInfo = new NotificationSpIntro();
+        			spInfo.setUserId(repairEquipment.getUserId());
+        			spInfo.setReferId(repairEquipment.getId());
+        			spInfo.setNotificationSpType(EnumNotificationSpType.REPAIR.getDescription());
+        			spInfo.setApplyTime(repairEquipment.getRepairTime());
+        			String userName = userMapper.selectNameByUserId(repairEquipment.getUserId());
+        			spInfo.setApplicantName(userName);
+        			spInfoList.add(spInfo);
+        		}
+        		return spInfoList;
+        	}
     	}else {
-    		List<Apply> applyList = applyMapper.selectAllApply();
-    		List<NotificationSpIntro> spInfoList = new ArrayList();
-    		Apply applyInfo = new Apply();
-    		for(int i = 0; i < applyList.size(); i++) {
-    			applyInfo = applyList.get(i);
-    			NotificationSpIntro spInfo = new NotificationSpIntro();
-    			spInfo.setUserId(applyInfo.getUserId());
-    			spInfo.setReferId(applyInfo.getId());
-    			spInfo.setNotificationSpType(EnumNotificationSpType.BOOK.getDescription());
-    			spInfo.setApplyTime(applyInfo.getApplyTime());
-    			String userName = userMapper.selectNameByUserId(applyInfo.getUserId());
-    			spInfo.setApplicantName(userName);
-    			spInfoList.add(spInfo);
+        		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectAll();
+        		List<NotificationSpIntro> spInfoList = new ArrayList();
+        		LeaveApplication leaApp = new LeaveApplication();
+        		for(int i = 0; i < leaveApplicationList.size(); i++) {
+        			leaApp = leaveApplicationList.get(i);
+        			NotificationSpIntro spInfo = new NotificationSpIntro();
+        			spInfo.setUserId(leaApp.getUserId());
+        			spInfo.setReferId(leaApp.getMeetingId());
+        			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
+        			spInfo.setApplyTime(leaApp.getApplyTime());
+        			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
+        			spInfo.setApplicantName(userName);
+        			spInfoList.add(spInfo);
+        		}
+        		return spInfoList;
+        	
     		}
-    		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectAll();
-    		LeaveApplication leaApp = new LeaveApplication();
-    		for(int i = 0; i < leaveApplicationList.size(); i++) {
-    			leaApp = leaveApplicationList.get(i);
-    			NotificationSpIntro spInfo = new NotificationSpIntro();
-    			spInfo.setUserId(leaApp.getUserId());
-    			spInfo.setReferId(leaApp.getMeetingId());
-    			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
-    			spInfo.setApplyTime(leaApp.getApplyTime());
-    			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
-    			spInfo.setApplicantName(userName);
-    			spInfoList.add(spInfo);
-    		}
-    		List<RepairEquipment> repairEquipmentList = repairEquipmentMapper.selectAll();
-    		RepairEquipment repairEquipment = new RepairEquipment();
-    		for(int i = 0; i < repairEquipmentList.size(); i++) {
-    			repairEquipment = repairEquipmentList.get(i);
-    			NotificationSpIntro spInfo = new NotificationSpIntro();
-    			spInfo.setUserId(repairEquipment.getUserId());
-    			spInfo.setReferId(repairEquipment.getId());
-    			spInfo.setNotificationSpType(EnumNotificationSpType.REPAIR.getDescription());
-    			spInfo.setApplyTime(repairEquipment.getRepairTime());
-    			String userName = userMapper.selectNameByUserId(repairEquipment.getUserId());
-    			spInfo.setApplicantName(userName);
-    			spInfoList.add(spInfo);
-    		}
-    		return spInfoList;
-    	}
+    	
     }
 }   

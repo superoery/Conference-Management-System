@@ -22,7 +22,7 @@ public class InformBizImplSpNotificationTest {
 	
 	@Test
 	public void test() {
-		List<NotificationSpIntro> list = informBiz.spNotificastion(3);
+		List<NotificationSpIntro> list = informBiz.spNotificastion(3, 1);
 		for(NotificationSpIntro intro:list) {
 			System.out.println((intro.getUserId()));
 			System.out.println(String.valueOf(intro.getReferId()));
