@@ -214,7 +214,7 @@
 		  	<label>添加用户组成员</label>
 		  	<form action="/userGroup/addUserId.do">
 		  		<div class="input-group">
- 		  		<input type="text" class="form-control" placeholder="用户编号" name="addUserId" th:value="${addUserId}"></input>
+ 		  		<input type="text" class="form-control" th:placeholder="用户编号" name="addUserId" th:value="${addUserId}"></input>
 	 		  	<div style="display:none" th:each="selectedUser : ${selectedUserList.getSelectedUserList()}" 
 	 		  		th:if="${selectedUserList} != null and ${selectedUserList.getSelectedUserList()} != null and ${selectedUserList.getSelectedUserList().size()}!=0">
 	 		  		<input type="hidden" class="form-control" name="selectedUserList" th:value="${selectedUser}"></input>
@@ -304,7 +304,7 @@
 						</tr>
 					  </thead>
 					  <tbody>
-						<tr th:each="sUAndG : ${selectedUAndGList.getuAndGList()}">
+						<tr th:each="sUAndG : ${selectedUserList.getuAndGList()}">
 						  <td th:text="${sUAndG.getType()}==0? '用户':'用户组'"></td>
 						  <td th:text="${sUAndG.getName()}"></td>
 					  </tbody>
