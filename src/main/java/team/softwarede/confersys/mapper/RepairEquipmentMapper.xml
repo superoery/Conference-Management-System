@@ -30,6 +30,7 @@
     select 
     <include refid="Base_Column_List" />
     from repair_equipment
+    where repair_status = "未处理"
 
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

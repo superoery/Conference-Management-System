@@ -10,6 +10,7 @@ import team.softwarede.confersys.enums.EnumRepairType;
  *
  */
 public interface RepairApplicationBiz {
+	
 	String repairApplication(String userId, RepairApply repairApply);
 	
 	List<String> showAllRepairType();

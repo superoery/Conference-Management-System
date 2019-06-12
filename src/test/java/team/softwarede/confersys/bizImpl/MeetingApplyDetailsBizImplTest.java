@@ -1,6 +1,6 @@
-package team.softwarede.confersys.dtomapper;
+package team.softwarede.confersys.bizImpl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -11,25 +11,27 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import team.softwarede.confersys.Application;
-import team.softwarede.confersys.dto.MeetingDetail;
-import team.softwarede.confersys.entity.Meeting;
-
+import team.softwarede.confersys.biz.MeetingBiz;
+import team.softwarede.confersys.dto.MeetingApplyDetails;
+/**
+ * 
+ * @author SunRonglin
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class ShowMeetingDetail2MapperTest {
+public class MeetingApplyDetailsBizImplTest {
 
-	
 	@Autowired
-	ShowMeetingDetail2Mapper showMeetingDetail2Mapper;
-	
+	MeetingBiz meetingBiz;
 	@Test
 	public void test() {
-		MeetingDetail meetingDetail = showMeetingDetail2Mapper.selectByMeetingId("00000009",21);
+		int applyId = 2;
+		MeetingApplyDetails details = meetingBiz.showMtRoomBookDetails(applyId);
 		Logger logger = Logger.getLogger(getClass());
-		logger.info(meetingDetail.getMtId());
-		logger.info(meetingDetail.getMtTopic());
-
+		logger.info(details.getMeetingId());
+		logger.info(details.getMtTopic());
 	}
 
 }

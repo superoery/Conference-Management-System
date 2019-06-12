@@ -37,54 +37,48 @@
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
-			  <h4 class="card-title">通知详情</h4>
+			  <h4 class="card-title">会议信息修改</h4>
 			  <div class="table-responsive">
+			  <form action="/meeting/details/edit.do" method="post">
 				<table class="table" th:if="${details}!=null">
 				  
 					<tr>
-					  	<td>报修编号</td>
-					  	<td th:text="${details.getRepairId()}"></td>
+					  	<td>会议编号</td>
+					  	<td th:text="${details.getMtId()}"></td>
 				    </tr>
 				    <tr>
-				    	<td>设备名称</td>
-				    	<td th:text="${details.getEquipmentName()}"></td>
+				    	<td>隐藏域</td>
+					  	<td>
+					  	<input type="text" class="form-control p_input" name="meetingId" 
+				    	       th:value="${meetingId}" 
+				    	       ></input>
+					  	
+					  	</td>
 				    </tr>
 				    <tr>
-				    	<td>设备类型</td>
-				    	<td th:text="${details.getEquipmentType()}"></td>
+				    	<td>会议主题</td>
+				    	<td th:text="${details.getMtTopic()}"></td>
 				    </tr>
 				    <tr>
-				    	<td>报修详情</td>
-				    	<td th:text="${details.getRepairDetail()}"></td>
-				    </tr>
-				    <tr>
-				    	<td>报修类型</td>
-				    	<td th:text="${details.getRepairType()}"></td>
-				    </tr>
-				    <tr>
-				    	<td>报修时间</td>
-				    	<td th:text="${#dates.format(details.getApplyTime(), 'yyyy-MM-dd HH:mm')}"></td>
-				    </tr>
-				    <tr>
-				    	<td>报修人名字</td>
-				    	<td th:text="${details.getApplicantName()}"></td>
-				    </tr>
-				    <tr>
-				    	<td>会议室</td>
-				    	<span th:text="|Welcome, ${user.name}|">
-				    	<td th:text="|${details.getBuilding()}${details.getFloor()}${details.getRoomNumber()}|"></td>
-				    </tr>
-				    <tr>
+				    	<td>会议内容</td>
 				    	<td>
-						<a class="btn btn-secondary" th:href="@{/equipment/repair/audit.do(
-						repairEquipmentId=${details.getRepairId()}
-						)}">
-						修复
-						</a>
+				    	<input type="text" class="form-control p_input" name="mtContent" 
+				    	       th:value="${details.getMtContent()}" th:placeholder="${details.getMtContent()}"></input>
 				    	</td>
-				    </tr>			
-			
-				</table>
+				    </tr>
+				    <tr>
+				    	<td>会议结论</td>
+				    	<td>
+				    	<input type="text" class="form-control p_input" name="mtConclude" 
+				    	       th:value="${details.getMtConclusion()}" th:placeholder="${details.getMtConclusion()}"></input>
+				    	</td>
+				    </tr>
+					
+				 </table>
+				<div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-block enter-btn">提交</button>
+                </div>
+				</form>
 			  </div>
 			</div>
 		  </div>
