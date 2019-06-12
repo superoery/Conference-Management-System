@@ -14,4 +14,6 @@ public interface RepairsMapper {
 	int insertSelective(RepairsKey record);
 	
 	RepairsKey selectByReEquipmentId(Integer repairEquipmentId);
+	
+	int selectByRepairEquipmentId(int repairEquipmentId);
 }

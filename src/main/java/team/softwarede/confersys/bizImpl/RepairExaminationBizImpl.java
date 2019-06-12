@@ -59,9 +59,11 @@ public class RepairExaminationBizImpl implements RepairExaminationBiz{
 		Equipment equipment = equipmentMapper.selectByPrimaryKey(repaire.getEquipmentId());
 		equipment.setEquipmentStatus(EnumEquipmentStatus.AVAILABLE.getDescription());
 		equipmentMapper.updateByPrimaryKey(equipment);
+		int equipmentId = repairsMapper.selectByRepairEquipmentId(repairEquipmentId);
+		String roomId = String.valueOf(equipmentMapper.selectRoomId(equipmentId));
+		String equipmentName = equipmentMapper.selectEquipmentName(equipmentId);
 			
-		notification.setNotificationDetail("succeed!");
-			
+		notification.setNotificationDetail("您关于"+ roomId + "号房间的" + equipmentName +"报修已成功处理，感谢您的反馈");
 		msg = "succeed!";
 		notificationMapper.insert(notification);
 		int id = notificationMapper.selectByNotification(notification);

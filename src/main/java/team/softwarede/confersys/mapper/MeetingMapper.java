@@ -22,4 +22,6 @@ public interface MeetingMapper {
     
     int updateStatusById(@Param("id")Integer id,@Param("meetingStatusId")String status);
     
+    String selectTopicById(Integer id);
+    
 }
