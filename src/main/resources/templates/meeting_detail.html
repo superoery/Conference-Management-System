@@ -263,7 +263,8 @@
 					<tr  th:if="${userSession.getRole().getRole()} != '普通用户' ">
 						<th>与会者列表</th>
 						<td>
-							<table class="table table">
+							<p th:if="${participantsList.size()}==0" th:text=${'暂无与会者'}></p>
+							<table class="table table" th:if="${participantsList.size()}!=0">
 								<tr   th:each="p : ${participantsList}">
 									<td th:text="${p.getParticipantName()}"></td>
 									<td th:text="${p.getParticipantStatus()}"></td>

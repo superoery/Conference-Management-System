@@ -110,7 +110,7 @@ public class MeetingController {
 		map.addAttribute("mtDetail", mtDetail);
 		map.addAttribute("participantsList", participantsList);
 
-		return "mt_detail";
+		return "meeting_detail";
     }
 	
 	

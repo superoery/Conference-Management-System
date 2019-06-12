@@ -203,8 +203,6 @@
 			<div class="card-body">
 			  <h4 class="card-title">更改密码</h4>
 			  <div class="table-responsive">
-			  	<p th:if="${userInfo}==null" th:text=${'没有用户的相关信息！发生错误！'}></p>
-			  	
 			  	
 				<form class="form-sample" action="/user/psw_change_submit.do" method="post">
 				
@@ -232,11 +230,6 @@
 			</div>
 		  </div>
 		</div>
-	  </div>
-	  
-	  
-	  <div style="float: right;">
-		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
 	  </div>
 	  
 	</div>
