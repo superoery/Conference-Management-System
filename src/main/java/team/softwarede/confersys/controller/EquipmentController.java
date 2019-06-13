@@ -1,5 +1,6 @@
 package team.softwarede.confersys.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,7 @@ public class EquipmentController {
 			HttpSession session,
 			@ModelAttribute("repairApply") RepairApply repairApply) {
 		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		repairApply.setDate(new Date());
 		repairApplicationBiz.repairApplication(userSession.getUserId(), repairApply);
 		map.addAttribute("userSession",userSession);
 		return "equipment_repair_submitMsg";
