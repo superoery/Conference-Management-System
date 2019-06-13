@@ -75,18 +75,6 @@
 		</div>
 	  </div>
 	  
-	  <div th:if="(${mtDetail.getMtStatus()}=='审核通过未开始') and 
-	  			  (${mtDetail.getMyParticipantStatus()}=='出席')" style="float: left;">		
-		<a class="btn btn-inverse-dark btn-fw"
-		   th:href="@{/meeting/leave/apply/show.do(meetingId=${mtDetail.getMtId()})}">
-		请假
-		</a>
-	  </div>
-	  <div style="float: right;">
-		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
-	  </div>
-	  <div  th:if="${session.userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
-	  
 	</div>
 	<!-- content-wrapper ends -->
 	

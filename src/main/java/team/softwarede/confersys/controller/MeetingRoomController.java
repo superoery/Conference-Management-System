@@ -79,7 +79,7 @@ public class MeetingRoomController {
 //			map.addAttribute("scheduleList", scheduleList);
 //		}
 		
-		List<Equipment> equipmentList = repairApplicationBiz.xxx(mtRoomId);
+		List<Equipment> equipmentList = repairApplicationBiz.selectByMeetingRoomId(mtRoomId);
 		map.addAttribute("equipmentList", equipmentList);
 		
 		return "mtRoom_detail";
