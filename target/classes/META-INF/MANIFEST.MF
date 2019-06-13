@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: SpringBootWithSwagger
 Implementation-Version: 1.0.0
-Built-By: SunRonglin
+Built-By: wyfca
 Implementation-Vendor-Id: com.didispace
-Build-Jdk: 1.8.0_66
+Build-Jdk: 1.8.0_121
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 

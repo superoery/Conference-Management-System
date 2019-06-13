@@ -57,6 +57,56 @@
 						<th>状态</th>
 						<td th:text="${mtRoom.getStatusId()}"></td>
 					</tr>
+					
+					<!-- <tr>
+						<th>已被占用的时间</th>
+						<td>
+							<p th:if="${scheduleList}==null" th:text="没有被占用的时间"></p>
+							<table th:if="${scheduleList}!=null">
+								<thead>
+									<tr>
+									<th>开始时间</th>
+									<th>结束时间</th>
+									<th th:if="${session.userSession.getRole().getRole()} == '管理员' ">会议名称</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="sche : ${scheduleList}">
+									<td th:text="${#dates.format(sche.getBeginTime(), 'yyyy-MM-dd HH:mm')}"></td>
+									<td th:text="${#dates.format(sche.getEndTime(), 'yyyy-MM-dd HH:mm')}"></td>
+									<td th:if="${session.userSession.getRole().getRole()} == '管理员' ">
+										<a th:href="@{/meeting/mt_detail.do(mtId=${sche.getMtId()}) }"  
+											th:text="${sche.getMtTopic()}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr> -->
+					
+					<tr>
+						<th>部署的设备</th>
+						<td>
+							<p th:if="${equipmentList}==null" th:text="该会议室没有部署设备！"></p>
+							<table th:if="${equipmentList}!=null">
+								<thead>
+									<tr>
+									<th>设备编号</th>
+									<th>设备名称</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="equip : ${equipmentList}">
+									<td th:text="${equip.getEquipmentId()}"></td>
+									<td th:text="${equip.getEquipmentName()}"></td>
+									<td>
+										<a class="btn btn-success" style="color:#FFFFFF"
+											th:href="@{/equipment/show_detail.do(equipmentId=${equip.getEquipmentId()}) }">查看详情</a>
+									</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
 				</table>
 			  </div>
 			</div>

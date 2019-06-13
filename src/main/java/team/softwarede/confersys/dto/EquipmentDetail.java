@@ -8,7 +8,7 @@ public class EquipmentDetail {
 	
 	private String equipmentName;
 	
-	private Integer equipmentTypeName;
+	private String equipmentTypeName;
 	
 	private Integer meetingRoomId;
 	
@@ -38,11 +38,11 @@ public class EquipmentDetail {
 		this.equipmentName = equipmentName;
 	}
 
-	public Integer getEquipmentTypeName() {
+	public String getEquipmentTypeName() {
 		return equipmentTypeName;
 	}
 
-	public void setEquipmentTypeName(Integer equipmentTypeName) {
+	public void setEquipmentTypeName(String equipmentTypeName) {
 		this.equipmentTypeName = equipmentTypeName;
 	}
 

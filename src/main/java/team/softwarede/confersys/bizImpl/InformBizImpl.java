@@ -23,6 +23,7 @@ import team.softwarede.confersys.entity.Apply;
 import team.softwarede.confersys.entity.Equipment;
 import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.entity.Meeting;
+import team.softwarede.confersys.entity.MeetingRoom;
 import team.softwarede.confersys.entity.NoticesKey;
 import team.softwarede.confersys.entity.Notification;
 import team.softwarede.confersys.entity.RepairEquipment;
@@ -37,6 +38,7 @@ import team.softwarede.confersys.mapper.ApplyMapper;
 import team.softwarede.confersys.mapper.EquipmentMapper;
 import team.softwarede.confersys.mapper.LeaveApplicationMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
+import team.softwarede.confersys.mapper.MeetingRoomMapper;
 import team.softwarede.confersys.mapper.NoticesMapper;
 import team.softwarede.confersys.mapper.NotificationMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
@@ -75,6 +77,8 @@ public class InformBizImpl implements InformBiz {
     RepairsMapper repairsMapper;
     @Autowired
     EquipmentMapper equipmentMapper;
+    @Autowired
+    MeetingRoomMapper meetingRoomMapper;
     
     
     @Transactional
@@ -90,6 +94,8 @@ public class InformBizImpl implements InformBiz {
         String meetingTopic = meeting.getTopic();
         Schedule schedule = scheduleMapper.selectByMtId(meetingId);
         String auditdetail = null;
+        MeetingRoom mtRoom = meetingRoomMapper.selectByPrimaryKey(schedule.getMeetingRoomId());
+        String location = mtRoom.getBuilding()+mtRoom.getFloor()+mtRoom.getRoomNumber();
         
         if(bookStatus==0) {
             //如果会议拒绝
@@ -115,7 +121,8 @@ public class InformBizImpl implements InformBiz {
             String beginTime = sdfTime.format(beginDateTime);
             String endTime = sdfTime.format(endtDateTime);
             
-            String attendMtDetail = date + ",从" + beginTime + "到" + endTime 
+            String attendMtDetail = date + ",从" + beginTime + "到" + endTime+
+            						"在"+location +","
                                     + "您需要参加 \"" + meetingTopic +"\"会议，请您做好与会准备"; 
             
             List<String> partUserIdList =participatesMapper.selectByMtId(meetingId);
@@ -372,21 +379,23 @@ public class InformBizImpl implements InformBiz {
         		return spInfoList;
         	}
     	}else {
-    			int meetingId = applyMapper.selectMeetingId(userId);
-        		List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectByMeetingId(meetingId);
-        		List<NotificationSpIntro> spInfoList = new ArrayList();
-        		LeaveApplication leaApp = new LeaveApplication();
-        		for(int i = 0; i < leaveApplicationList.size(); i++) {
-        			leaApp = leaveApplicationList.get(i);
-        			NotificationSpIntro spInfo = new NotificationSpIntro();
-        			spInfo.setUserId(leaApp.getUserId());
-        			spInfo.setReferId(leaApp.getMeetingId());
-        			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
-        			spInfo.setApplyTime(leaApp.getApplyTime());
-        			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
-        			spInfo.setApplicantName(userName);
-        			spInfoList.add(spInfo);
-        		}
+    			List<Integer> meetingId = applyMapper.selectMeetingId(userId);
+    			List<NotificationSpIntro> spInfoList = new ArrayList();
+    			for(int j:meetingId) {
+    				List<LeaveApplication> leaveApplicationList = leaveApplicationMapper.selectByMeetingId(j);
+            		LeaveApplication leaApp = new LeaveApplication();
+            		for(int i = 0; i < leaveApplicationList.size(); i++) {
+            			leaApp = leaveApplicationList.get(i);
+            			NotificationSpIntro spInfo = new NotificationSpIntro();
+            			spInfo.setUserId(leaApp.getUserId());
+            			spInfo.setReferId(leaApp.getMeetingId());
+            			spInfo.setNotificationSpType(EnumNotificationSpType.LEAVE.getDescription());
+            			spInfo.setApplyTime(leaApp.getApplyTime());
+            			String userName = userMapper.selectNameByUserId(leaApp.getUserId());
+            			spInfo.setApplicantName(userName);
+            			spInfoList.add(spInfo);
+            		}
+    			}
         		return spInfoList;
         	
     		}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import team.softwarede.confersys.biz.RepairApplicationBiz;
 import team.softwarede.confersys.biz.RepairExaminationBiz;
 import team.softwarede.confersys.dto.BasicSession;
+import team.softwarede.confersys.dto.EquipmentDetail;
 import team.softwarede.confersys.dto.RepairApply;
 
 @Controller
@@ -64,5 +65,13 @@ public class EquipmentController {
 		map.addAttribute("msg", msg);
 		
 		return "forward:/universal/result/show.do";
+	}
+	
+	@RequestMapping(value = "/show_detail.do", params = {"equipmentId"})
+	public String showEquipmentDetail(ModelMap map,
+			@ModelAttribute("equipmentId") int equipmentId) {
+		EquipmentDetail equipmentDetail = repairApplicationBiz.showEquipmentDetail(equipmentId);
+		map.addAttribute("equipmentDetail", equipmentDetail);
+		return "equipment_detail";
 	}
 }

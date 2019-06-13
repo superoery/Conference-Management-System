@@ -47,39 +47,12 @@
   
   <div class="navbar-menu-wrapper d-flex align-items-stretch">
   
-	<div class="search-field ml-4 d-none d-md-block">
-	  <form class="d-flex align-items-stretch h-100" action="#">
-		<div class="input-group">
-		  <input type="text" class="form-control bg-transparent border-0" placeholder="Search">
-		  
-		  <div class="input-group-btn">
-			<button type="button" class="btn bg-transparent dropdown-toggle px-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  <i class="mdi mdi-earth"></i>
-			</button>
-			<div class="dropdown-menu dropdown-menu-right">
-			  <a class="dropdown-item" href="#">会议列表</a>
-			  <a class="dropdown-item" href="#">会议室列表</a>
-			</div>
-		  </div>
-		  
-		  <div class="input-group-addon bg-transparent border-0 search-button">
-			<button type="submit" class="btn btn-sm bg-transparent px-0">
-			  <i class="mdi mdi-magnify"></i>
-			</button>
-		  </div>
-		</div>
-	  </form>
-	</div>
+
 	
 	
 	<ul class="navbar-nav navbar-nav-right">
 	
-	
-	  <li class="nav-item d-none d-lg-block full-screen-link">
-		<a class="nav-link">
-		  <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
-		</a>
-	  </li>
+
 	  
 	  
 	  <!-- 一般通知 -->
@@ -170,12 +143,11 @@
 		
 		
 		<li class="nav-item"   th:if="${session.userSession.getRole().getRole()} == '管理员' ">
-		  <a class="nav-link" href="#" th:href="@{/meetingRoom/show_list.do}">
+		  <a class="nav-link" href="mtRoom.html" th:href="@{/meetingRoom/showList.do}">
 			<span class="menu-title">会议室列表</span>
 			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
 		  </a>
 		</li>
-		
 		
 		<li class="nav-item" th:if="${session.userSession.getRole().getRole()} == '会议组织者' ">
 		  <a class="nav-link" href="mtroom_book.html" th:href="@{/meetingRoom/book.do}">
