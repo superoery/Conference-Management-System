@@ -63,16 +63,16 @@ public class MeetingRoomController {
 			HttpSession session) {
 		MeetingRoom mtRoom = showMtRoomInfoBiz.showMtRoomInfo(mtRoomId);
 		map.addAttribute("mtRoom", mtRoom);
-		
-		BasicSession userSession = (BasicSession)session.getAttribute("userSession");
-		
-		if(userSession.getRole().getRole()==EnumRoleName.ADMIN.getDescription()) {
-			List<MeetingRoomSchedule> scheduleList = meetingRoomBiz.showScheduleAdmin(mtRoomId);
-			map.addAttribute("scheduleList", scheduleList);
-		}else if(userSession.getRole().getRole()==EnumRoleName.ORGANIZER.getDescription()) {
-			List<MeetingRoomScheduleOrg> scheduleList = meetingRoomBiz.showScheduleOrg(mtRoomId);
-			map.addAttribute("scheduleList", scheduleList);
-		}
+//		
+//		BasicSession userSession = (BasicSession)session.getAttribute("userSession");
+//		
+//		if(userSession.getRole().getRole()==EnumRoleName.ADMIN.getDescription()) {
+//			List<MeetingRoomSchedule> scheduleList = meetingRoomBiz.showScheduleAdmin(mtRoomId);
+//			map.addAttribute("scheduleList", scheduleList);
+//		}else if(userSession.getRole().getRole()==EnumRoleName.ORGANIZER.getDescription()) {
+//			List<MeetingRoomScheduleOrg> scheduleList = meetingRoomBiz.showScheduleOrg(mtRoomId);
+//			map.addAttribute("scheduleList", scheduleList);
+//		}
 		
 		return "mtRoom_detail";
 	}
