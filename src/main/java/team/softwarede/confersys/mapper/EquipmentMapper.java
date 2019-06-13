@@ -1,6 +1,9 @@
 package team.softwarede.confersys.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import team.softwarede.confersys.entity.Equipment;
 
@@ -14,6 +17,8 @@ public interface EquipmentMapper {
 	int insertSelective(Equipment record);
 
 	Equipment selectByPrimaryKey(Integer equipmentId);
+	
+	List <Equipment> selectByMeetingRoomId(@Param("meetingRoomId")int meetingId);
 
 	int updateByPrimaryKeySelective(Equipment record);
 

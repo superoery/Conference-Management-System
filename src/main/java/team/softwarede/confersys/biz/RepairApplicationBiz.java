@@ -4,6 +4,7 @@ import java.util.List;
 
 import team.softwarede.confersys.dto.EquipmentDetail;
 import team.softwarede.confersys.dto.RepairApply;
+import team.softwarede.confersys.entity.Equipment;
 /**
  * 
  * @author SunRonglin
@@ -28,4 +29,6 @@ public interface RepairApplicationBiz {
 	 * @return
 	 */
 	EquipmentDetail showEquipmentDetailByRepairId(Integer repairId);
+	
+	List<Equipment> selectByMeetingRoomId(Integer meetingRoomId);
 }
