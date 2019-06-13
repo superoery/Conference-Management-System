@@ -114,7 +114,11 @@ public class RepairApplicationBizImpl implements RepairApplicationBiz{
         
         return repairTypeList;
     }
-    
+    @Override
+    public List<Equipment> selectByMeetingRoomId(Integer meetingRoomId){
+    	List<Equipment> list = equipmentMapper.selectByMeetingRoomId(meetingRoomId);
+    	return list;
+    }
     @Override
     public EquipmentDetail showEquipmentDetail(Integer equipmentId) {
     	EquipmentDetail detail = equipmentDetailMapper.selectByEquipmentId(equipmentId);
@@ -123,7 +127,8 @@ public class RepairApplicationBizImpl implements RepairApplicationBiz{
     
     @Override
     public EquipmentDetail showEquipmentDetailByRepairId(Integer repairId) {
-    	EquipmentDetail detail = equipmentDetailMapper.selectByEquipmentId(repairId);
+    	int equipmentId = repairsMapper.selectByRepairEquipmentId(repairId);
+    	EquipmentDetail detail = equipmentDetailMapper.selectByEquipmentId(equipmentId);
     	return detail;
     }
 }
