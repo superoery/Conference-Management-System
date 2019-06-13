@@ -7,6 +7,7 @@ package team.softwarede.confersys.bizImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -19,11 +20,13 @@ import team.softwarede.confersys.dto.NotificationDetail;
 import team.softwarede.confersys.dto.NotificationMainPage;
 import team.softwarede.confersys.dto.NotificationSpIntro;
 import team.softwarede.confersys.entity.Apply;
+import team.softwarede.confersys.entity.Equipment;
 import team.softwarede.confersys.entity.LeaveApplication;
 import team.softwarede.confersys.entity.Meeting;
 import team.softwarede.confersys.entity.NoticesKey;
 import team.softwarede.confersys.entity.Notification;
 import team.softwarede.confersys.entity.RepairEquipment;
+import team.softwarede.confersys.entity.RepairsKey;
 import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.enums.EnumMeetingStatusId;
@@ -31,12 +34,14 @@ import team.softwarede.confersys.enums.EnumNotificationSpType;
 import team.softwarede.confersys.enums.EnumNotificationStatus;
 import team.softwarede.confersys.enums.EnumNotificationType;
 import team.softwarede.confersys.mapper.ApplyMapper;
+import team.softwarede.confersys.mapper.EquipmentMapper;
 import team.softwarede.confersys.mapper.LeaveApplicationMapper;
 import team.softwarede.confersys.mapper.MeetingMapper;
 import team.softwarede.confersys.mapper.NoticesMapper;
 import team.softwarede.confersys.mapper.NotificationMapper;
 import team.softwarede.confersys.mapper.ParticipatesMapper;
 import team.softwarede.confersys.mapper.RepairEquipmentMapper;
+import team.softwarede.confersys.mapper.RepairsMapper;
 import team.softwarede.confersys.mapper.ScheduleMapper;
 import team.softwarede.confersys.mapper.UserMapper;
 
@@ -66,6 +71,11 @@ public class InformBizImpl implements InformBiz {
     LeaveApplicationMapper leaveApplicationMapper;
     @Autowired
     RepairEquipmentMapper repairEquipmentMapper;
+    @Autowired
+    RepairsMapper repairsMapper;
+    @Autowired
+    EquipmentMapper equipmentMapper;
+    
     
     @Transactional
     @Override
@@ -221,13 +231,43 @@ public class InformBizImpl implements InformBiz {
     	for(int i = 0; i < list.size(); i++) {
     		dataItem = list.get(i);
     		NotificationMainPage showDataItem = new NotificationMainPage();
+    		String type = dataItem.getNotificationType();
+    		Integer referId = Integer.valueOf(dataItem.getReferId());
+    		String referMsg = null;
+    		
     		showDataItem.setNotificationId(dataItem.getId());
-    		showDataItem.setNotificationType(dataItem.getNotificationType());
-    		showDataItem.setReferMsg(dataItem.getReferId());
+    		showDataItem.setNotificationType(type);
+    		showDataItem.setStatus(dataItem.getNotificationStatus());
+    		
+    		if(type.equals(EnumNotificationType.REPAIR.getDescription())) {
+    			if(referId!=0) {
+    				RepairsKey key = repairsMapper.selectByRepairEquipmentId(referId);
+        			Equipment equipment = equipmentMapper.selectByPrimaryKey(key.getEquipmentId());
+        			referMsg = equipment.getEquipmentName();
+    			}else {
+    				referMsg = "设备报修无效";
+    			}
+    			
+    			
+    			
+    		}
+    		if(type.equals(EnumNotificationType.MEETING.getDescription()) ||
+    	       type.equals(EnumNotificationType.LEAVE.getDescription()) ||
+    	       type.equals(EnumNotificationType.AUIDIT.getDescription()) ) {
+    			
+    			
+    			Meeting meeting = meetingMapper.selectByPrimaryKey(referId);
+    			referMsg = meeting.getTopic();
+    			
+    		}
+    		
+    		showDataItem.setReferMsg(referMsg);
     		showList.add(showDataItem);
     		
     	}
 
+    	Collections.sort(showList);
+    	
     	return showList;
     }
 

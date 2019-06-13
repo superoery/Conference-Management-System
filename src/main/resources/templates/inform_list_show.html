@@ -34,7 +34,10 @@
 					  </th>
 					  <th>
 						信息
-					  </th>  
+					  </th>
+					  <th>
+						状态
+					  </th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -42,6 +45,7 @@
 					    <td th:text="${notification.getNotificationId()}"></td>
 					    <td th:text="${notification.getNotificationType()}"></td>
 					    <td th:text="${notification.getReferMsg()}"></td>
+					    <td th:text="${notification.getStatus()}"></td>
 						<td>
 						<a class="btn btn-secondary" th:href="@{/inform/normal/details.do(informId=${notification.getNotificationId()})}">
 						查看详情

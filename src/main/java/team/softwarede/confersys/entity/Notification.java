@@ -9,6 +9,7 @@ public class Notification {
     private String notificationDetail;
 
     private String notificationStatus;
+        
 
     /**
      * 当通知类型为：新会议、审核结果、请假，该referId都是指对应的会议编号
@@ -104,4 +105,5 @@ public class Notification {
 	public void setNotificationStatus(String notificationStatus) {
 		this.notificationStatus = notificationStatus;
 	}
+
 }
