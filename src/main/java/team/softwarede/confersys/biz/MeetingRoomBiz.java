@@ -30,7 +30,7 @@ public interface MeetingRoomBiz {
     
     List<MeetingRoomAvail> showAllMtRoom();
     
-    List<MeetingRoomSchedule> showScheduleAdmin();
+    List<MeetingRoomSchedule> showScheduleAdmin(int meetingRoomId);
     
-    List<MeetingRoomScheduleOrg> showScheduleOrg();
+    List<MeetingRoomScheduleOrg> showScheduleOrg(int meetingRoomId);
 }

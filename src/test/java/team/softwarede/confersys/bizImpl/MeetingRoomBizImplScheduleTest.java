@@ -25,8 +25,8 @@ public class MeetingRoomBizImplScheduleTest {
 	
 	@Test 
 	public void test() {
-		List<MeetingRoomSchedule> schedule = meetingRoomBiz.showScheduleAdmin();
-	List<MeetingRoomScheduleOrg> schedule1 = meetingRoomBiz.showScheduleOrg();
+		List<MeetingRoomSchedule> schedule = meetingRoomBiz.showScheduleAdmin(7);
+	List<MeetingRoomScheduleOrg> schedule1 = meetingRoomBiz.showScheduleOrg(7);
 		Logger logger = Logger.getLogger(getClass());
 		for(MeetingRoomSchedule test:schedule) {
 			logger.info(String.valueOf(test.getMtId()));

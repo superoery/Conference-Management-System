@@ -67,10 +67,10 @@ public class MeetingRoomController {
 		BasicSession userSession = (BasicSession)session.getAttribute("userSession");
 		
 		if(userSession.getRole().getRole()==EnumRoleName.ADMIN.getDescription()) {
-			List<MeetingRoomSchedule> scheduleList = meetingRoomBiz.showMtRoomSchedule(mtRoomId);
+			List<MeetingRoomSchedule> scheduleList = meetingRoomBiz.showScheduleAdmin(mtRoomId);
 			map.addAttribute("scheduleList", scheduleList);
 		}else if(userSession.getRole().getRole()==EnumRoleName.ORGANIZER.getDescription()) {
-			List<MeetingRoomScheduleOrg> scheduleList = meetingRoomBiz.showMtRoomScheduleOrg(mtRoomId);
+			List<MeetingRoomScheduleOrg> scheduleList = meetingRoomBiz.showScheduleOrg(mtRoomId);
 			map.addAttribute("scheduleList", scheduleList);
 		}
 		
