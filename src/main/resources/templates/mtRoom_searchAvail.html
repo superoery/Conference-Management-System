@@ -51,20 +51,25 @@
 					  </thead>
 					  <tbody>
 						<tr th:each="uAndG : ${uAndGList.getuAndGList()}">
- 						  <td th:text="${uAndG.getType()}"></td> 
+ 						  <td th:text="${uAndG.getType()}==0? '用户':'用户组'"></td> 
 						  <td th:text="${uAndG.getName()}"></td>
 						  <td>
-						  	<a class="btn btn-secondary" th:href="@{/meetingRoom/addUAndUG.do(uAndGId=${uAndG.getId()}, uAndGName=${uAndG.getName()}, uAndGType=${uAndG.getType()})}">+</button>
+						  	<a class="btn btn-secondary" th:href="@{/meetingRoom/addUAndUG.do(uAndGId=${uAndG.getId()}, uAndGName=${uAndG.getName()}, uAndGType=${uAndG.getType()})}">+</a>
 						  </td>
 					  	</tr>
 					  </tbody>
 					</table>
 				  
 				</div>
-			
+
+<script>
+	function test(x,y,z,c){
+		alert(x+" "+y+" "+z+" "+c);
+	}
+</script>		  	
  			<br/><br/>
 		  	<p class="card-description">会议室预约——查找可用会议室</p>
-		  	<form class="form-sample" action="/user/searchAvail.do" method="post" th:object="${mtRoomAvail}">
+		  	<form class="form-sample" method="post" action="/meetingRoom/searchAvail.do" th:object="${mtRoomAvail}">
 		  		<div class="form-group">
 				 	<label>与会用户和用户组列表</label>
 				 	<p style="color:#FF0000"  th:text="暂无成员，请查找并添加与会成员"
@@ -92,23 +97,23 @@
 		  		
 		  		<div class="form-group">
 				 	<label>开会日期</label>
-				 	<input type="date" class="form-control" name="mtDate" th:field="*{mtDate}"/>
-<!-- 				 	<p th:if="${#fields.hasErrors('date')}" th:errors="*{date}" style="color:#FF0000">errors date</p>
- -->				
+				 	<input type="date" class="form-control" name="mtDate" id="mtDate" th:field="*{mtDate}" th:value="${mtDate}"
+				 		min="${#dates.createNow()}"/>
+ 				 	<p th:if="${#fields.hasErrors('mtDate')}" th:errors="*{mtDate}" style="color:#FF0000">errors mtDate</p>
 				</div>
 		  		
 				<div class="form-group">
 				 	<label>开始时间</label>
-				 	<input type="time" class="form-control" name="beginTime" th:field="*{beginTime}"/>
-<!-- 				 	<p th:if="${#fields.hasErrors('beginTime')}" th:errors="*{beginTime}" style="color:#FF0000">errors beginTime</p>
- -->				
+				 	<input type="time" class="form-control" name="beginTime" th:field="*{beginTime}" th:value="${beginTime}"/>
+ 				 	<p th:if="${#fields.hasErrors('beginTime')}" th:errors="*{beginTime}" style="color:#FF0000">errors beginTime</p>
+				
 				</div>
 				
 				<div class="form-group">
 				  	<label>结束时间</label>
-					<input type="time" class="form-control" name="endTime" th:field="*{endTime}"/>
-<!--				 	<p th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" style="color:#FF0000">errors endTime</p>
- -->				
+					<input type="time" class="form-control" name="endTime" th:field="*{endTime}" th:value="${endTime}"/>
+				 	<p th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" style="color:#FF0000">errors endTime</p>
+				
 				</div>
 
 				<div class="form-group">
@@ -124,11 +129,9 @@
                      </div>
                    </div>
                    <br/>
-<!--                   <p th:if="${#fields.hasErrors('equipmentTypeIdList')}" th:errors="*{equipmentTypeIdList}" style="color:#FF0000">errors equipmentTypeIdList</p>
- -->				
-				</div>
-
+                   <p th:if="${#fields.hasErrors('equipmentTypeIdList')}" th:errors="*{equipmentTypeIdList}" style="color:#FF0000">errors equipmentTypeIdList</p>
 				
+				</div>
 				<button type="submit" class="btn btn-success mr-2">查找可用会议室</button>
 		  	</form>
 		  	
