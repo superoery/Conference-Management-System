@@ -10,9 +10,12 @@ import team.softwarede.confersys.biz.LeaveApplicationBiz;
 import team.softwarede.confersys.dto.LeaveApplyShowDetail;
 import team.softwarede.confersys.dtomapper.LeaveApplyShowDetailMapper;
 import team.softwarede.confersys.entity.LeaveApplication;
+import team.softwarede.confersys.entity.Participates;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
+import team.softwarede.confersys.enums.EnumParticipatesStatus;
 import team.softwarede.confersys.mapper.LeaveApplicationMapper;
 import team.softwarede.confersys.mapper.NotificationMapper;
+import team.softwarede.confersys.mapper.ParticipatesMapper;
 /**
  * 
  * @author SunRonglin
@@ -23,7 +26,8 @@ public class LeaveAplicationBizImpl implements LeaveApplicationBiz{
 	
 	@Autowired
 	LeaveApplicationMapper leaveApplicationMapper;
-	
+	@Autowired
+	ParticipatesMapper participatesMapper;
 	@Autowired
 	NotificationMapper notificationMapper;
 	@Autowired
@@ -32,6 +36,7 @@ public class LeaveAplicationBizImpl implements LeaveApplicationBiz{
 	@Transactional
 	@Override
 	public String submitLeaveApplication(LeaveApplication record) {
+		Participates participates = new Participates();
 		String msg;
 		String status = EnumApplyStatusId.EXAMING.getDescription();
 		record.setApplyStatusId(status);
@@ -39,6 +44,11 @@ public class LeaveAplicationBizImpl implements LeaveApplicationBiz{
 		record.setApplyTime(applyTime);
 		msg = "succeed";
 		
+		participates.setUserId(record.getUserId());
+		participates.setMeetingId(record.getMeetingId());
+		participates.setParticipantsStatus(EnumParticipatesStatus.APPLY.getDescription());
+
+		participatesMapper.updateByPrimaryKeySelective(participates);
 		leaveApplicationMapper.insertSelective(record);
 		
 		return msg;
