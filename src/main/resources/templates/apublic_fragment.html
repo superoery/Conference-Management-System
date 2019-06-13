@@ -170,12 +170,11 @@
 		
 		
 		<li class="nav-item"   th:if="${session.userSession.getRole().getRole()} == '管理员' ">
-		  <a class="nav-link" href="#" th:href="@{/meetingRoom/show_list.do}">
+		  <a class="nav-link" href="mtRoom.html" th:href="@{/meetingRoom/showList.do}">
 			<span class="menu-title">会议室列表</span>
 			<i class="mdi mdi-format-list-bulleted menu-icon"></i>
 		  </a>
 		</li>
-		
 		
 		<li class="nav-item" th:if="${session.userSession.getRole().getRole()} == '会议组织者' ">
 		  <a class="nav-link" href="mtroom_book.html" th:href="@{/meetingRoom/book.do}">

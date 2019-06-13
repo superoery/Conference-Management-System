@@ -14,7 +14,7 @@
 	<!-- partial -->
 	<div class="card-body" layout:fragment="content">	
 	  
-	  <div class="row" id="participatedMeeting"  th:if="${session.userSession.getRole().getRole()} != '管理员' ">
+	  <div class="row" id="mtRoom">
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
@@ -48,6 +48,8 @@
 					  <td th:text="${mtRoom.getFloor()}"></td>
 					  <td th:text="${mtRoom.getRoomNumber()}"></td>
 					  <td th:text="${mtRoom.getCapacity()}"></td>
+					  <td><a class="btn btn-success" style="color:#FFFFFF"
+							th:href="@{/meetingRoom/show_detail.do(mtRoomId=${mtRoom.getId()}) }">查看详情</a></td>
 				  </tbody>
 				</table>
 			  </div>

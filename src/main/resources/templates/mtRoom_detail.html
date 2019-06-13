@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html 
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="apublic_fragment">
+
+<head>
+<meta charset="utf-8">
+<title>会议室详情</title>
+</head>
+<body>
+
+	<!-- partial -->
+	<div class="card-body" layout:fragment="content">
+	
+	  
+	  <div class="row" id="participatedMeeting">
+		<div class="col-12 grid-margin">
+		  <div class="card">
+			<div class="card-body">
+			  <h4 class="card-title">会议室详情</h4>
+			  <div class="table-responsive">
+			  	<p th:if="${mtRoom}==null" th:text=${'未查到该会议室详情！'}></p>
+				<table class="table table-bordered" th:if="${mtRoom}!=null">
+					<tr>
+						<th>编号</th>
+						<td th:text="${mtRoom.getId()}"></td>
+					</tr>
+					
+					<tr>
+						<th>容量</th>
+						<td th:text="${mtRoom.getCapacity()}"></td>
+					</tr>
+					
+					<tr>
+						<th>介绍</th>
+						<td th:text="${mtRoom.getRoomIntroduce()}"></td>
+					</tr>
+					
+					<tr>
+						<th>建筑</th>
+						<td th:text="${mtRoom.getBuilding()}"></td>
+					</tr>
+					
+					<tr>
+						<th>楼层</th>
+						<td th:text="${mtRoom.getFloor()}"></td>
+					</tr>
+					
+					<tr>
+						<th>房间号</th>
+						<td th:text="${mtRoom.getRoomNumber()}"></td>
+					</tr>
+					
+					<tr>
+						<th>状态</th>
+						<td th:text="${mtRoom.getStatusId()}"></td>
+					</tr>
+				</table>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	  
+	  <div style="float: right;">
+		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
+	  </div>
+	  <div  th:if="${session.userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
+	  
+	</div>
+	<!-- content-wrapper ends -->
+	
+</body>
+
+</html>

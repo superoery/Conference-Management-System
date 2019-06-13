@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import team.softwarede.confersys.biz.MeetingBiz;
 import team.softwarede.confersys.biz.MeetingRoomBiz;
+import team.softwarede.confersys.biz.ShowMtRoomInfoBiz;
 import team.softwarede.confersys.biz.UserGroupBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
@@ -26,6 +27,7 @@ import team.softwarede.confersys.dto.MeetingRoomBook;
 import team.softwarede.confersys.dto.MeetingRoomShowAvailForPage;
 import team.softwarede.confersys.dto.UserAndGroup;
 import team.softwarede.confersys.entity.EquipmentType;
+import team.softwarede.confersys.entity.MeetingRoom;
 import team.softwarede.confersys.vo.UserAndGroupList;
 
 @Controller
@@ -40,7 +42,26 @@ public class MeetingRoomController {
 	
 	@Autowired
 	MeetingBiz meetingBiz;
+	
+	@Autowired
+	ShowMtRoomInfoBiz showMtRoomInfoBiz;
 
+	@RequestMapping("/showList.do")
+	public String showMtRoomList(ModelMap map) {
+		List<MeetingRoomAvail> mtRoomList = meetingRoomBiz.showAllMtRoom();
+		map.addAttribute("mtRoomList", mtRoomList);
+		
+		return "mtRoom";
+	}
+	
+	@RequestMapping(value = "/show_detail.do", params = {"mtRoomId"})
+	public String showMtRoomDetail(ModelMap map,
+			@ModelAttribute("mtRoomId") Integer mtRoomId) {
+		MeetingRoom mtRoom = showMtRoomInfoBiz.showMtRoomInfo(mtRoomId);
+		map.addAttribute("mtRoom", mtRoom);
+		return "mtRoom_detail";
+	}
+	
 	@RequestMapping("/book.do")
 	public String book(ModelMap map,
 			@ModelAttribute("mtRoomAvail") MeetingRoomShowAvailForPage mtRoomAvail,

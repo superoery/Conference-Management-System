@@ -106,7 +106,11 @@ public class InformController {
 			selectedTypeId = EnumNotificationSpType.ALL.ordinal();
 		}
 		
-		List<NotificationSpIntro> notiSpIntroList = informBiz.spNotificastion(selectedTypeId);
+
+		
+		
+		List<NotificationSpIntro> notiSpIntroList = 
+				informBiz.spNotificastion(selectedTypeId, userSession.getRole().getId(), userSession.getUserId());
 		List<EnumNotificationSpType> eNotiSpTypeList = new ArrayList<EnumNotificationSpType>();
 		
 		for(EnumNotificationSpType e : EnumNotificationSpType.values()) {
