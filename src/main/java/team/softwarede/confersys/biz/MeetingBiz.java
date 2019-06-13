@@ -4,8 +4,12 @@
 */
 package team.softwarede.confersys.biz;
 
+import java.util.List;
+
 import team.softwarede.confersys.dto.MeetingApplyDetails;
 import team.softwarede.confersys.dto.MeetingRoomBook;
+import team.softwarede.confersys.dto.MeetingRoomSchedule;
+import team.softwarede.confersys.dto.MeetingRoomScheduleOrg;
 
 /**
  * @author Mity1299
@@ -21,5 +25,7 @@ public interface MeetingBiz {
     boolean editMeetingContent(int meetingId, String meetingContent, String meetingConclusion);
     
     MeetingApplyDetails showMtRoomBookDetails(int applyId);
+    
+
 
 }

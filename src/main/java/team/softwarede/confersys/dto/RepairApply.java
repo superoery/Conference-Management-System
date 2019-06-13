@@ -9,6 +9,8 @@ public class RepairApply {
 	private String repairType;
 	
 	private String repairDetail;
+	
+	private Date date;
 
 	public Integer getRepairEquipmentId() {
 		return repairEquipmentId;
@@ -32,6 +34,14 @@ public class RepairApply {
 
 	public void setRepairDetail(String repairDetail) {
 		this.repairDetail = repairDetail;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }

@@ -9,6 +9,8 @@ import java.util.List;
 
 import team.softwarede.confersys.dto.EquipmentRepairDetails;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
+import team.softwarede.confersys.dto.MeetingRoomSchedule;
+import team.softwarede.confersys.dto.MeetingRoomScheduleOrg;
 import team.softwarede.confersys.entity.EquipmentType;
 
 /**
@@ -27,4 +29,8 @@ public interface MeetingRoomBiz {
     EquipmentRepairDetails repairDetails(int repairId);
     
     List<MeetingRoomAvail> showAllMtRoom();
+    
+    List<MeetingRoomSchedule> showScheduleAdmin();
+    
+    List<MeetingRoomScheduleOrg> showScheduleOrg();
 }

@@ -4,6 +4,7 @@
 */
 package team.softwarede.confersys.bizImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +15,12 @@ import org.springframework.stereotype.Service;
 import team.softwarede.confersys.biz.MeetingRoomBiz;
 import team.softwarede.confersys.dto.EquipmentRepairDetails;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
+import team.softwarede.confersys.dto.MeetingRoomSchedule;
+import team.softwarede.confersys.dto.MeetingRoomScheduleOrg;
 import team.softwarede.confersys.dtomapper.EquipmentRepairDetailsMapper;
 import team.softwarede.confersys.dtomapper.MeetingRoomAvailMapper;
 import team.softwarede.confersys.entity.EquipmentType;
+import team.softwarede.confersys.entity.Schedule;
 import team.softwarede.confersys.enums.EnumApplyStatusId;
 import team.softwarede.confersys.mapper.ApplyMapper;
 import team.softwarede.confersys.mapper.EquipmentTypeMapper;
@@ -88,6 +92,41 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     public List<MeetingRoomAvail> showAllMtRoom(){
     	List<MeetingRoomAvail> MtRoomList = meetingRoomAvailMapper.selectAllMtRoomList();
     	return MtRoomList;
+    }
+    
+    @Override
+    public List<MeetingRoomSchedule> showScheduleAdmin(){
+    	
+    	Schedule item = new Schedule();
+    	List<Schedule> schedule= scheduleMapper.selectAll();
+    	List<MeetingRoomSchedule> list = new ArrayList();
+    	
+    	for(int i = 0; i < schedule.size(); i++) {
+    		item = schedule.get(i);
+    		MeetingRoomSchedule showItem = new MeetingRoomSchedule();
+    		showItem.setBeginTime(item.getBeginTime());
+    		showItem.setEndTime(item.getEndTime());
+    		showItem.setMtId(item.getMeetingId());
+    		showItem.setMtTopic(meetingMapper.selectTopicById(item.getMeetingId()));
+    		list.add(showItem);
+
+    	}
+    	return list;
+    }
+    
+    @Override
+    public List<MeetingRoomScheduleOrg> showScheduleOrg(){
+    	Schedule item = new Schedule();
+    	List<Schedule> schedule= scheduleMapper.selectAll();
+    	List<MeetingRoomScheduleOrg> list = new ArrayList();
+    	for(int i = 0; i < schedule.size(); i++) {
+    		item = schedule.get(i);
+    		MeetingRoomScheduleOrg showItem = new MeetingRoomScheduleOrg();
+    		showItem.setBeginTime(item.getBeginTime());
+    		showItem.setEndTime(item.getEndTime());
+    		list.add(showItem);
+    	}
+    	return list;
     }
 
 }

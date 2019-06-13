@@ -33,4 +33,6 @@ public interface ScheduleMapper {
     
     int updateByMtIdSelective(Schedule record);
     
+    List<Schedule> selectAll();
+    
 }
