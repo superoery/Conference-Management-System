@@ -4,15 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.SimpleFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import team.softwarede.confersys.biz.RepairApplicationBiz;
+import team.softwarede.confersys.dto.EquipmentDetail;
 import team.softwarede.confersys.dto.RepairApply;
-import team.softwarede.confersys.dto.UserSearch;
+import team.softwarede.confersys.dtomapper.EquipmentDetailMapper;
 import team.softwarede.confersys.entity.Equipment;
 import team.softwarede.confersys.entity.NoticesKey;
 import team.softwarede.confersys.entity.Notification;
@@ -45,6 +45,8 @@ public class RepairApplicationBizImpl implements RepairApplicationBiz{
 	NoticesMapper noticesMapper;
 	@Autowired
 	EquipmentMapper equipmentMapper;
+	@Autowired
+	EquipmentDetailMapper equipmentDetailMapper;
 	
 	@Transactional
 	@Override
@@ -111,5 +113,17 @@ public class RepairApplicationBizImpl implements RepairApplicationBiz{
         }
         
         return repairTypeList;
+    }
+    
+    @Override
+    public EquipmentDetail showEquipmentDetail(Integer equipmentId) {
+    	EquipmentDetail detail = equipmentDetailMapper.selectByEquipmentId(equipmentId);
+    	return detail;
+    }
+    
+    @Override
+    public EquipmentDetail showEquipmentDetailByRepairId(Integer repairId) {
+    	EquipmentDetail detail = equipmentDetailMapper.selectByEquipmentId(repairId);
+    	return detail;
     }
 }
