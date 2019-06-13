@@ -33,10 +33,11 @@
       and meeting_room_id = #{meetingRoomId,jdbcType=INTEGER}
   </select>
   
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectByMeetingRoom" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from schedule
+    where meeting_room_id = #{meetingRoomId}
   </select>
   <select id="selectByDate" resultMap="BaseResultMap">
     <!--

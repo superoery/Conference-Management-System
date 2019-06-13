@@ -95,10 +95,10 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     }
     
     @Override
-    public List<MeetingRoomSchedule> showScheduleAdmin(){
+    public List<MeetingRoomSchedule> showScheduleAdmin(int meetingRoomId){
     	
     	Schedule item = new Schedule();
-    	List<Schedule> schedule= scheduleMapper.selectAll();
+    	List<Schedule> schedule= scheduleMapper.selectByMeetingRoom(meetingRoomId);
     	List<MeetingRoomSchedule> list = new ArrayList();
     	
     	for(int i = 0; i < schedule.size(); i++) {
@@ -115,9 +115,9 @@ public class MeetingRoomBizImpl implements MeetingRoomBiz{
     }
     
     @Override
-    public List<MeetingRoomScheduleOrg> showScheduleOrg(){
+    public List<MeetingRoomScheduleOrg> showScheduleOrg(int meetingRoomId){
     	Schedule item = new Schedule();
-    	List<Schedule> schedule= scheduleMapper.selectAll();
+    	List<Schedule> schedule= scheduleMapper.selectByMeetingRoom(meetingRoomId);
     	List<MeetingRoomScheduleOrg> list = new ArrayList();
     	for(int i = 0; i < schedule.size(); i++) {
     		item = schedule.get(i);

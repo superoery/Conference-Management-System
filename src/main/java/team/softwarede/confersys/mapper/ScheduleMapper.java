@@ -33,6 +33,6 @@ public interface ScheduleMapper {
     
     int updateByMtIdSelective(Schedule record);
     
-    List<Schedule> selectAll();
+    List<Schedule> selectByMeetingRoom(@Param("meetingRoomId")int meetingRoomId);
     
 }
