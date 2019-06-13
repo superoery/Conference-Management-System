@@ -19,6 +19,7 @@ public class NotificationDetail {
 	private String noteReferMtName;
 	
 	private Integer noteReferMtId;
+	
 
 	public Integer getNoteId() {
 		return noteId;

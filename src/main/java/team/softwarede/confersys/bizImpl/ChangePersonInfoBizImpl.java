@@ -14,15 +14,13 @@ public class ChangePersonInfoBizImpl implements ChangePersonInfoBiz{
 	@Override
 	public String changePersonInfo(User user, String telephone, String email) {
 		String msg;
-		if(telephone != null) {
+		if(telephone != null &&  telephone.length()!=0) {
 			user.setTelephone(telephone);
-		}else if(email != null) {
-			user.setEmail(email);
-		}else {
-			msg = "No change!";
-			return msg;
 		}
-		userMapper.updateByPrimaryKey(user);
+		if(email != null && email.length()!=0) {
+			user.setEmail(email);
+		} 
+		userMapper.updateByPrimaryKeySelective(user);
 		msg = "Succeed!";
 		return msg;
 	}

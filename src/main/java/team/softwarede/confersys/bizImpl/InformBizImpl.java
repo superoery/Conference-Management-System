@@ -185,7 +185,9 @@ public class InformBizImpl implements InformBiz {
         
         switch (EnumNotificationType.valueOfDescription(type)) {
         case REPAIR:{
-                name =null;
+        	RepairsKey key = repairsMapper.selectByRepairEquipmentId(referId);
+        	Equipment equipment = equipmentMapper.selectByPrimaryKey(key.getEquipmentId());
+            name = equipment.getEquipmentName();
         }break;
         case LEAVE:{
            
