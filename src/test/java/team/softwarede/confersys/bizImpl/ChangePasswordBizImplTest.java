@@ -1,5 +1,9 @@
 package team.softwarede.confersys.bizImpl;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +28,44 @@ public class ChangePasswordBizImplTest {
 	@Autowired
 	ChangePasswordBiz changePasswordBiz;
 	
-	@Autowired
+	@Autowired 
 	UserMapper userMapper;
 	
 	@Transactional
 	@Test
 	public void test() {
 		User user = new User();
-		user = userMapper.selectByPrimaryKey("41624544");
-		changePasswordBiz.changePassword(user,"2799","2775");
+		User userNew = new User();
+		String newPasswd = "5463765";
+		String oldPaswd=null;
+		String realPasswd=null;
+		
+		user = userMapper.selectByPrimaryKey("00000011");
+		oldPaswd = user.getPassword();
+		
+		
+		changePasswordBiz.changePassword(user,oldPaswd,newPasswd);
+		userNew = userMapper.selectByPrimaryKey("00000011");
+		
+		
+		realPasswd = userNew.getPassword();
+		
+		System.out.println("原密码："+oldPaswd);
+		System.out.println("新密码："+newPasswd);
+		System.out.println("真密码："+realPasswd);
+
+		
+		assertNotEquals(oldPaswd, realPasswd);
+		assertEquals(newPasswd, realPasswd);
+		
+		
+	}
+	
+	@Ignore
+	public void testUser() {
+		User user = userMapper.selectByPrimaryKey("00000011");
+
+		System.out.println();
 	}
 
 }
