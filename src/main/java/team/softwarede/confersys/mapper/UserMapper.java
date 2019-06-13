@@ -27,4 +27,6 @@ public interface UserMapper {
     int updateByUserId(@Param("user")User user);
     
     String selectNameByUserId(@Param("userId")String userId);
+    
+    String selectPasswordByUserId(@Param("userId")String userId);
 }

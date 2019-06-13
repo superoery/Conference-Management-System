@@ -231,6 +231,7 @@ public class InformBizImpl implements InformBiz {
     	return showList;
     }
 
+    
     //显示特殊通知
     @Override
     public List<NotificationSpIntro> spNotificastion(int typeNum, int roleId, String userId){
@@ -349,4 +350,5 @@ public class InformBizImpl implements InformBiz {
     		}
     	
     }
+
 }   

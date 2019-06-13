@@ -47,6 +47,13 @@ public class MeetingController {
 	@Autowired
 	MeetingBiz meetingBiz; 
 	
+	/**
+	 * 显示主界面
+	 * @param map
+	 * @param userlogin
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/show_list.do")
 	public String showMeetingList(ModelMap map,
 			@ModelAttribute("userlogin") UserLogin userlogin,
@@ -91,8 +98,15 @@ public class MeetingController {
 		return url;
 	}
 	
-	
-
+		
+	/**
+	 * 管理员审核请假
+	 * @param map
+	 * @param audit
+	 * @param meetingId
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping(value = "/leave/audit.do",params = {"audit","meetingId","userId"})
 	public String auditLeave(ModelMap map,
 							 @ModelAttribute("audit")Integer audit,
@@ -120,6 +134,13 @@ public class MeetingController {
 	
 
 
+	/**
+	 * 显示会议详情
+	 * @param map
+	 * @param mtId
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/mt_detail.do", params = {"mtId"})
 	public String index(ModelMap map, 
 			@ModelAttribute("mtId") int mtId,
@@ -143,17 +164,13 @@ public class MeetingController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "/leave/apply/show.do")
+	@RequestMapping(value = "/leave/apply/show.do",params = {"meetingId"})
 	public String showLeaveApplyPage(ModelMap map,
-									 HttpSession session) {
+									 HttpSession session,
+									 @ModelAttribute("meetingId")Integer meetingId) {
 		
-		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
 		
-		List<MeetingMainPage> meetingList = 
-				showMeetingMainPageBiz.showMeetingMainPage(userSession.getUserId(),
-														   userSession.getRole().getId());
-
-		map.addAttribute("meetingList", meetingList);
+		map.addAttribute("meetingId", meetingId);
 		
 		return "meeting_leave_apply";
 	}
@@ -169,7 +186,7 @@ public class MeetingController {
 
 		LeaveApplication leaveApplication = new LeaveApplication();
 		String result = null;
-		String title = "申请请假";
+		String title = "请假申请";
 		String msg = null;
 		
 		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
@@ -188,6 +205,9 @@ public class MeetingController {
 		}else {
 			msg = "申请请假失败";
 		}
+		
+		map.addAttribute("msg", msg);
+		map.addAttribute("title", title);
 		
 		return "forward:/universal/result/show.do";
 		

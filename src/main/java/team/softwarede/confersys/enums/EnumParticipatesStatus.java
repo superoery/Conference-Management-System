@@ -11,7 +11,8 @@ package team.softwarede.confersys.enums;
 public enum EnumParticipatesStatus {
   
     LEAVE("请假"),
-    ATTEND("出席");
+    ATTEND("出席"),
+    APPLY("申请请假中");
 
     private final String description;
 
