@@ -20,7 +20,8 @@
     where meeting_id = #{meetingId,jdbcType=INTEGER}
   </select>
   
-    <select id="selectByMeetingId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+  <select id="selectByMeetingId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from leave_application
