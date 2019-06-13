@@ -12,14 +12,14 @@
   </resultMap>
   <select id="selectByReEquipmentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 	select
-	*
+	equipment_id,repair_equipment_id
 	from repairs
 	where repair_equipment_id = #{repairEquipmentId,jdbcType=INTEGER}
   </select>
   
-    <select id="selectByRepairEquipmentId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    <select id="selectByRepairEquipmentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 	select
-	equipment_id
+	equipment_id,repair_equipment_id
 	from repairs
 	where repair_equipment_id = #{repairEquipmentId,jdbcType=INTEGER}
   </select>

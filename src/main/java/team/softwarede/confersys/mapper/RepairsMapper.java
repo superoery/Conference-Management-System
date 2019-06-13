@@ -15,5 +15,5 @@ public interface RepairsMapper {
 	
 	RepairsKey selectByReEquipmentId(Integer repairEquipmentId);
 	
-	int selectByRepairEquipmentId(int repairEquipmentId);
+	RepairsKey selectByRepairEquipmentId(int repairEquipmentId);
 }

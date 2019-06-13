@@ -34,17 +34,17 @@
               <h3 class="card-title text-left mb-3">Login</h3>
               <form action="/user/tologin.do" method="post" th:object="${loginForm}">
                 <div class="form-group">
-                  <label>UserId *</label>
+                  <label>用户编号</label>
                   <input type="text" class="form-control p_input" name="userId" th:field="*{userId}"></input>
                   <p th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" style="color:#FF0000">errors userId</p>
                 </div>
                 <div class="form-group">
-                  <label>Password *</label>
+                  <label>密码</label>
                   <input type="password" class="form-control p_input" name="password" th:field="*{password}"></input>
                   <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:#FF0000">errors password</p>
                 </div>
 				<div class="form-group">
-                  <label>Role * &nbsp;</label>
+                  <label>身份 &nbsp;</label>
                   
                   <select th:field="*{identityId}" style="font-size: 14px;">投影笔
 	            	<option th:each="identity : ${identities}"
@@ -54,22 +54,10 @@
 	            	</option>
 				  </select>
 				  
-				  <a href="#" class="forgot-pass" style="float: right;">Forgot password</a>
-				  <p th:if="${#fields.hasErrors('identityId')}" th:errors="*{identityId}" style="color:#FF0000">errors identityId</p>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
-                  <if condition="${msg}!=null"><p class="msg" th:text="${msg}" style="color:#FF0000">提示信息</p></if>
+                  <button type="submit" class="btn btn-primary btn-block enter-btn">登录</button>
                 </div>
-                <div class="d-flex">
-                  <a href="#" class="btn btn-facebook mr-2 col" style="color:#FFFFFF">
-                      <i class="mdi mdi-facebook"></i> Facebook
-                  </a>
-                  <a href="#" class="btn btn-google col" style="color:#FFFFFF">
-                      <i class="mdi mdi-google-plus"></i> Google plus
-                  </a>
-                </div>
-                <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p>
               </form>
             </div>
           </div>
