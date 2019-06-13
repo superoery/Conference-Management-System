@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import team.softwarede.confersys.biz.MeetingBiz;
 import team.softwarede.confersys.biz.MeetingRoomBiz;
+import team.softwarede.confersys.biz.RepairApplicationBiz;
 import team.softwarede.confersys.biz.ShowMtRoomInfoBiz;
 import team.softwarede.confersys.biz.UserGroupBiz;
 import team.softwarede.confersys.dto.BasicSession;
@@ -28,6 +29,7 @@ import team.softwarede.confersys.dto.MeetingRoomSchedule;
 import team.softwarede.confersys.dto.MeetingRoomScheduleOrg;
 import team.softwarede.confersys.dto.MeetingRoomShowAvailForPage;
 import team.softwarede.confersys.dto.UserAndGroup;
+import team.softwarede.confersys.entity.Equipment;
 import team.softwarede.confersys.entity.EquipmentType;
 import team.softwarede.confersys.entity.MeetingRoom;
 import team.softwarede.confersys.enums.EnumRoleName;
@@ -48,6 +50,9 @@ public class MeetingRoomController {
 	
 	@Autowired
 	ShowMtRoomInfoBiz showMtRoomInfoBiz;
+	
+	@Autowired
+	RepairApplicationBiz repairApplicationBiz;
 
 	@RequestMapping("/showList.do")
 	public String showMtRoomList(ModelMap map) {
@@ -73,6 +78,9 @@ public class MeetingRoomController {
 //			List<MeetingRoomScheduleOrg> scheduleList = meetingRoomBiz.showScheduleOrg(mtRoomId);
 //			map.addAttribute("scheduleList", scheduleList);
 //		}
+		
+		List<Equipment> equipmentList = repairApplicationBiz.xxx(mtRoomId);
+		map.addAttribute("equipmentList", equipmentList);
 		
 		return "mtRoom_detail";
 	}

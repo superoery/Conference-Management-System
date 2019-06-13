@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html 
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="apublic_fragment">
+
+<head>
+<meta charset="utf-8">
+<title>设备详情</title>
+</head>
+<body>
+
+	<!-- partial -->
+	<div class="card-body" layout:fragment="content">
+	
+	  
+	  <div class="row">
+		<div class="col-12 grid-margin">
+		  <div class="card">
+			<div class="card-body">
+			  <h4 class="card-title">设备详情</h4>
+			  <div class="table-responsive">
+			  	<p th:if="${equipmentDetail}==null" th:text=${'没有找到该设备详情'}></p>
+				<table class="table table-bordered" th:if="${equipmentDetail}!=null">
+					<tr>
+						<th>设备编号</th>
+						<td th:text="${equipmentDetail.getEquipmentId()}"></td>
+					</tr>
+					
+					<tr>
+						<th>设备名称</th>
+						<td th:text="${equipmentDetail.getEquipmentName()}"></td>
+					</tr>
+					
+					<tr>
+						<th>设备类型</th>
+						<td th:text="${equipmentDetail.getEquipmentTypeName()}"></td>
+					</tr>
+					
+					<tr>
+						<th>所在会议室编号</th>
+						<td th:text="${equipmentDetail.getMeetingRoomId()}"></td>
+					</tr>
+					
+					<tr>
+						<th>所在建筑</th>
+						<td th:text="${equipmentDetail.getBuilding()}"></td>
+					</tr>
+					
+					<tr>
+						<th>所在楼层</th>
+						<td th:text="${equipmentDetail.getFloor()}"></td>
+					</tr>
+					
+					<tr>
+						<th>所在房间号</th>
+						<td th:text="${equipmentDetail.getRoomNumber()}"></td>
+					</tr>
+					
+					<tr>
+						<th>购入时间</th>
+						<td th:text="${#dates.format(equipmentDetail.getStoreTime(), 'yyyy-MM-dd HH:mm')}"></td>
+					</tr>
+					
+					<tr>
+						<th>设备状态</th>
+						<td th:text="${equipmentDetail.getEquipmentStatus()}"></td>
+					</tr>
+					
+				</table>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	  <div th:if="(${mtDetail.getMtStatus()}=='审核通过未开始') and 
+	  			  (${mtDetail.getMyParticipantStatus()}=='出席')" style="float: left;">		
+		<a class="btn btn-inverse-dark btn-fw"
+		   th:href="@{/meeting/leave/apply/show.do(meetingId=${mtDetail.getMtId()})}">
+		请假
+		</a>
+	  </div>
+	  <div style="float: right;">
+		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
+	  </div>
+	  <div  th:if="${session.userSession.getRole().getRole()} != '管理员' "><br/><br/><br/><br/></div>
+	  
+	</div>
+	<!-- content-wrapper ends -->
+	
+</body>
+
+</html>
