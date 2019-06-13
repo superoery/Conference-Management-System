@@ -20,14 +20,14 @@ public class InformBizImplSpNotificationTest {
 	@Autowired
 	InformBiz informBiz;
 	
-	@Test
-	public void test() {
-		List<NotificationSpIntro> list = informBiz.spNotificastion(3);
-		for(NotificationSpIntro intro:list) {
-			System.out.println((intro.getUserId()));
-			System.out.println(String.valueOf(intro.getReferId()));
-			System.out.println(intro.getNotificationSpType());
-		}
-	}
+//	@Test
+//	public void test() {
+//		List<NotificationSpIntro> list = informBiz.spNotificastion(3);
+//		for(NotificationSpIntro intro:list) {
+//			System.out.println((intro.getUserId()));
+//			System.out.println(String.valueOf(intro.getReferId()));
+//			System.out.println(intro.getNotificationSpType());
+//		}
+//	}
 
 }

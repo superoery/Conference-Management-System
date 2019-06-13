@@ -40,6 +40,13 @@
     where apply_status_id = "审核中"
   </select>
   
+  <select id="selectMeetingId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select 
+    meeting_id
+    from apply
+    where user_id = #{userId}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated
