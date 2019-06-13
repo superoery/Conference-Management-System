@@ -24,10 +24,13 @@ import team.softwarede.confersys.biz.UserGroupBiz;
 import team.softwarede.confersys.dto.BasicSession;
 import team.softwarede.confersys.dto.MeetingRoomAvail;
 import team.softwarede.confersys.dto.MeetingRoomBook;
+import team.softwarede.confersys.dto.MeetingRoomSchedule;
+import team.softwarede.confersys.dto.MeetingRoomScheduleOrg;
 import team.softwarede.confersys.dto.MeetingRoomShowAvailForPage;
 import team.softwarede.confersys.dto.UserAndGroup;
 import team.softwarede.confersys.entity.EquipmentType;
 import team.softwarede.confersys.entity.MeetingRoom;
+import team.softwarede.confersys.enums.EnumRoleName;
 import team.softwarede.confersys.vo.UserAndGroupList;
 
 @Controller
@@ -56,9 +59,21 @@ public class MeetingRoomController {
 	
 	@RequestMapping(value = "/show_detail.do", params = {"mtRoomId"})
 	public String showMtRoomDetail(ModelMap map,
-			@ModelAttribute("mtRoomId") Integer mtRoomId) {
+			@ModelAttribute("mtRoomId") Integer mtRoomId,
+			HttpSession session) {
 		MeetingRoom mtRoom = showMtRoomInfoBiz.showMtRoomInfo(mtRoomId);
 		map.addAttribute("mtRoom", mtRoom);
+		
+		BasicSession userSession = (BasicSession)session.getAttribute("userSession");
+		
+		if(userSession.getRole().getRole()==EnumRoleName.ADMIN.getDescription()) {
+			List<MeetingRoomSchedule> scheduleList = meetingRoomBiz.showMtRoomSchedule(mtRoomId);
+			map.addAttribute("scheduleList", scheduleList);
+		}else if(userSession.getRole().getRole()==EnumRoleName.ORGANIZER.getDescription()) {
+			List<MeetingRoomScheduleOrg> scheduleList = meetingRoomBiz.showMtRoomScheduleOrg(mtRoomId);
+			map.addAttribute("scheduleList", scheduleList);
+		}
+		
 		return "mtRoom_detail";
 	}
 	
@@ -199,6 +214,9 @@ public class MeetingRoomController {
 		}else {
 			map.addAttribute("createMtMsg", "创建新会议、预约会议室失败！请稍后重试！");
 		}
+		session.removeAttribute("beginTime");
+		session.removeAttribute("endTime");
+		session.removeAttribute("selectedUAndGList");
 		return "mtRoom_submitMsg";
 		
 	}
