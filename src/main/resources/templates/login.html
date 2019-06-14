@@ -53,10 +53,12 @@
 	            		text="投影笔">
 	            	</option>
 				  </select>
-				  
+				  <p th:if="${#fields.hasErrors('identityId')}" th:errors="*{identityId}" style="color:#FF0000">errors identityId</p>
                 </div>
+                
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary btn-block enter-btn">登录</button>
+                  <if condition="${msg}!=null"><p class="msg" th:text="${msg}" style="color:#FF0000">提示信息</p></if>
                 </div>
               </form>
             </div>
