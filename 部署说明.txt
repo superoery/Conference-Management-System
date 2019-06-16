@@ -1,0 +1,6 @@
+java版本：javac 1.8.0_131
+数据库版本：mysql  8.0.15 MySQL Community Server
+数据库名：softwaredb
+用户名：softwaredb
+密码：123
+数据库文件在sql目录下，文件名为softwaredbByMity.sql
