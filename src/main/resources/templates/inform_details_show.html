@@ -51,11 +51,14 @@
 			
 				</table>
 				
-				<div th:if="${notiDetails.getNoteType()=='新会议' ||
-					notiDetails.getNoteType()=='请假结果' ||
-					notiDetails.getNoteType()=='审核结果'
-					}">
+				<div th:if="${notiDetails.getNoteType()=='新会议'  ||  notiDetails.getNoteType()=='请假结果'  }">
 					<a class="btn btn-secondary" th:href="@{/meeting/mt_detail.do(mtId=${notiDetails.getNoteReferMtId()})}">
+						查看会议详情
+					</a>
+				</div>
+				
+				<div th:if="${notiDetails.getNoteType()=='审核结果' }">
+					<a class="btn btn-secondary" th:href="@{/meeting/mt_detail_withParticipants.do(mtId=${notiDetails.getNoteReferMtId()})}">
 						查看会议详情
 					</a>
 				</div>

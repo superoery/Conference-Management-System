@@ -19,7 +19,7 @@
 		<div class="col-12 grid-margin">
 		  <div class="card">
 			<div class="card-body">
-			  <h4 class="card-title">参与的会议详情</h4>
+			  <h4 class="card-title">会议详情</h4>
 			  <div class="table-responsive">
 			  	<p th:if="${mtDetail}==null" th:text=${'没有需要参加的会议！'}></p>
 				<table class="table table-bordered" th:if="${mtDetail}!=null">
@@ -73,9 +73,22 @@
 						<td th:text="${mtDetail.getMtStatus()}"></td>
 					</tr>
 					
-					<tr>
+					<tr  th:if="${session.userSession.getRole().getRole()} == '普通用户' ">
 						<th>本人与会状态</th>
 						<td th:text="${mtDetail.getMyParticipantStatus()}"></td>
+					</tr>
+					
+					<tr  th:if="${session.userSession.getRole().getRole()} != '普通用户' ">
+						<th>与会者列表</th>
+						<td>
+							<p th:if="${participantsList.size()}==0" th:text=${'暂无与会者'}></p>
+							<table class="table table" th:if="${participantsList.size()}!=0">
+								<tr   th:each="p : ${participantsList}">
+									<td th:text="${p.getParticipantName()}"></td>
+									<td th:text="${p.getParticipantStatus()}"></td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					
 				</table>
@@ -85,13 +98,13 @@
 		</div>
 	  </div>
 	  
-	  <div th:if="(${mtDetail.getMtStatus()}=='审核通过未开始') and 
-	  			  (${mtDetail.getMyParticipantStatus()}=='出席')" style="float: left;">		
+	  <div th:if="${session.userSession.getRole().getRole()} == '会议组织者' " style="float: left;">		
 		<a class="btn btn-inverse-dark btn-fw"
-		   th:href="@{/meeting/leave/apply/show.do(meetingId=${mtDetail.getMtId()})}">
-		请假
+		   th:href="@{/meeting/details/edit.do(meetingId=${mtDetail.getMtId()})}">
+		修改会议内容和结论
 		</a>
 	  </div>
+	  
 	  <div style="float: right;">
 		<a class="btn btn-inverse-dark btn-fw" href="#up">返回顶层</a>
 	  </div>

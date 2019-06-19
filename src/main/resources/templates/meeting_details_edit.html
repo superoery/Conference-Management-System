@@ -28,10 +28,10 @@
 					  	<td>会议编号</td>
 					  	<td th:text="${details.getMtId()}"></td>
 				    </tr>
-				    <tr>
+				    <tr style="display:none">
 				    	<td>隐藏域</td>
 					  	<td>
-					  	<input type="text" class="form-control p_input" name="meetingId" 
+					  	<input type="hidden" class="form-control p_input" name="meetingId" 
 				    	       th:value="${meetingId}" 
 				    	       ></input>
 					  	

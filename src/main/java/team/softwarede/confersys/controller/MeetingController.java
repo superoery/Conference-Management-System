@@ -142,7 +142,7 @@ public class MeetingController {
 	 * @return
 	 */
 	@RequestMapping(value = "/mt_detail.do", params = {"mtId"})
-	public String index(ModelMap map, 
+	public String showMtDetail(ModelMap map, 
 			@ModelAttribute("mtId") int mtId,
 			HttpSession session) {
 
@@ -151,12 +151,34 @@ public class MeetingController {
 		
 		Role role = userSession.getRole();
 		MeetingDetail mtDetail = showMeetingDetail2Biz.showMeetingDetail2(userSession.getUserId(), mtId, role.getId());
-		List<ParticipantBasicInfo> participantsList = showMeetingDetail2Biz.showMeetingDetail(mtId, role.getId());
 		map.addAttribute("mtDetail", mtDetail);
-		map.addAttribute("participantsList", participantsList);
 
 		return "meeting_detail";
     }
+	
+	/**
+	 * 显示含参与者列表的会议详情
+	 * @param map
+	 * @param mtId
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/mt_detail_withParticipants.do", params = {"mtId"})
+	public String showMtDetialWithParticipants(ModelMap map, 
+			@ModelAttribute("mtId") int mtId,
+			HttpSession session) {
+		
+		BasicSession userSession = (BasicSession) session.getAttribute("userSession");
+		map.addAttribute("userSession",userSession);
+		
+		Role role = userSession.getRole();
+		MeetingDetail mtDetail = showMeetingDetail2Biz.showMeetingDetail2(userSession.getUserId(), mtId, role.getId());
+		List<ParticipantBasicInfo> participantsList = showMeetingDetail2Biz.showMeetingDetail(mtId, role.getId());
+		map.addAttribute("mtDetail", mtDetail);
+		map.addAttribute("participantsList", participantsList);
+		
+		return "meeting_detail_withParticipants";
+	}
 	
 	/**
 	 * 显示请假详情

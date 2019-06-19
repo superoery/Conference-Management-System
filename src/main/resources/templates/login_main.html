@@ -127,7 +127,7 @@
 					  <td th:text="${omt.getMtRoomNum()}"></td>
 					  <td th:text="${omt.getMtStatus()}"></td>
 					  <td><a class="btn btn-secondary" 
-							th:href="@{/meeting/mt_detail.do(mtId=${omt.getMtId()})}">查看详情</a></td>
+							th:href="@{/meeting/mt_detail_withParticipants.do(mtId=${omt.getMtId()})}">查看详情</a></td>
 					</tr>
 				  </tbody>
 				</table>
@@ -190,7 +190,7 @@
 					  <td th:text="${amt.getMtRoomNum()}"></td>
 					  <td th:text="${amt.getMtStatus()}"></td>
 					  <td><a class="btn btn-success" style="color:#FFFFFF"
-							th:href="@{/meeting/mt_detail.do(mtId=${amt.getMtId()}) }">查看详情</a></td>
+							th:href="@{/meeting/mt_detail_withParticipants.do(mtId=${amt.getMtId()}) }">查看详情</a></td>
 					</tr>
 				  </tbody>
 				</table>
